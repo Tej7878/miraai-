@@ -698,6 +698,23 @@ export default function Creativerevisualization({ openForm }) {
             opacity: 1;
             transform: none;
           }
+
+          /* Show navigation buttons on tablet */
+          .cr-nav-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+          }
+
+          .cr-nav-prev {
+            left: 8px;
+          }
+
+          .cr-nav-next {
+            right: 8px;
+          }
         }
 
         /* ========================================
@@ -782,21 +799,9 @@ export default function Creativerevisualization({ openForm }) {
             height: 20px;
           }
 
-          /* Show navigation buttons on mobile */
           .cr-nav-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
             width: 36px;
             height: 36px;
-          }
-
-          .cr-nav-prev {
-            left: 8px;
-          }
-
-          .cr-nav-next {
-            right: 8px;
           }
 
           .cr-right {

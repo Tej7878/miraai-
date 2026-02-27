@@ -110,7 +110,7 @@ const Percentage = () => {
                             <div className="absolute top-0 -left-full w-full h-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent)] transition-[left] duration-500 group-hover:left-full" />
                         )}
 
-                        <div className="text-xl md:text-5xl font-bold text-white mb-1 md:mb-3 tracking-[0.5px] bg-gradient-to-br from-white to-[#e0e0e0] bg-clip-text text-transparent relative z-[1]">
+                        <div className="inline-block text-xl md:text-3xl font-bold text-white mb-1 md:mb-3 tracking-[0.5px] bg-gradient-to-br from-white to-[#e0e0e0] bg-clip-text text-transparent relative z-[1] pr-[4px]">
                             {index === 1
                                 ? Math.floor(counts[index]) + stat.suffix
                                 : counts[index].toFixed(index === 0 ? 1 : 0) + stat.suffix
