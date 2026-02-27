@@ -26,14 +26,18 @@ const cardConfigs = [
 ];
 
 // Desktop Floating Video Card Component
-const FloatingVideoCard = ({ src, config, index, randomValues }) => {
+const FloatingVideoCard = ({ src, config, index, randomValues, windowWidth }) => {
   const controls = useAnimationControls();
   const { duration, xAmp, yAmp, rotAmp } = randomValues;
+
+  // Scale X positions for smaller screens to prevent cutoff
+  const scaleX = Math.min(1, windowWidth / 1250);
+  const adjustedX = config.x * scaleX;
 
   useEffect(() => {
     const animateSequence = async () => {
       await controls.start({
-        x: -config.x * 0.15,
+        x: -adjustedX * 0.15,
         y: -config.y * 0.15,
         rotate: -config.rotate * 0.3,
         scale: 0.5,
@@ -48,7 +52,7 @@ const FloatingVideoCard = ({ src, config, index, randomValues }) => {
       });
 
       await controls.start({
-        x: config.x,
+        x: adjustedX,
         y: config.y,
         rotate: config.rotate,
         scale: config.scale,
@@ -63,7 +67,7 @@ const FloatingVideoCard = ({ src, config, index, randomValues }) => {
       });
 
       controls.start({
-        x: [config.x - xAmp, config.x + xAmp, config.x - xAmp],
+        x: [adjustedX - xAmp, adjustedX + xAmp, adjustedX - xAmp],
         y: [config.y - yAmp, config.y + yAmp, config.y - yAmp],
         rotate: [config.rotate - rotAmp, config.rotate + rotAmp, config.rotate - rotAmp],
         transition: {
@@ -75,7 +79,7 @@ const FloatingVideoCard = ({ src, config, index, randomValues }) => {
     };
 
     animateSequence();
-  }, [controls, config, index, duration, xAmp, yAmp, rotAmp]);
+  }, [controls, config, index, duration, xAmp, yAmp, rotAmp, adjustedX]);
 
   return (
     <motion.div
@@ -161,16 +165,20 @@ const contentItemVariants = {
 export default function FloatingVideoHero({ openForm }) {
   const contentControls = useAnimationControls();
   const [isMobile, setIsMobile] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
   const scrollContainerRef = useRef(null);
   const cardRefs = useRef([]);
   const [activeVideoIndex, setActiveVideoIndex] = useState(0);
 
-  // Check if mobile
+  // Check if mobile and update width
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 1024);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+      setWindowWidth(window.innerWidth);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   // Auto-cycle videos on mobile (one by one)
@@ -229,6 +237,7 @@ export default function FloatingVideoHero({ openForm }) {
               config={cardConfigs[index]}
               index={index}
               randomValues={randomValues[index]}
+              windowWidth={windowWidth}
             />
           ))}
         </div>
