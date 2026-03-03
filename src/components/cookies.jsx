@@ -273,7 +273,7 @@ const CookiePolicy = () => {
                     <div className="flex-1 w-full min-w-0">
                         <div className="mb-12">
                             <h1 className="text-[25px] md:text-[40px] font-bold mb-6 leading-tight tracking-[0.5px]">Cookie Policy</h1>
-                            <p className="text-gray-400 text-[21px] max-w-3xl leading-relaxed tracking-[0.5px]">
+                            <p className="text-gray-400 text-[18px] max-w-3xl leading-relaxed tracking-[0.5px]">
                                 This Cookie Policy explains how Miraai uses cookies and similar technologies on its website to improve user experience, analyze website performance, and provide better services.
                                 By continuing to use our website, you agree to the use of cookies in accordance with this policy.
                             </p>

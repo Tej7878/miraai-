@@ -85,7 +85,7 @@ const TrustMiraai = () => {
                         <h2 className="text-[25px] font-bold text-white tracking-[0.5px] max-w-full px-2 mx-auto leading-tight">
                             Traditional Production Slows Down Modern Brands
                         </h2>
-                        <p className="text-gray-400 text-[18px] tracking-[0.5px] mt-4 max-w-[600px] mx-auto leading-relaxed opacity-80">
+                        <p className="text-gray-400 text-[14px] tracking-[0.5px] mt-4 max-w-[600px] mx-auto leading-relaxed opacity-80">
                             Traditional video shoots require high budgets, long timelines, and many resources, making consistent content creation difficult.
                         </p>
                     </div>

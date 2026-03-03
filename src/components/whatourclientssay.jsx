@@ -4,8 +4,11 @@ import { motion, useInView } from 'framer-motion';
 export default function Whatourclientssay() {
   const [currentIndex, setCurrentIndex] = useState(3); // Start at the first real item (index 3)
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
   const trackRef = useRef(null);
+  const dragStateRef = useRef({ startX: 0, moved: false });
+  const wheelStateRef = useRef({ lastTs: 0 });
 
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.15 });
@@ -104,7 +107,7 @@ export default function Whatourclientssay() {
           transition={{ duration: 0.8 }}
         >
           <div className="wcs-title">What Our Clients Say</div>
-          <div className="wcs-sub">
+          <div className="text-[18px] mt-3 text-[#ffffffb3]">
             Trusted By Forward-Thinking Teams For Reliable, Intelligent, And
             <br />
             High-Impact Creative Production.
@@ -117,7 +120,84 @@ export default function Whatourclientssay() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{ duration: 1, delay: 0.2 }}
         >
-          <div className="wcs-viewport">
+          <div
+            className={`wcs-viewport ${isDragging ? 'dragging' : ''}`}
+            onWheel={(e) => {
+              const now = Date.now();
+              if (now - wheelStateRef.current.lastTs < 450) return;
+
+              const dy = e.deltaY;
+              const dx = e.deltaX;
+              const primary = Math.abs(dx) > Math.abs(dy) ? dx : dy;
+              if (Math.abs(primary) < 8) return;
+
+              wheelStateRef.current.lastTs = now;
+              e.preventDefault();
+              if (primary > 0) nextSlide();
+              else prevSlide();
+            }}
+            onTouchStart={(e) => {
+              const t = e.touches?.[0];
+              if (!t) return;
+              dragStateRef.current = {
+                startX: t.pageX,
+                startY: t.pageY,
+                moved: false,
+                isHorizontal: null,
+              };
+              setIsDragging(true);
+            }}
+            onTouchMove={(e) => {
+              const t = e.touches?.[0];
+              if (!t) return;
+
+              const startX = dragStateRef.current.startX;
+              const startY = dragStateRef.current.startY;
+              const dx = t.pageX - startX;
+              const dy = t.pageY - startY;
+
+              if (dragStateRef.current.isHorizontal === null) {
+                if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
+                dragStateRef.current.isHorizontal = Math.abs(dx) > Math.abs(dy);
+              }
+
+              if (dragStateRef.current.isHorizontal) {
+                e.preventDefault();
+                if (Math.abs(dx) > 10) dragStateRef.current.moved = true;
+              }
+            }}
+            onTouchEnd={(e) => {
+              const t = e.changedTouches?.[0];
+              setIsDragging(false);
+              if (!t) return;
+
+              const dx = t.pageX - dragStateRef.current.startX;
+              if (!dragStateRef.current.moved) return;
+              if (Math.abs(dx) < 50) return;
+              if (dx < 0) nextSlide();
+              else prevSlide();
+            }}
+            onMouseDown={(e) => {
+              dragStateRef.current = { startX: e.pageX, moved: false };
+              setIsDragging(true);
+            }}
+            onMouseMove={(e) => {
+              if (!isDragging) return;
+              const dx = e.pageX - dragStateRef.current.startX;
+              if (Math.abs(dx) > 6) dragStateRef.current.moved = true;
+            }}
+            onMouseUp={(e) => {
+              const dx = e.pageX - dragStateRef.current.startX;
+              setIsDragging(false);
+              if (!dragStateRef.current.moved) return;
+              if (Math.abs(dx) < 50) return;
+              if (dx < 0) nextSlide();
+              else prevSlide();
+            }}
+            onMouseLeave={() => {
+              setIsDragging(false);
+            }}
+          >
             <div
               className="wcs-track"
               ref={trackRef}
@@ -206,8 +286,8 @@ export default function Whatourclientssay() {
 
         .wcs-sub {
           margin-top: 24px;
-          font-size: 21px !important;
-          color: rgba(255, 255, 255, 0.7);
+          font-size: 18px;
+          color: #ffffffb3;
           font-weight: 500;
           max-width: 850px;
           margin-left: auto;
@@ -227,6 +307,13 @@ export default function Whatourclientssay() {
           overflow: hidden;
           padding: 40px 40px;
           box-sizing: border-box;
+          cursor: grab;
+          user-select: none;
+          touch-action: pan-y;
+        }
+
+        .wcs-viewport.dragging {
+          cursor: grabbing;
         }
 
         .wcs-track {

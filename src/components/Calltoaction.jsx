@@ -15,8 +15,7 @@ export default function Calltoaction({ openForm }) {
         >
           <div className="cta-title">
             Stop Overpaying For Video Production.
-            <br />
-            Start Creating Smarter With Miraai?
+            Start Creating Smarter With <span className='bg-gradient-to-br from-[#8B5CF6] to-[#D946EF] bg-clip-text text-transparent font-semibold'> Miraai </span>?
           </div>
           <div className="cta-sub">
             Start Creating Professional Videos With AI - Faster, Smarter, And More Cost-Effective.
@@ -171,7 +170,7 @@ export default function Calltoaction({ openForm }) {
         ======================================== */
         @media (max-width: 768px) {
           .cta-title {
-            font-size: 25px !important;
+            font-size: 23px !important;
             font-weight: 800;
           }
           

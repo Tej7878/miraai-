@@ -155,10 +155,19 @@ const Features = () => {
                 {/* Header Section */}
                 {isMobile ? (
                     <div className="text-center mb-10">
-                        <h2 className="text-[25px] font-bold text-white tracking-[0.5px] max-w-full px-2 mx-auto leading-tight">
+                        <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-3xl 
+             font-extrabold leading-tight tracking-tight 
+             text-white text-center max-w-5xl ">
                             Powerful Platform Features
                         </h2>
-                        <p className="text-gray-400 text-[18px] tracking-[0.5px] mt-4 max-w-[600px] mx-auto leading-relaxed opacity-80">
+                        <p className="text-base sm:text-lg md:text-xl lg:text-[18px]
+             font-medium 
+              tracking-tighter
+              leading-relaxed
+              mt-2
+             text-white/80 
+             text-center 
+             max-w-3xl ">
                             Everything You Need In One AI Production Platform.
                         </p>
                     </div>

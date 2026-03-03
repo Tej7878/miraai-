@@ -160,7 +160,7 @@ export default function BusinessesChooseMiraai() {
   return (
     <section className="bcm-wrap">
       <div className="bcm-header">
-        <div className="bcm-title">Why Smart Businesses Choose Miraai?</div>
+        <div className="bcm-title">Why Smart Businesses Choose <span className='bg-gradient-to-br from-[#8B5CF6] to-[#D946EF] bg-clip-text text-transparent font-semibold'> Miraai </span>?</div>
         <div className="bcm-subtitle">Because smart businesses choose results, not experiments.</div>
       </div>
 
@@ -185,7 +185,7 @@ export default function BusinessesChooseMiraai() {
             {/* Base Line Glow Filter */}
             <filter id="lineGlow" x="-20%" y="-20%" width="140%" height="140%">
               <feGaussianBlur stdDeviation="1.5" result="blur" />
-              <feMerge>
+              <feMerge>  
                 <feMergeNode in="blur" />
                 <feMergeNode in="SourceGraphic" />
               </feMerge>
@@ -301,7 +301,7 @@ export default function BusinessesChooseMiraai() {
         .bcm-subtitle {
           font-size: 21px !important;
           color: rgba(255, 255, 255, 0.7);
-          font-weight: 500;
+          font-weight: 100;
           max-width: 850px;
           margin: 0 auto;
           opacity: 0.8;

@@ -100,7 +100,7 @@ export default function UsesMiraai() {
     <section className="um-wrap">
       <div className="um-header">
         <div className="um-title">Who Uses Miraai?</div>
-        <div className="um-subtitle">
+        <div className="text-lg">
           Industries That Use Miraai To Reduce Production Costs And Scale High-Quality Content.
         </div>
       </div>
@@ -157,9 +157,9 @@ export default function UsesMiraai() {
           margin-bottom: 12px;
         }
 
-        .um-subtitle {
+        .um-subtitle {  
           margin-top: 12px;
-          font-size: 21px !important;
+          font-size: 18px !important;
           color: rgba(255, 255, 255, 0.7);
           font-weight: 500;
           max-width: 850px;

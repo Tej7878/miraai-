@@ -60,13 +60,13 @@ const Whatwedo = () => {
                         transition={{ duration: 0.6 }}
                         className="text-[25px] md:text-[40px] font-bold text-white tracking-[0.5px] max-w-[1000px] mx-auto leading-tight mb-6"
                     >
-                        Create Premium Content Faster With Miraai
+                        Create Premium Content Faster With <span className='bg-gradient-to-br from-[#8B5CF6] to-[#D946EF] bg-clip-text text-transparent font-semibold'> Miraai </span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0 }}
                         animate={isInView ? { opacity: 1 } : { opacity: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="text-gray-400 text-[18px] md:text-[21px] font-medium tracking-[0.5px] opacity-80 max-w-[850px] mx-auto leading-relaxed"
+                        className="text-gray-400 text-[18px] md:text-[21px] lg:text-[20px] font-medium tracking-[0.5px] opacity-80 max-w-[850px] mx-auto leading-relaxed"
                     >
                         Miraai combines advanced AI with human creativity to deliver enterprise-grade content.
                     </motion.p>

@@ -250,12 +250,26 @@ export default function FloatingVideoHero({ openForm }) {
         initial="hidden"
         animate={contentControls}
       >
-        <motion.h1 className="hero-heading" variants={contentItemVariants}>
+        <motion.h1
+          variants={contentItemVariants}
+          className="text-[18px] sm:text-xl md:text-5xl lg:text-3xl 
+             font-extrabold leading-tight tracking-tight 
+             text-white text-center max-w-5xl "
+        >
           India's 1st Premium AI-Powered Image & Video Production Services
         </motion.h1>
 
-        <motion.p className="hero-subheading" variants={contentItemVariants}>
-          70% Cost reduction, 10x faster  no studios or crews required.
+        <motion.p
+          variants={contentItemVariants}
+          className=" 
+             text-base sm:text-lg md:text-xl lg:text-[18px]
+             font-medium 
+             leading-relaxed tracking-wide
+             text-white/80 
+             text-center 
+             max-w-3xl "
+        >
+          70% cost reduction, 10x faster — no studios or crews required.
         </motion.p>
 
         <motion.button

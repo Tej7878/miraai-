@@ -338,7 +338,7 @@ const RefundPolicy = () => {
                     <div className="flex-1 w-full min-w-0">
                         <div className="mb-12">
                             <h1 className="text-[25px] md:text-[40px] font-bold mb-6 leading-tight tracking-[0.5px]">Refund & Cancellation Policy</h1>
-                            <p className="text-gray-400 text-[21px] max-w-3xl leading-relaxed tracking-[0.5px]">
+                            <p className="text-gray-400 text-[18px] max-w-3xl leading-relaxed tracking-[0.5px]">
                                 This Refund & Cancellation Policy governs the terms under which cancellations, refunds, and payment adjustments are handled by Miraai for its AI-powered video production services.
                                 By engaging Miraai’s services, you acknowledge that you have read, understood, and agreed to this policy.
                             </p>

@@ -264,7 +264,7 @@ const PrivacyPolicy = () => {
                     <div className="flex-1 w-full min-w-0">
                         <div className="mb-12">
                             <h1 className="text-[25px] md:text-[40px] font-bold mb-6 leading-tight tracking-[0.5px]">Privacy Policy</h1>
-                            <p className="text-gray-400 text-[21px] max-w-3xl leading-relaxed tracking-[0.5px]">
+                            <p className="text-gray-400 text-[18px] max-w-3xl leading-relaxed tracking-[0.5px]">
                                 Miraai ("we," "us," or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our AI-powered creative production services.
                                 By using our services, you agree to this Privacy Po licy.
                             </p>

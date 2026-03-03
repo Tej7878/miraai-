@@ -108,7 +108,7 @@ export default function Aidesigngenration() {
         {/* Header */}
         <header className="adg-head">
           <h2 className="adg-title">AI Design Generation</h2>
-          <p className="adg-sub">
+          <p className="text-[18px] text-[#adadadff] mt-2">
             Turn Ideas And Descriptions Into Professional Ads And Visuals Instantly Using AI
           </p>
         </header>
@@ -167,7 +167,7 @@ export default function Aidesigngenration() {
           font-size: 40px !important;
           font-weight: 800;
           letter-spacing: 0.5px !important;
-          color: #f3f3f6;
+          color: #ebebebff;
           line-height: 1.15;
           max-width: 1000px;
           margin: 0 auto;
@@ -175,7 +175,7 @@ export default function Aidesigngenration() {
 
         .adg-sub {
           margin-top: 12px;
-          font-size: 21px !important;
+          font-size: 18px !important;
           color: rgba(255, 255, 255, 0.7);
           font-weight: 500;
           max-width: 850px;
@@ -195,7 +195,6 @@ export default function Aidesigngenration() {
           scroll-snap-type: x mandatory;
           -ms-overflow-style: none;
           scrollbar-width: none;
-          cursor: grab;
           mask-image: linear-gradient(
             to right,
             transparent 0%,

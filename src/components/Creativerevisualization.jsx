@@ -199,13 +199,35 @@ export default function Creativerevisualization({ openForm }) {
     <section className="cr-scroll-track">
       <div className="cr-sticky-viewport">
         <div className="cr-wrap">
-          <div className="cr-head">
-            <div className="cr-title"><span>Creative</span><span>Revisualization</span></div>
-            <div className="cr-sub">
+          <div className="cr-head text-center max-w-4xl mx-auto">
+
+            {/* HEADING */}
+            <div
+              className="
+               text-2xl sm:text-3xl md:text-4xl
+               font-extrabold
+               leading-tight
+               tracking-tight
+               text-white"
+            >
+              Creative
+              Revisualization
+            </div>
+
+            {/* SUBHEADING */}
+            <div
+              className="
+               mt-3
+               text-[17px]
+               font-medium
+               leading-relaxed
+               text-white/80
+               max-w-2xl mx-auto"
+            >
               Transform Your Existing Photos, Videos, And Creatives
-              <br />
               Into High-Performing Marketing Assets Using AI.
             </div>
+
           </div>
 
           <div className="cr-grid">
@@ -264,10 +286,10 @@ export default function Creativerevisualization({ openForm }) {
                     <div className="cr-r-title">
                       {feature.titleLines ? (
                         feature.titleLines.map((line, i) => (
-                          <span key={i} className="cr-r-title-line">{line}</span>
+                          <p key={i} className="text-2xl">{line}</p>
                         ))
                       ) : (
-                        feature.title
+                        <p className="text-2xl">{feature.title}</p>
                       )}
                     </div>
                     <div className="cr-r-desc">

@@ -239,7 +239,7 @@ const Disclaimer = () => {
                     <div className="flex-1 w-full min-w-0">
                         <div className="mb-12">
                             <h1 className="text-[25px] md:text-[40px] font-bold mb-6 leading-tight tracking-[0.5px]">Disclaimer</h1>
-                            <p className="text-gray-400 text-[21px] max-w-3xl leading-relaxed tracking-[0.5px]">
+                            <p className="text-gray-400 text-[18px] max-w-3xl leading-relaxed tracking-[0.5px]">
                                 The information provided on the Miraai website and through our services is for general informational and business purposes only. By accessing our website or using our services, you agree to the terms of this Disclaimer.
                             </p>
                         </div>

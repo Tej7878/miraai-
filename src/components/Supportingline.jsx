@@ -272,13 +272,10 @@ export default function Supportingline() {
           border: 1px solid rgba(255, 255, 255, 0.06);
           backdrop-filter: blur(8px);
           overflow: hidden;
-          transform: scale(1);
-          transition: transform 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                      box-shadow 300ms ease;
         }
 
         .sl-card-wrapper:hover .sl-card {
-          transform: scale(1.02);
+          
           box-shadow: 
             0 20px 50px rgba(0, 0, 0, 0.7), 
             0 0 30px rgba(120, 70, 255, 0.25);
@@ -399,7 +396,7 @@ export default function Supportingline() {
         .sl-content-subtitle {
           font-size: 20px;
           font-weight: 700;
-          color: rgba(255, 255, 255, 0.95);
+          color: rgba(188, 181, 181, 1);
           margin-top: 0;
         }
 
@@ -566,13 +563,13 @@ export default function Supportingline() {
           .sl-content-subtitle {
             font-size: 16px;
             font-weight: 700;
-            color: #fff;
+            color: #d4d4d4ff;
             margin-top: 0;
             margin-bottom: 12px;
           }
 
           .sl-content-desc {
-            font-size: 13px;
+            font-size: 14px;
             line-height: 1.6;
             color: rgba(255, 255, 255, 0.65);
             white-space: normal;

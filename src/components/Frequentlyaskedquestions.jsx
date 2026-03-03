@@ -269,7 +269,7 @@ export default function Frequentlyaskedquestions() {
         }
 
         .faq-item-wrapper.is-open .faq-answer-wrapper {
-          max-height: 200px;
+          max-height: 600px;
         }
 
         .faq-answer {

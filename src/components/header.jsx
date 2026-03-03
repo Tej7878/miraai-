@@ -59,15 +59,19 @@ const Header = ({ openForm }) => {
 
                     {/* Button Section */}
                     <button
-                        onClick={openForm}
-                        className="group relative bg-white text-black border-none py-2 px-4 md:py-[0.6rem] md:px-6 rounded-[2rem] font-bold font-['Inter'] tracking-[0.5px] text-xs md:text-[0.9rem] cursor-pointer transition-all duration-300 ease-in-out shadow-[0_0_15px_rgba(255,255,255,0.2)] overflow-hidden"
+                        onClick={openForm}  
+                        className="group relative bg-white lg:px-6 text-black border-none py-2 px-2 md:py-[0.6rem]  rounded-[2rem] font-bold font-['Inter'] tracking-[0.5px] text-xs md:text-[0.9rem] cursor-pointer transition-all duration-300 ease-in-out shadow-[0_0_15px_rgba(255,255,255,0.2)] overflow-hidden"
                     >
                         <span className="relative block overflow-hidden">
-                            <span className="block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full">
+                            <span className="block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full whitespace-nowrap">
+                                <span className="relative z-10 mr-2">✦</span>
                                 Get Started
+                                <span className="relative z-10 ml-2">✦</span>
                             </span>
-                            <span className="absolute inset-0 block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] translate-y-full group-hover:translate-y-0">
+                            <span className="absolute inset-0 block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] translate-y-full group-hover:translate-y-0 whitespace-nowrap">
+                                <span className="relative z-10 mr-2">✦</span>
                                 Get Started
+                                <span className="relative z-10 ml-2">✦</span>
                             </span>
                         </span>
                     </button>
