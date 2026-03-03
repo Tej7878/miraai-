@@ -76,13 +76,13 @@ const TrustMiraai = () => {
     };
 
     return (
-        <div ref={sectionRef} className="bg-[#000004] min-h-auto py-6 md:py-12 px-4 md:px-8 relative overflow-hidden font-['Inter']">
+        <div ref={sectionRef} className="bg-[#000004] min-h-auto py-20 px-4 md:px-8 relative overflow-hidden font-['Inter'] tracking-[0.5px]">
             <div className="max-w-[1200px] mx-auto relative z-10">
 
                 {/* Header Section */}
                 {isMobile ? (
                     <div className="text-center mb-10">
-                        <h2 className="text-[25px] font-bold text-white tracking-[0.5px] max-w-full px-2 mx-auto leading-tight">
+                        <h2 className="text-[40px] font-bold text-white tracking-[0.5px] max-w-full px-2 mx-auto leading-tight mb-6">
                             Traditional Production Slows Down Modern Brands
                         </h2>
                         <p className="text-gray-400 text-[14px] tracking-[0.5px] mt-4 max-w-[600px] mx-auto leading-relaxed opacity-80">
@@ -100,7 +100,7 @@ const TrustMiraai = () => {
                             Traditional Production Slows Down Modern Brands
                         </h2>
                         <motion.p
-                            className="text-gray-400 text-[21px] tracking-[0.5px] max-w-[850px] mx-auto leading-relaxed font-medium opacity-80"
+                            className="text-gray-400 text-[21px] tracking-[0.5px] mt-4 max-w-[600px] mx-auto leading-relaxed font-medium opacity-80"
                             initial={{ opacity: 0, y: 10 }}
                             animate={isInView ? { opacity: 0.8, y: 0 } : { opacity: 0, y: 10 }}
                             transition={{ duration: 0.6, delay: 0.2 }}

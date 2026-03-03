@@ -103,12 +103,12 @@ export default function Aidesigngenration() {
   );
 
   return (
-    <section className="adg-wrap">
+    <section className="adg-wrap tracking-[0.5px]">
       <div className="adg-inner">
         {/* Header */}
         <header className="adg-head">
-          <h2 className="adg-title">AI Design Generation</h2>
-          <p className="text-[18px] text-[#adadadff] mt-2">
+          <h2 className="adg-title tracking-[0.5px]">AI Design Generation</h2>
+          <p className="text-[18px] text-[#adadadff] mt-2 tracking-[0.5px]">
             Turn Ideas And Descriptions Into Professional Ads And Visuals Instantly Using AI
           </p>
         </header>
@@ -355,7 +355,7 @@ export default function Aidesigngenration() {
         }
 
         @media (max-width: 680px) {
-          .adg-wrap { padding: 30px 0 20px; }
+          .adg-wrap { padding: 80px 0 80px; }
           /* .adg-title processed in 768px query */
           .adg-carousel-track { padding: 0 40px; gap: 20px; }
           .adg-video-card { width: 260px; height: 380px; opacity: 1; transform: scale(1); }

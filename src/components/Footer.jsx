@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <footer className="ft-wrap">
+    <footer className="ft-wrap tracking-[0.5px]">
       <div className="ft-inner">
         <div className="ft-top">
           <div className="ft-left">
             <img className="ft-logo" src={mirraiLogo} alt="Mirrai" />
-            <div className="ft-desc">
+            <div className="ft-desc tracking-[0.5px]">
               AI-powered creative production
               <br />
               platform for generating professional
@@ -81,7 +81,7 @@ export default function Footer() {
       <style>{`
         .ft-wrap {
           width: 100%;
-          padding: 48px 18px 34px;
+          padding: 80px 18px 80px;
           background: #000;
           color: rgba(255, 255, 255, 0.92);
           font-family: 'Urbanist', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
@@ -222,7 +222,7 @@ export default function Footer() {
         ======================================== */
         @media (max-width: 680px) {
           .ft-wrap {
-            padding: 44px 16px 32px;
+            padding: 80px 16px 80px;
           }
 
           .ft-top {

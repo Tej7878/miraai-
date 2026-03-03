@@ -97,10 +97,10 @@ export default function UsesMiraai() {
   }, []);
 
   return (
-    <section className="um-wrap">
+    <section className="um-wrap tracking-[0.5px]">
       <div className="um-header">
-        <div className="um-title">Who Uses Miraai?</div>
-        <div className="text-lg">
+        <div className="um-title tracking-[0.5px]">Who Uses <span className='bg-gradient-to-br from-[#8B5CF6] to-[#D946EF] bg-clip-text text-transparent font-semibold'> Miraai </span>?</div>
+        <div className="text-lg tracking-[0.5px]">
           Industries That Use Miraai To Reduce Production Costs And Scale High-Quality Content.
         </div>
       </div>
@@ -265,7 +265,7 @@ export default function UsesMiraai() {
         }
 
         @media (max-width: 768px) {
-          .um-wrap { padding: 10px 0 40px 0; }
+          .um-wrap { padding: 80px 18px 80px 18px; }
           .um-title { font-size: 25px!important; font-weight: 800; line-height: 1.2; max-width: 90%; }
           .um-subtitle { font-size: 18px !important; margin-top: 16px; opacity: 0.8; }
           .um-card { width: 280px; height: 360px; }

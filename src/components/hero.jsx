@@ -226,7 +226,7 @@ export default function FloatingVideoHero({ openForm }) {
   }, [contentControls, isMobile]);
 
   return (
-    <section className={`hero-section ${isMobile ? 'mobile' : ''}`}>
+    <section className={`hero-section ${isMobile ? 'mobile' : ''} tracking-[0.5px]`}>
       {/* Desktop: Floating Cards */}
       {!isMobile && (
         <div className="cards-container">
@@ -253,7 +253,7 @@ export default function FloatingVideoHero({ openForm }) {
         <motion.h1
           variants={contentItemVariants}
           className="text-[18px] sm:text-xl md:text-5xl lg:text-3xl 
-             font-extrabold leading-tight tracking-tight 
+             font-extrabold leading-tight tracking-[0.5px]
              text-white text-center max-w-5xl "
         >
           India's 1st Premium AI-Powered Image & Video Production Services
@@ -264,7 +264,7 @@ export default function FloatingVideoHero({ openForm }) {
           className=" 
              text-base sm:text-lg md:text-xl lg:text-[18px]
              font-medium 
-             leading-relaxed tracking-wide
+             leading-relaxed tracking-[0.5px]
              text-white/80 
              text-center 
              max-w-3xl "

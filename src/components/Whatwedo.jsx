@@ -45,7 +45,7 @@ const Whatwedo = () => {
     };
 
     return (
-        <section ref={sectionRef} className="bg-[#000004] py-6 md:py-12 px-4 md:px-8 relative overflow-hidden" style={{ fontFamily: "'Inter', sans-serif" }}>
+        <section ref={sectionRef} className="bg-[#000004] py-20 px-4 md:px-8 relative overflow-hidden tracking-[0.5px]" style={{ fontFamily: "'Inter', sans-serif" }}>
             <style>{`
                 .wwd-section * {
                     font-family: 'Inter', sans-serif !important;
@@ -97,7 +97,7 @@ const Whatwedo = () => {
                             initial={{ opacity: 0 }}
                             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
                             transition={{ duration: 0.4, delay: 0.6 }}
-                            className="text-white text-sm sm:text-base md:text-lg mb-4 md:mb-6 tracking-wide font-bold"
+                            className="text-white text-sm sm:text-base md:text-lg mb-4 md:mb-6 font-bold tracking-[0.5px]"
                         >
                             Why Brands Choose Miraai:
                         </motion.h4>
@@ -125,7 +125,7 @@ const Whatwedo = () => {
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                         </svg>
                                     </div>
-                                    <span className="text-gray-400 text-sm sm:text-base md:text-lg font-normal leading-tight">
+                                    <span className="text-gray-400 text-sm sm:text-base md:text-lg font-normal leading-tight tracking-[0.5px]">
                                         {benefit}
                                     </span>
                                 </motion.li>

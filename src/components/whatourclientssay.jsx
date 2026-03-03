@@ -98,7 +98,7 @@ export default function Whatourclientssay() {
   };
 
   return (
-    <section className="wcs-wrap" ref={sectionRef}>
+    <section className="wcs-wrap tracking-[0.5px]" ref={sectionRef}>
       <div className="wcs-inner">
         <motion.div
           className="wcs-head"
@@ -106,8 +106,8 @@ export default function Whatourclientssay() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="wcs-title">What Our Clients Say</div>
-          <div className="text-[18px] mt-3 text-[#ffffffb3]">
+          <div className="wcs-title tracking-[0.5px]">What Our Clients Say</div>
+          <div className="text-[18px] mt-3 text-[#ffffffb3] tracking-[0.5px]">
             Trusted By Forward-Thinking Teams For Reliable, Intelligent, And
             <br />
             High-Impact Creative Production.
@@ -243,7 +243,7 @@ export default function Whatourclientssay() {
       <style>{`
         .wcs-wrap {
           width: 100%;
-          padding: 60px 18px 90px;
+          padding: 80px 18px 80px;
           background: #000;
           color: rgba(255, 255, 255, 0.92);
           font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
@@ -432,7 +432,7 @@ export default function Whatourclientssay() {
         ======================================== */
         @media (max-width: 680px) {
           .wcs-wrap {
-            padding: 20px 16px 70px;
+            padding: 80px 16px 80px;
           }
 
           .wcs-head {
@@ -508,7 +508,7 @@ export default function Whatourclientssay() {
         ======================================== */
         @media (max-width: 480px) {
           .wcs-wrap {
-            padding: 15px 14px 60px;
+            padding: 80px 14px 80px;
           }
 
           .wcs-head {
@@ -559,7 +559,7 @@ export default function Whatourclientssay() {
         ======================================== */
         @media (max-width: 360px) {
           .wcs-wrap {
-            padding: 50px 12px;
+            padding: 80px 12px 80px;
           }
 
           .wcs-head {

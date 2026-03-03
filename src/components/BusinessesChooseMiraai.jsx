@@ -158,10 +158,10 @@ export default function BusinessesChooseMiraai() {
   ];
 
   return (
-    <section className="bcm-wrap">
+    <section className="bcm-wrap tracking-[0.5px]">
       <div className="bcm-header">
-        <div className="bcm-title">Why Smart Businesses Choose <span className='bg-gradient-to-br from-[#8B5CF6] to-[#D946EF] bg-clip-text text-transparent font-semibold'> Miraai </span>?</div>
-        <div className="bcm-subtitle">Because smart businesses choose results, not experiments.</div>
+        <div className="bcm-title tracking-[0.5px]">Why Smart Businesses Choose <span className='bg-gradient-to-br from-[#8B5CF6] to-[#D946EF] bg-clip-text text-transparent font-semibold'> Miraai </span>?</div>
+        <div className="bcm-subtitle tracking-[0.5px]">Because smart businesses choose results, not experiments.</div>
       </div>
 
       <div className="bcm-container">
@@ -263,7 +263,7 @@ export default function BusinessesChooseMiraai() {
       <style>{`
         .bcm-wrap {
           width: 100%;
-          padding: 80px 18px 40px;
+          padding: 80px 18px 80px;
           background: #000;
           color: #e9e9ee;
           font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
@@ -543,10 +543,7 @@ export default function BusinessesChooseMiraai() {
         ======================================== */
         @media (max-width: 768px) {
           .bcm-wrap {
-            padding-top: 80px; /* Increased top padding */
-            padding-left: 16px;
-            padding-right: 16px;
-            padding-bottom: 20px; /* Reduced bottom padding */
+            padding: 80px 16px 80px;
           }
 
           .bcm-title {
@@ -707,7 +704,7 @@ export default function BusinessesChooseMiraai() {
         ======================================== */
         @media (max-width: 480px) {
           .bcm-wrap {
-            padding: 32px 12px 50px;
+            padding: 80px 12px 80px;
           }
 
           .bcm-header {
@@ -785,7 +782,7 @@ export default function BusinessesChooseMiraai() {
         ======================================== */
         @media (max-width: 360px) {
           .bcm-wrap {
-            padding: 28px 10px 40px;
+            padding: 80px 10px 80px;
           }
 
           .bcm-title {

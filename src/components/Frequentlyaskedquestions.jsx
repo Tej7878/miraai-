@@ -37,7 +37,7 @@ export default function Frequentlyaskedquestions() {
   };
 
   return (
-    <section className="faq-wrap">
+    <section className="faq-wrap tracking-[0.5px]">
       <div className="faq-inner">
         <div className="faq-grid">
           <motion.div
@@ -47,7 +47,7 @@ export default function Frequentlyaskedquestions() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <div className="faq-title">
+            <div className="faq-title tracking-[0.5px]">
               Frequently Asked
               <br />
               Questions
@@ -93,7 +93,7 @@ export default function Frequentlyaskedquestions() {
       <style>{`
         .faq-wrap {
           width: 100%;
-          padding: 60px 18px 60px;
+          padding: 80px 18px 80px;
           background: #000;
           color: rgba(255, 255, 255, 0.92);
           font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
@@ -300,7 +300,7 @@ export default function Frequentlyaskedquestions() {
           }
 
           .faq-wrap {
-            padding: 20px 16px 20px;
+            padding: 80px 16px 80px;
           }
         }
 

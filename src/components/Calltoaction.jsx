@@ -4,7 +4,7 @@ import contactUsBtn from '../assets/images/contact_us.webp';
 
 export default function Calltoaction({ openForm }) {
   return (
-    <section className="cta-wrap">
+    <section className="cta-wrap tracking-[0.5px]">
       <div className="cta-inner">
         <motion.div
           className="cta-card"
@@ -13,11 +13,11 @@ export default function Calltoaction({ openForm }) {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <div className="cta-title">
+          <div className="cta-title tracking-[0.5px]">
             Stop Overpaying For Video Production.
             Start Creating Smarter With <span className='bg-gradient-to-br from-[#8B5CF6] to-[#D946EF] bg-clip-text text-transparent font-semibold'> Miraai </span>?
           </div>
-          <div className="cta-sub">
+          <div className="cta-sub tracking-[0.5px]">
             Start Creating Professional Videos With AI - Faster, Smarter, And More Cost-Effective.
           </div>
 
@@ -39,7 +39,7 @@ export default function Calltoaction({ openForm }) {
       <style>{`
         .cta-wrap {
           width: 100%;
-          padding: 88px 18px 110px;
+          padding: 80px 18px 80px;
           background: #000;
           color: rgba(255, 255, 255, 0.92);
           font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
@@ -184,7 +184,7 @@ export default function Calltoaction({ openForm }) {
         ======================================== */
         @media (max-width: 680px) {
           .cta-wrap {
-            padding: 40px 16px 40px;
+            padding: 80px 16px 80px;
           }
 
           .cta-card {
@@ -224,7 +224,7 @@ export default function Calltoaction({ openForm }) {
         ======================================== */
         @media (max-width: 480px) {
           .cta-wrap {
-            padding: 60px 14px 80px;
+            padding: 80px 14px 80px;
           }
 
           .cta-card {
@@ -254,7 +254,7 @@ export default function Calltoaction({ openForm }) {
         ======================================== */
         @media (max-width: 360px) {
           .cta-wrap {
-            padding: 50px 12px 70px;
+            padding: 80px 12px 80px;
           }
 
           .cta-card {

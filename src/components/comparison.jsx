@@ -47,7 +47,7 @@ const DoBest = () => {
     ];
 
     return (
-        <section className="bg-[#000004] py-6 md:py-12 px-4 md:px-4 font-['Inter']">
+        <section className="bg-[#000004] py-20 px-4 md:px-4 font-['Inter'] tracking-[0.5px]">
             <style>{styles}</style>
             <div className="max-w-[1200px] mx-auto">
                 <motion.h2

@@ -127,7 +127,7 @@ const Form = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center tracking-[0.5px]">
             {/* Backdrop */}
             <div
                 className="absolute inset-0 bg-black/70 backdrop-blur-sm"
@@ -157,7 +157,7 @@ const Form = ({ isOpen, onClose }) => {
                 </button>
 
                 {/* Title */}
-                <h2 className="text-xl md:text-2xl font-bold text-white mb-4 pr-8">
+                <h2 className="text-xl md:text-2xl font-bold text-white mb-4 pr-8 tracking-[0.5px]">
                     Get Your Personalized Demo
                 </h2>
 
@@ -166,8 +166,8 @@ const Form = ({ isOpen, onClose }) => {
                     {/* Row 1: Full Name & Company Name */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
                         <div>
-                            <label className="block text-gray-300 font-bold text-sm mb-1">
-                                Full Name <span className="text-gray-400">*</span>
+                            <label className="block text-gray-300 font-bold text-sm mb-1 tracking-[0.5px]">
+                                Full Name <span className="text-gray-400 tracking-[0.5px]">*</span>
                             </label>
                             <input
                                 type="text"
@@ -180,8 +180,8 @@ const Form = ({ isOpen, onClose }) => {
                             />
                         </div>
                         <div>
-                            <label className="block text-gray-300 font-bold text-sm mb-1">
-                                Company Name <span className="text-gray-400">*</span>
+                            <label className="block text-gray-300 font-bold text-sm mb-1 tracking-[0.5px]">
+                                Company Name <span className="text-gray-400 tracking-[0.5px]">*</span>
                             </label>
                             <input
                                 type="text"
@@ -198,8 +198,8 @@ const Form = ({ isOpen, onClose }) => {
                     {/* Row 2: Work Email & Phone Number */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
                         <div>
-                            <label className="block text-gray-300 font-bold text-sm mb-1">
-                                Work Email <span className="text-gray-400">*</span>
+                            <label className="block text-gray-300 font-bold text-sm mb-1 tracking-[0.5px]">
+                                Work Email <span className="text-gray-400 tracking-[0.5px]">*</span>
                             </label>
                             <input
                                 type="email"
@@ -212,8 +212,8 @@ const Form = ({ isOpen, onClose }) => {
                             />
                         </div>
                         <div>
-                            <label className="block text-gray-300 font-bold text-sm mb-1">
-                                Phone Number <span className="text-gray-400">*</span>
+                            <label className="block text-gray-300 font-bold text-sm mb-1 tracking-[0.5px]">
+                                Phone Number <span className="text-gray-400 tracking-[0.5px]">*</span>
                             </label>
                             <input
                                 type="tel"
@@ -230,8 +230,8 @@ const Form = ({ isOpen, onClose }) => {
                     {/* Row 3: Role & Industry */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
                         <div>
-                            <label className="block text-gray-300 font-bold text-sm mb-1">
-                                Role <span className="text-gray-400">*</span>
+                            <label className="block text-gray-300 font-bold text-sm mb-1 tracking-[0.5px]">
+                                Role <span className="text-gray-400 tracking-[0.5px]">*</span>
                             </label>
                             <select
                                 name="role"
@@ -253,8 +253,8 @@ const Form = ({ isOpen, onClose }) => {
                             </select>
                         </div>
                         <div>
-                            <label className="block text-gray-300 font-bold text-sm mb-1">
-                                Industry / Business Type <span className="text-gray-400">*</span>
+                            <label className="block text-gray-300 font-bold text-sm mb-1 tracking-[0.5px]">
+                                Industry / Business Type <span className="text-gray-400 tracking-[0.5px]">*</span>
                             </label>
                             <select
                                 name="industry"
@@ -279,8 +279,8 @@ const Form = ({ isOpen, onClose }) => {
 
                     {/* Row 4: City */}
                     <div className="mb-3">
-                        <label className="block text-gray-300 font-bold text-sm mb-1">
-                            City <span className="text-gray-400">*</span>
+                        <label className="block text-gray-300 font-bold text-sm mb-1 tracking-[0.5px]">
+                            City <span className="text-gray-400 tracking-[0.5px]">*</span>
                         </label>
                         <input
                             type="text"
@@ -295,7 +295,7 @@ const Form = ({ isOpen, onClose }) => {
 
                     {/* Row 5: Project Requirement */}
                     <div className="mb-4">
-                        <label className="block text-gray-300 font-bold text-sm mb-1">
+                        <label className="block text-gray-300 font-bold text-sm mb-1 tracking-[0.5px]">
                             Project Requirement
                         </label>
                         <textarea
@@ -313,7 +313,7 @@ const Form = ({ isOpen, onClose }) => {
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className={`group relative bg-white text-black font-semibold py-2.5 px-8 rounded-full flex items-center gap-2 overflow-hidden transition-all shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_25px_rgba(255,255,255,0.3)] ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                            className={`group relative bg-white text-black font-semibold py-2.5 px-8 rounded-full flex items-center gap-2 overflow-hidden transition-all shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_25px_rgba(255,255,255,0.3)] tracking-[0.5px] ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                         >
                             <span className="relative z-10">✦</span>
                             <span className="relative z-10 block overflow-hidden">

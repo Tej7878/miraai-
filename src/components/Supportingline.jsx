@@ -51,7 +51,7 @@ const steps = [
 
 export default function Supportingline() {
   return (
-    <section className="sl-wrap">
+    <section className="sl-wrap tracking-[0.5px]">
       <motion.div
         className="sl-header"
         initial={{ opacity: 0, y: 30 }}
@@ -59,9 +59,9 @@ export default function Supportingline() {
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <div className="sl-title">Here's Exactly How We Work With You
+        <div className="sl-title tracking-[0.5px]">Here's Exactly How We Work With You
         </div>
-        <div className="sl-subtitle">No confusion. No complexity. Just a simple process from idea to delivery.</div>
+        <div className="sl-subtitle tracking-[0.5px]">No confusion. No complexity. Just a simple process from idea to delivery.</div>
       </motion.div>
 
       <div className="sl-timeline">
@@ -126,7 +126,7 @@ export default function Supportingline() {
         .sl-wrap {
           width: 100%;
           min-height: auto;
-          padding: 48px 18px 48px;
+          padding: 80px 18px 80px;
           background: #000004;
           color: #e9e9ee;
           font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
@@ -417,7 +417,7 @@ export default function Supportingline() {
         ======================================== */
         @media (max-width: 900px) {
            .sl-wrap {
-            padding: 30px 16px 20px;
+            padding: 80px 16px 80px;
           }
 
           .sl-header {

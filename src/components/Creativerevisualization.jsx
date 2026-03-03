@@ -196,7 +196,7 @@ export default function Creativerevisualization({ openForm }) {
   };
 
   return (
-    <section className="cr-scroll-track">
+    <section className="cr-scroll-track tracking-[0.5px]">
       <div className="cr-sticky-viewport">
         <div className="cr-wrap">
           <div className="cr-head text-center max-w-4xl mx-auto">
@@ -204,10 +204,10 @@ export default function Creativerevisualization({ openForm }) {
             {/* HEADING */}
             <div
               className="
-               text-2xl sm:text-3xl md:text-4xl
+               text-xl sm:text-2xl md:text-3xl
                font-extrabold
                leading-tight
-               tracking-tight
+               tracking-[0.5px]
                text-white"
             >
               Creative
@@ -217,11 +217,13 @@ export default function Creativerevisualization({ openForm }) {
             {/* SUBHEADING */}
             <div
               className="
-               mt-3
-               text-[17px]
-               font-medium
-               leading-relaxed
-               text-white/80
+               cr-sub
+                mt-4
+                text-sm sm:text-base
+                font-medium
+                leading-relaxed
+                text-white/80
+                tracking-[0.5px]
                max-w-2xl mx-auto"
             >
               Transform Your Existing Photos, Videos, And Creatives

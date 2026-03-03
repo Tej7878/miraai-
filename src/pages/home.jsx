@@ -24,7 +24,7 @@ function Home() {
     const [isFormOpen, setIsFormOpen] = useState(false);
 
     return (
-        <>
+        <div className="tracking-[0.5px] min-h-screen py-20">
             <Header openForm={() => setIsFormOpen(true)} />
             <Hero openForm={() => setIsFormOpen(true)} />
             <Percentage />
@@ -44,7 +44,7 @@ function Home() {
             <Calltoaction openForm={() => setIsFormOpen(true)} />
             <Frequentlyaskedquestions />
             <Footer />
-        </>
+        </div>
     )
 }
 

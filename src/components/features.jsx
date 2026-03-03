@@ -146,7 +146,7 @@ const Features = () => {
     };
 
     return (
-        <div ref={sectionRef} className="bg-[#000004] min-h-auto py-6 md:py-12 px-4 md:px-8 relative overflow-hidden font-['Inter']">
+        <div ref={sectionRef} className="bg-[#000004] min-h-auto py-20 px-4 md:px-8 relative overflow-hidden font-['Inter'] tracking-[0.5px]">
             {/* Background glow */}
             <div className="absolute top-[20%] right-1/2 translate-x-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(139,92,246,0.08)_0%,transparent_60%)] pointer-events-none z-0" />
 
@@ -156,18 +156,11 @@ const Features = () => {
                 {isMobile ? (
                     <div className="text-center mb-10">
                         <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-3xl 
-             font-extrabold leading-tight tracking-tight 
-             text-white text-center max-w-5xl ">
+             font-extrabold leading-tight tracking-[0.5px]
+             text-white text-center mb-10 md:mb-16">
                             Powerful Platform Features
                         </h2>
-                        <p className="text-base sm:text-lg md:text-xl lg:text-[18px]
-             font-medium 
-              tracking-tighter
-              leading-relaxed
-              mt-2
-             text-white/80 
-             text-center 
-             max-w-3xl ">
+                        <p className="text-base sm:text-lg md:text-xl lg:text-[18px] font-medium leading-relaxed tracking-[0.5px] text-white/80 text-center max-w-3xl">
                             Everything You Need In One AI Production Platform.
                         </p>
                     </div>
