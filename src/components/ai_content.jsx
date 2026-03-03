@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 
 // Import images
-import fashionImg from '../assets/images/fashion.jpg';
-import jewelleryImg from '../assets/images/jwellery.jpg';
-import realEstateImg from '../assets/images/real_estate.png';
-import ecommerceImg from '../assets/images/e-commerce.jpg';
+import fashionImg from '../assets/images/fashion.webp';
+import jewelleryImg from '../assets/images/jwellery.webp';
+import realEstateImg from '../assets/images/real_estate.webp';
+import ecommerceImg from '../assets/images/e-commerce.webp';
 import retailServiceImg from '../assets/images/retail___service.jpg';
 
 const categories = [

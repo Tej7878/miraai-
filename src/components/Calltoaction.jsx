@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import contactUsBtn from '../assets/images/contact us button.png';
+import contactUsBtn from '../assets/images/contact_us.webp';
 
 export default function Calltoaction({ openForm }) {
   return (

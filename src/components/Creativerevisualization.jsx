@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import aiGenerationImg from '../assets/images/ai_genration.png';
-import customizeImg from '../assets/images/customize and brand copy.png';
-import inputVisionImg from '../assets/images/input your vision copy.png';
-import reviewDeployImg from '../assets/images/review and deploy copy.png';
+import aiGenerationImg from '../assets/images/ai_generation.webp';
+import customizeImg from '../assets/images/customize_brand.webp';
+import inputVisionImg from '../assets/images/input.webp';
+import reviewDeployImg from '../assets/images/review_deploy.webp';
 import jolyImg from '../assets/images/Joly .svg';
 import jolyVideo from '../assets/images/videos/Joly .mp4';
 import joly2Img from '../assets/images/Joly 2 .svg';
@@ -13,7 +13,7 @@ import joly4Img from '../assets/images/Joly 4.svg';
 import joly4Video from '../assets/images/videos/Joly 4.mp4';
 import jwelleryImg from '../assets/images/jwellery.jpg';
 import jwelleryVideo from '../assets/images/videos/Joly 4.mp4';
-import lifestyleImg from '../assets/images/lifestyles.jpg';
+import lifestyleImg from '../assets/images/lifestyles.webp';
 import textileImg from '../assets/images/textile & garments.jpg';
 import clothingVideo from '../assets/images/videos/Joly 3.mp4';
 

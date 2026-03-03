@@ -2,10 +2,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-import aiGenerationImg from '../assets/images/ai_genration.png';
-import customizeBrandImg from '../assets/images/customize and brand copy.png';
-import inputYourVisionImg from '../assets/images/input your vision copy.png';
-import reviewDeployImg from '../assets/images/review and deploy copy.png';
+import aiGenerationImg from '../assets/images/ai_generation.webp';
+import customizeBrandImg from '../assets/images/customize_brand.webp';
+import inputYourVisionImg from '../assets/images/input.webp';
+import reviewDeployImg from '../assets/images/review_deploy.webp';
 
 const stepImages = {
   1: inputYourVisionImg,

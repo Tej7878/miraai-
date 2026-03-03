@@ -2,11 +2,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import textileImg from '../assets/images/textile & garments.jpg';
-import lifestyleImg from '../assets/images/lifestyles.jpg';
-import jwelleryImg from '../assets/images/jwellery.jpg';
-import realEstateImg from '../assets/images/real states.png';
-import foodImg from '../assets/images/food.png';
-import carImg from '../assets/images/car.png';
+import lifestyleImg from '../assets/images/lifestyles.webp';
+import jwelleryImg from '../assets/images/jwellery.webp';
+import realEstateImg from '../assets/images/real states.webp';
+import foodImg from '../assets/images/food.webp';
+import carImg from '../assets/images/car.webp';
 
 const originalCards = [
   {

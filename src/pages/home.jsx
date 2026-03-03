@@ -3,6 +3,10 @@ import '../App.css'
 import Hero from '../components/hero'
 import Percentage from '../components/percentage'
 import Form from '../components/form'
+<<<<<<< Updated upstream
+=======
+// import GlobalGiants from '../components/global_giants'
+>>>>>>> Stashed changes
 import Features from '../components/features'
 import TrustMiraai from '../components/trust_miraai'
 import DoBest from '../components/comparison'
@@ -27,6 +31,10 @@ function Home() {
             <Header openForm={() => setIsFormOpen(true)} />
             <Hero openForm={() => setIsFormOpen(true)} />
             <Percentage />
+<<<<<<< Updated upstream
+=======
+            {/* <GlobalGiants /> */}
+>>>>>>> Stashed changes
             <Features />
             <Creativerevisualization openForm={() => setIsFormOpen(true)} />
             <Form isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
