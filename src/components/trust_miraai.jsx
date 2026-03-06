@@ -82,10 +82,10 @@ const TrustMiraai = () => {
                 {/* Header Section */}
                 {isMobile ? (
                     <div className="text-center mb-10">
-                        <h2 className="text-[40px] font-bold text-white tracking-[0.5px] max-w-full px-2 mx-auto leading-tight mb-6">
+                        <h2 className="text-[30px] lg:text-[60px] font-bold text-white tracking-[0.5px] max-w-full px-2 mx-auto leading-tight mb-6">
                             Traditional Production Slows Down Modern Brands
                         </h2>
-                        <p className="text-gray-400 text-[14px] tracking-[0.5px] mt-4 max-w-[600px] mx-auto leading-relaxed opacity-80">
+                        <p className="text-gray-400 text-[12px] lg:text-[21px] tracking-[0.5px] mt-4 max-w-[600px] mx-auto leading-relaxed opacity-80">
                             Traditional video shoots require high budgets, long timelines, and many resources, making consistent content creation difficult.
                         </p>
                     </div>
