@@ -16,6 +16,7 @@ const videoSources = [v1, v2, v3, v4, v5, v6];
 // Card positions around center - balanced layout (3 top, 3 bottom)
 const cardConfigs = [
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   // Top side cards
   { x: -500, y: -200, rotate: 0, scale: 0.95 },
   { x: 0, y: -280, rotate: 0, scale: 0.95 },
@@ -25,6 +26,8 @@ const cardConfigs = [
   { x: 0, y: 280, rotate: 0, scale: 0.92 },
   { x: 450, y: 150, rotate: 0, scale: 0.92 },
 =======
+=======
+>>>>>>> Stashed changes
   // Left side cards
   { x: -200, y: -200, rotate: -12, scale: 0.95 },
   { x: -380, y: 80, rotate: 8, scale: 0.92 },
@@ -33,6 +36,9 @@ const cardConfigs = [
   { x: 200, y: -200, rotate: 12, scale: 0.95 },
   { x: 380, y: 80, rotate: -8, scale: 0.92 },
   { x: 100, y: 220, rotate: 6, scale: 0.88 },
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 ];
 
@@ -95,6 +101,10 @@ const FloatingVideoCard = ({ src, config, index, randomValues }) => {
       animate={controls}
       whileHover={{
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+        scale: config.scale * 1.08,
+>>>>>>> Stashed changes
 =======
         scale: config.scale * 1.08,
 >>>>>>> Stashed changes
@@ -180,7 +190,11 @@ export default function FloatingVideoHero() {
   }, []);
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   // Auto-cycle videos on mobile (one by one)
+=======
+  // Auto-cycle videos on mobile (two by two)
+>>>>>>> Stashed changes
 =======
   // Auto-cycle videos on mobile (two by two)
 >>>>>>> Stashed changes
@@ -189,8 +203,13 @@ export default function FloatingVideoHero() {
 
     const interval = setInterval(() => {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       setActiveVideoIndex((prev) => (prev + 1) % videoSources.length);
     }, 3000); // Change video every 3 seconds
+=======
+      setActiveVideoIndex((prev) => (prev + 2) % videoSources.length);
+    }, 3000); // Change pair every 3 seconds
+>>>>>>> Stashed changes
 =======
       setActiveVideoIndex((prev) => (prev + 2) % videoSources.length);
     }, 3000); // Change pair every 3 seconds
@@ -199,6 +218,7 @@ export default function FloatingVideoHero() {
     return () => clearInterval(interval);
   }, [isMobile]);
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   // Auto-scroll to center active video
   useEffect(() => {
@@ -363,6 +383,74 @@ export default function FloatingVideoHero() {
           Create winning ads <span className="heading-italic">with AI</span>
         </motion.h1>
 
+=======
+  // Auto-scroll to center active video pair
+  useEffect(() => {
+    if (!isMobile || !scrollContainerRef.current) return;
+
+    const startIndex = Math.floor(activeVideoIndex / 2) * 2;
+    const firstCard = cardRefs.current[startIndex];
+    const lastCard = cardRefs.current[startIndex + 1] || firstCard;
+
+    if (!firstCard) return;
+
+    const container = scrollContainerRef.current;
+    const containerWidth = container.offsetWidth;
+    const pairLeft = firstCard.offsetLeft;
+    const pairWidth = lastCard.offsetLeft + lastCard.offsetWidth - pairLeft;
+
+    // Scroll to center the active pair
+    const scrollTo = pairLeft - (containerWidth / 2) + (pairWidth / 2);
+    container.scrollTo({ left: scrollTo, behavior: 'smooth' });
+  }, [activeVideoIndex, isMobile]);
+
+  // Generate random values for desktop floating
+  const randomValues = useMemo(() =>
+    cardConfigs.map(() => ({
+      duration: 4 + Math.random() * 3,
+      xAmp: 8 + Math.random() * 17,
+      yAmp: 10 + Math.random() * 20,
+      rotAmp: 2 + Math.random() * 4,
+    })), []
+  );
+
+  // Content entry animation
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      contentControls.start('visible');
+    }, isMobile ? 500 : 1500);
+    return () => clearTimeout(timer);
+  }, [contentControls, isMobile]);
+
+  return (
+    <section className={`hero-section ${isMobile ? 'mobile' : ''}`}>
+      {/* Desktop: Floating Cards */}
+      {!isMobile && (
+        <div className="cards-container">
+          {videoSources.map((src, index) => (
+            <FloatingVideoCard
+              key={index}
+              src={src}
+              config={cardConfigs[index]}
+              index={index}
+              randomValues={randomValues[index]}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Center Content */}
+      <motion.div
+        className="hero-content"
+        variants={contentContainerVariants}
+        initial="hidden"
+        animate={contentControls}
+      >
+        <motion.h1 className="hero-heading" variants={contentItemVariants}>
+          Create winning ads <span className="heading-italic">with AI</span>
+        </motion.h1>
+
+>>>>>>> Stashed changes
         <motion.p className="hero-subheading" variants={contentItemVariants}>
           Use our library of 1,000+ Captivating AI Actors, or create your own AI Avatar
         </motion.p>
@@ -392,6 +480,9 @@ export default function FloatingVideoHero() {
                 key={i}
                 className={`dot ${Math.floor(activeVideoIndex / 2) === i ? 'active' : ''}`}
                 onClick={() => setActiveVideoIndex(i * 2)}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
               />
             ))}
@@ -413,6 +504,7 @@ export default function FloatingVideoHero() {
           justify-content: center;
           background: #000000;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         }
 
         .hero-button {
@@ -431,6 +523,8 @@ export default function FloatingVideoHero() {
         .hero-button:hover {
           transform: translateY(-2px);
           box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
         }
@@ -543,9 +637,12 @@ export default function FloatingVideoHero() {
         .mobile-card {
           flex-shrink: 0;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
           width: 165px;
           height: 282px;
 =======
+=======
+>>>>>>> Stashed changes
           width: calc(50% - 4px);
           aspect-ratio: 9 / 16;
 >>>>>>> Stashed changes
@@ -650,8 +747,12 @@ export default function FloatingVideoHero() {
           }
           .mobile-card {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             width: 165px;
             height: 282px;
+=======
+            width: calc(50% - 4px);
+>>>>>>> Stashed changes
 =======
             width: calc(50% - 4px);
 >>>>>>> Stashed changes
