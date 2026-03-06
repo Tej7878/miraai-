@@ -221,7 +221,11 @@ export default function Supportingline() {
           height: 380px; 
           border-radius: 22px;
           overflow: hidden;
-          padding: 2px;
+<<<<<<< Updated upstream
+          padding: 4px;
+=======
+          padding: 1px;
+>>>>>>> Stashed changes
         }
 
         /* Snake/Tracing Border Effect - Conic Gradient */
