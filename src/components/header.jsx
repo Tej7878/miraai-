@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import miraiLogo from '../assets/images/mirai.svg';
 import Form from './form';
 
-const Header = () => {
-    const [isFormOpen, setIsFormOpen] = useState(false);
-    const [showHeader, setShowHeader] = useState(false);
+const Header = ({ openForm }) => {
+    const [isScrolled, setIsScrolled] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -15,11 +14,9 @@ const Header = () => {
         checkMobile();
         window.addEventListener('resize', checkMobile);
 
-        // Scroll handler - only for desktop
+        // Scroll handler
         const handleScroll = () => {
-            if (window.innerWidth > 768) {
-                setShowHeader(window.scrollY > 50);
-            }
+            setIsScrolled(window.scrollY > 50);
         };
         window.addEventListener('scroll', handleScroll, { passive: true });
 
@@ -28,9 +25,6 @@ const Header = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
-
-    // Always show on mobile, show based on scroll on desktop
-    const isVisible = isMobile || showHeader;
 
     return (
         <>
@@ -45,13 +39,15 @@ const Header = () => {
                     zIndex: 1000,
                     display: 'flex',
                     justifyContent: 'center',
-                    opacity: isVisible ? 1 : 0,
-                    visibility: isVisible ? 'visible' : 'hidden',
-                    transition: isMobile ? 'none' : 'opacity 0.4s ease, visibility 0.4s ease',
-                    pointerEvents: isVisible ? 'auto' : 'none',
+                    pointerEvents: 'auto',
                 }}
             >
-                <div className="w-full flex items-center justify-between px-4 md:px-8 py-2 md:py-3 rounded-2xl md:rounded-3xl bg-[rgba(20,20,20,0.4)] backdrop-blur-[16px] border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
+                <div
+                    className={`w-full flex items-center justify-between px-4 md:px-8 py-2 md:py-3 rounded-2xl md:rounded-3xl transition-all duration-400 ease-in-out ${isScrolled
+                        ? 'bg-[rgba(20,20,20,0.4)] backdrop-blur-[16px] border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)]'
+                        : 'bg-transparent border border-transparent shadow-none'
+                        }`}
+                >
                     {/* Logo Section */}
                     <div className="flex items-center">
                         <img
@@ -63,16 +59,24 @@ const Header = () => {
 
                     {/* Button Section */}
                     <button
-                        onClick={() => setIsFormOpen(true)}
-                        className="bg-[#8B5CF6] text-white border-none py-2 px-4 md:py-[0.6rem] md:px-6 rounded-[2rem] font-semibold text-xs md:text-[0.9rem] cursor-pointer transition-all duration-300 ease-in-out shadow-[0_0_15px_rgba(139,92,246,0.4)] hover:scale-105 hover:shadow-[0_0_25px_rgba(139,92,246,0.6)]"
+                        onClick={openForm}  
+                        className="group relative bg-white lg:px-6 text-black border-none py-2 px-2 md:py-[0.6rem]  rounded-[2rem] font-bold font-['Inter'] tracking-[0.5px] text-xs md:text-[0.9rem] cursor-pointer transition-all duration-300 ease-in-out shadow-[0_0_15px_rgba(255,255,255,0.2)] overflow-hidden"
                     >
-                        Get Started
+                        <span className="relative block overflow-hidden">
+                            <span className="block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full whitespace-nowrap">
+                                <span className="relative z-10 mr-2">✦</span>
+                                Get Started
+                                <span className="relative z-10 ml-2">✦</span>
+                            </span>
+                            <span className="absolute inset-0 block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] translate-y-full group-hover:translate-y-0 whitespace-nowrap">
+                                <span className="relative z-10 mr-2">✦</span>
+                                Get Started
+                                <span className="relative z-10 ml-2">✦</span>
+                            </span>
+                        </span>
                     </button>
                 </div>
             </div>
-
-            {/* Form Modal */}
-            <Form isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
         </>
     );
 };

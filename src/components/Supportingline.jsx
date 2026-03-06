@@ -1,10 +1,11 @@
 
 import React from 'react';
+import { motion } from 'framer-motion';
 
-import aiGenerationImg from '../assets/images/ai genration.png';
-import customizeBrandImg from '../assets/images/customize and brand.png';
-import inputYourVisionImg from '../assets/images/input your vision.png';
-import reviewDeployImg from '../assets/images/review and deploy.png';
+import aiGenerationImg from '../assets/images/ai_generation.webp';
+import customizeBrandImg from '../assets/images/customize_brand.webp';
+import inputYourVisionImg from '../assets/images/input.webp';
+import reviewDeployImg from '../assets/images/review_deploy.webp';
 
 const stepImages = {
   1: inputYourVisionImg,
@@ -19,7 +20,7 @@ const steps = [
     title: 'Input Your Vision',
     subtitle: 'Start With A Script Or Concept',
     description:
-      'Paste Your Script, Upload A Brief, Or Use Our AI Assistant To Create One\nFrom Scratch. Miraai Breaks It Into Scenes Automatically And Suggests\nVisual Treatments.',
+      'Paste Your Script, Upload A Brief, Or Use Our AI Assistant To Create One \nFrom Scratch. Miraai Breaks It Into Scenes Automatically And Suggests \nVisual Treatments.',
     side: 'right',
   },
   {
@@ -27,7 +28,7 @@ const steps = [
     title: 'Customize & Brand',
     subtitle: 'Make It Uniquely Yours',
     description:
-      'Select Templates, Customize Colors, Fonts, And Visual Styles To Match Your\nBrand Guidelines. Upload Logos, Set Tone Preferences, Choose Virtual\nCharacters.',
+      'Select Templates, Customize Colors, Fonts, And Visual Styles To Match Your Brand Guidelines. Upload Logos, Set Tone Preferences, Choose Virtual Characters.',
     side: 'left',
   },
   {
@@ -35,7 +36,7 @@ const steps = [
     title: 'AI Generation',
     subtitle: 'Let AI Work Its Magic',
     description:
-      'Miraai Generates Your Video With Professional Editing, Effects, Color\nGrading, And Audio. Localize Into Multiple Languages With One Click. Wait\nMinutes, Not Weeks.',
+      'Miraai Generates Your Video With Professional Editing, Effects, Color \nGrading, And Audio. Localize Into Multiple Languages With One Click. Wait Minutes, Not Weeks.',
     side: 'right',
   },
   {
@@ -43,18 +44,25 @@ const steps = [
     title: 'Review & Deploy',
     subtitle: 'Refine And Publish',
     description:
-      'Review Your Content, Make Any Final Adjustments, Get Team Approvals,\nAnd Export In Your Preferred Formats. Deploy Across All Channels Instantly.',
+      'Review Your Content, Make Any Final Adjustments, Get Team Approvals, And Export In Your Preferred Formats. Deploy Across All Channels Instantly.',
     side: 'left',
   },
 ];
 
 export default function Supportingline() {
   return (
-    <section className="sl-wrap">
-      <div className="sl-header">
-        <div className="sl-title">Supporting Line</div>
-        <div className="sl-subtitle">Simple. Fast. Reliable.</div>
-      </div>
+    <section className="sl-wrap tracking-[0.5px]">
+      <motion.div
+        className="sl-header"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="sl-title tracking-[0.5px]">Here's Exactly How We Work With You
+        </div>
+        <div className="sl-subtitle tracking-[0.5px]">No confusion. No complexity. Just a simple process from idea to delivery.</div>
+      </motion.div>
 
       <div className="sl-timeline">
         {/* Central Timeline Line with Energy Flow */}
@@ -62,10 +70,14 @@ export default function Supportingline() {
           <div className="sl-line-glow"></div>
         </div>
 
-        {steps.map((step) => (
-          <div
+        {steps.map((step, index) => (
+          <motion.div
             key={step.number}
             className={`sl-row ${step.side === 'left' ? 'is-left' : 'is-right'}`}
+            initial={{ opacity: 0, x: step.side === 'left' ? 30 : -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7, delay: 0.1 }}
           >
             {step.side === 'left' ? (
               <>
@@ -106,41 +118,52 @@ export default function Supportingline() {
               <div className="sl-content-subtitle">{step.subtitle}</div>
               <div className="sl-content-desc">{step.description}</div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
       <style>{`
         .sl-wrap {
           width: 100%;
-          min-height: 100vh;
-          padding: 34px 18px 60px;
-          background: #000;
+          min-height: auto;
+          padding: 80px 18px 80px;
+          background: #000004;
           color: #e9e9ee;
-          font-family: 'Urbanist', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+          font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
         }
 
         .sl-header {
           text-align: center;
-          margin-bottom: 26px;
+          margin-bottom: 48px;
         }
 
         .sl-title {
-          font-size: 22px;
-          font-weight: 700;
-          letter-spacing: 0.2px;
+          font-size: 40px !important;
+          font-weight: 800;
+          letter-spacing: 0.5px !important;
           color: #f3f3f6;
+          line-height: 1.15;
+          max-width: 1000px;
+          margin: 0 auto;
         }
 
         .sl-subtitle {
-          margin-top: 6px;
-          font-size: 12px;
-          color: rgba(255, 255, 255, 0.62);
+          margin-top: 12px;
+          font-family: 'Inter', sans-serif;
+          font-size: 21px !important;
+          color: rgba(255, 255, 255, 0.7);
+          font-weight: 500;
+          max-width: 850px;
+          margin-left: auto;
+          margin-right: auto;
+          opacity: 0.8;
+          line-height: 1.6;
+          letter-spacing: 0.5px !important;
         }
 
         .sl-timeline {
           position: relative;
-          max-width: 760px;
+          max-width: 1200px;
           margin: 0 auto;
           padding: 8px 0 12px;
         }
@@ -195,7 +218,7 @@ export default function Supportingline() {
         ======================================== */
         .sl-card-wrapper {
           position: relative;
-          height: 220px;
+          height: 380px; 
           border-radius: 22px;
           overflow: hidden;
           padding: 4px;
@@ -249,13 +272,10 @@ export default function Supportingline() {
           border: 1px solid rgba(255, 255, 255, 0.06);
           backdrop-filter: blur(8px);
           overflow: hidden;
-          transform: scale(1);
-          transition: transform 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                      box-shadow 300ms ease;
         }
 
         .sl-card-wrapper:hover .sl-card {
-          transform: scale(1.02);
+          
           box-shadow: 
             0 20px 50px rgba(0, 0, 0, 0.7), 
             0 0 30px rgba(120, 70, 255, 0.25);
@@ -284,7 +304,7 @@ export default function Supportingline() {
         }
 
         .sl-spacer {
-          height: 220px;
+          height: 380px;
         }
 
         /* ========================================
@@ -351,7 +371,7 @@ export default function Supportingline() {
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
-          max-width: 560px;
+          width: calc(50% - 60px);
         }
 
         .sl-content.content-right {
@@ -365,37 +385,39 @@ export default function Supportingline() {
         }
 
         .sl-content-title {
-          font-size: 14px;
+          font-size: 34px;
           font-weight: 800;
           color: rgba(154, 105, 255, 0.92);
           letter-spacing: 0.2px;
+          line-height: 1.1;
+          margin-bottom: 6px;
         }
 
         .sl-content-subtitle {
-          margin-top: 6px;
-          font-size: 12px;
+          font-size: 20px;
           font-weight: 700;
-          color: rgba(255, 255, 255, 0.9);
+          color: rgba(188, 181, 181, 1);
+          margin-top: 0;
         }
 
         .sl-content-desc {
-          margin-top: 8px;
+          margin-top: 10px;
           font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-          font-size: 13px;
-          line-height: 1.55;
+          font-size: 14px;
+          line-height: 1.6;
           letter-spacing: 0.15px;
           font-weight: 400;
-          color: rgba(255, 255, 255, 0.62);
-          max-width: 560px;
-          white-space: pre;
+          color: rgba(255, 255, 255, 0.75);
+          max-width: 100%;
+          white-space: pre-wrap;
         }
 
         /* ========================================
            RESPONSIVE - Mobile (max-width: 680px)
         ======================================== */
-        @media (max-width: 680px) {
-          .sl-wrap {
-            padding: 30px 16px 50px;
+        @media (max-width: 900px) {
+           .sl-wrap {
+            padding: 80px 16px 80px;
           }
 
           .sl-header {
@@ -403,16 +425,22 @@ export default function Supportingline() {
           }
 
           .sl-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: #a855f7;
+            font-size: 25px !important;
+            font-weight: 800;
+            color: #fff; /* Match other sections white title */
+            line-height: 1.2;
+            max-width: 90%;
+            margin: 0 auto;
           }
 
           .sl-subtitle {
-            font-size: 14px;
-            margin-top: 8px;
-            font-style: italic;
+            font-size: 18px !important;
+            margin-top: 16px;
             color: rgba(255, 255, 255, 0.7);
+            opacity: 0.8;
+            max-width: 100%;
+            line-height: 1.5;
+            font-style: normal; /* Remove italic for consistency */
           }
 
           .sl-timeline {
@@ -429,7 +457,11 @@ export default function Supportingline() {
             flex-direction: column;
             align-items: center; /* Center all items */
             gap: 0;
-            padding: 0 0 50px 0;
+            padding: 0 0 40px 0;
+          }
+
+          .sl-row:last-of-type {
+            padding-bottom: 10px;
           }
 
           .sl-row.is-left,
@@ -478,6 +510,7 @@ export default function Supportingline() {
             transform: none;
             left: auto;
             right: auto;
+            width: 100%;
             max-width: 100%;
             margin-left: 0;
             margin-bottom: 30px; /* Spacing below text */
@@ -495,7 +528,7 @@ export default function Supportingline() {
           /* Image Card - Bottom */
           .sl-card-wrapper {
             width: 100%;
-            max-width: 400px;
+            max-width: 500px;
             height: auto;
             aspect-ratio: 16 / 10;
             border-radius: 16px;
@@ -528,15 +561,15 @@ export default function Supportingline() {
           }
 
           .sl-content-subtitle {
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 700;
-            color: #fff;
+            color: #d4d4d4ff;
             margin-top: 0;
             margin-bottom: 12px;
           }
 
           .sl-content-desc {
-            font-size: 13px;
+            font-size: 14px;
             line-height: 1.6;
             color: rgba(255, 255, 255, 0.65);
             white-space: normal;
@@ -558,53 +591,7 @@ export default function Supportingline() {
           }
         }
 
-        /* ========================================
-           RESPONSIVE - Extra Small (max-width: 360px)
-        ======================================== */
-        @media (max-width: 360px) {
-          .sl-wrap {
-            padding: 24px 12px 40px;
-          }
 
-          .sl-title {
-            font-size: 24px;
-          }
-
-          .sl-subtitle {
-            font-size: 13px;
-          }
-
-          .sl-card-wrapper {
-            aspect-ratio: 16 / 11;
-            border-radius: 14px;
-          }
-
-          .sl-card {
-            border-radius: 12px;
-          }
-
-          .sl-marker {
-            width: 40px;
-            height: 40px;
-          }
-
-          .sl-marker-inner {
-            font-size: 15px;
-          }
-
-          .sl-content-title {
-            font-size: 20px;
-          }
-
-          .sl-content-subtitle {
-            font-size: 14px;
-          }
-
-          .sl-content-desc {
-            font-size: 12px;
-            line-height: 1.55;
-          }
-        }
 
         /* ========================================
            REDUCED MOTION

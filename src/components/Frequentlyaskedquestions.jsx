@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 export default function Frequentlyaskedquestions() {
   const [openId, setOpenId] = useState(null);
@@ -36,20 +37,33 @@ export default function Frequentlyaskedquestions() {
   };
 
   return (
-    <section className="faq-wrap">
+    <section className="faq-wrap tracking-[0.5px]">
       <div className="faq-inner">
         <div className="faq-grid">
-          <div className="faq-left">
-            <div className="faq-title">
+          <motion.div
+            className="faq-left"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="faq-title tracking-[0.5px]">
               Frequently Asked
               <br />
               Questions
             </div>
-          </div>
+          </motion.div>
 
           <div className="faq-right" aria-label="Frequently asked questions">
-            {faqs.map((item) => (
-              <div key={item.id} className={`faq-item-wrapper ${openId === item.id ? 'is-open' : ''}`}>
+            {faqs.map((item, index) => (
+              <motion.div
+                key={item.id}
+                className={`faq-item-wrapper ${openId === item.id ? 'is-open' : ''}`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
                 <button
                   type="button"
                   className="faq-item"
@@ -70,7 +84,7 @@ export default function Frequentlyaskedquestions() {
                     {item.a}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -79,10 +93,10 @@ export default function Frequentlyaskedquestions() {
       <style>{`
         .faq-wrap {
           width: 100%;
-          padding: 92px 18px 98px;
+          padding: 80px 18px 80px;
           background: #000;
           color: rgba(255, 255, 255, 0.92);
-          font-family: 'Urbanist', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+          font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
           position: relative;
           overflow: hidden;
         }
@@ -121,12 +135,17 @@ export default function Frequentlyaskedquestions() {
           align-items: start;
         }
 
+        .faq-left {
+          padding-top: 200px;
+        }
+
         .faq-title {
-          font-size: 46px;
+          font-size: 40px !important;
           font-weight: 800;
-          letter-spacing: 0.2px;
-          color: rgba(255, 255, 255, 0.95);
-          line-height: 1.08;
+          letter-spacing: 0.5px !important;
+          color: #f3f3f6;
+          line-height: 1.15;
+          max-width: 100%;
         }
 
         .faq-right {
@@ -143,10 +162,8 @@ export default function Frequentlyaskedquestions() {
         }
 
         .faq-item-wrapper.is-open {
-          border: 4px solid #7c3aed;
-          box-shadow:
-            0 30px 100px rgba(0, 0, 0, 0.9),
-            0 0 35px rgba(124, 58, 237, 0.4);
+          border: none;
+          box-shadow: none;
         }
 
         .faq-item {
@@ -191,10 +208,11 @@ export default function Frequentlyaskedquestions() {
         .faq-q {
           position: relative;
           z-index: 1;
-          font-size: 14px;
+          font-size: 18px;
           font-weight: 500;
           color: rgba(255, 255, 255, 0.78);
           transition: color 300ms ease;
+          letter-spacing: 0.5px !important;
         }
 
         .faq-plus {
@@ -213,12 +231,7 @@ export default function Frequentlyaskedquestions() {
 
         /* Hover State */
         .faq-item:hover {
-          transform: scale(1.03);
-          border: 4px solid #7c3aed;
-          box-shadow:
-            0 30px 100px rgba(0, 0, 0, 0.9),
-            0 0 35px rgba(124, 58, 237, 0.4);
-          z-index: 10;
+          /* Static - No effect */
         }
 
         .faq-item-wrapper.is-open .faq-item:hover {
@@ -228,7 +241,7 @@ export default function Frequentlyaskedquestions() {
         }
 
         .faq-item:hover .faq-plus {
-          color: #a855f7;
+          color: #fff;
           transform: rotate(90deg);
         }
 
@@ -238,7 +251,7 @@ export default function Frequentlyaskedquestions() {
 
         /* Open State - Plus becomes X */
         .faq-item-wrapper.is-open .faq-plus {
-          color: #a855f7;
+          color: #fff;
           transform: rotate(45deg);
         }
 
@@ -256,15 +269,16 @@ export default function Frequentlyaskedquestions() {
         }
 
         .faq-item-wrapper.is-open .faq-answer-wrapper {
-          max-height: 200px;
+          max-height: 600px;
         }
 
         .faq-answer {
           padding: 20px 22px 24px;
-          font-size: 13px;
+          font-size: 16px;
           line-height: 1.65;
           color: rgba(255, 255, 255, 0.65);
           border-top: 1px solid rgba(255, 255, 255, 0.08);
+          letter-spacing: 0.5px !important;
         }
 
         @media (max-width: 980px) {
@@ -275,13 +289,24 @@ export default function Frequentlyaskedquestions() {
 
           .faq-title {
             text-align: center;
-            font-size: 38px;
+            font-size: 25px !important;
+            font-weight: 800;
+            max-width: 90%;
+            margin: 0 auto;
+          }
+
+          .faq-left {
+            padding-top: 0;
+          }
+
+          .faq-wrap {
+            padding: 80px 16px 80px;
           }
         }
 
         @media (max-width: 560px) {
           .faq-title {
-            font-size: 30px;
+            font-size: 25px !important;
           }
 
           .faq-item {
@@ -290,12 +315,12 @@ export default function Frequentlyaskedquestions() {
           }
 
           .faq-q {
-            font-size: 13px;
+            font-size: 16px;
           }
 
           .faq-answer {
             padding: 16px;
-            font-size: 12px;
+            font-size: 14px;
           }
         }
       `}</style>

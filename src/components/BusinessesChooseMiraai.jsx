@@ -1,5 +1,5 @@
 import React from 'react';
-import boxMiraaiImg from '../assets/images/Boxmirrai.png';
+import boxMiraaiImg from '../assets/images/Boxmirrai.webp';
 
 export default function BusinessesChooseMiraai() {
   const benefits = [
@@ -30,7 +30,7 @@ export default function BusinessesChooseMiraai() {
     // ═══════════════════════════════════════════════════════════════
     {
       id: 'path1',
-      d: `M 440 240
+      d: `M 436 241
           C 400 200 350 160 294 125
           L 294 114
           A 16 16 0 0 0 278 98
@@ -41,7 +41,7 @@ export default function BusinessesChooseMiraai() {
           L 278 152
           A 16 16 0 0 0 294 136
           L 294 125
-          C 350 160 400 200 440 240`,
+          C 350 160 400 200 436 241`,
       delay: '0s',
       duration: '3s'
     },
@@ -52,7 +52,7 @@ export default function BusinessesChooseMiraai() {
     // ═══════════════════════════════════════════════════════════════
     {
       id: 'path2',
-      d: `M 560 240
+      d: `M 564 241
           C 600 200 650 160 706 125
           L 706 114
           A 16 16 0 0 1 722 98
@@ -63,7 +63,7 @@ export default function BusinessesChooseMiraai() {
           L 722 152
           A 16 16 0 0 1 706 136
           L 706 125
-          C 650 160 600 200 560 240`,
+          C 650 160 600 200 564 241`,
       delay: '0s',
       duration: '3s'
     },
@@ -74,8 +74,8 @@ export default function BusinessesChooseMiraai() {
     // ═══════════════════════════════════════════════════════════════
     {
       id: 'path3',
-      d: `M 425 300
-          C 380 295 340 290 264 279
+      d: `M 425 280
+          C 380 280 340 280 264 279
           L 264 271
           A 16 16 0 0 0 248 255
           L 60 255
@@ -85,7 +85,7 @@ export default function BusinessesChooseMiraai() {
           L 248 303
           A 16 16 0 0 0 264 287
           L 264 279
-          C 340 290 380 295 425 300`,
+          C 340 280 380 280 425 280`,
       delay: '0s',
       duration: '3s'
     },
@@ -96,8 +96,8 @@ export default function BusinessesChooseMiraai() {
     // ═══════════════════════════════════════════════════════════════
     {
       id: 'path4',
-      d: `M 575 300
-          C 620 295 660 290 706 282
+      d: `M 575 280
+          C 620 280 660 280 706 282
           L 706 271
           A 16 16 0 0 1 722 255
           L 940 255
@@ -107,7 +107,7 @@ export default function BusinessesChooseMiraai() {
           L 722 309
           A 16 16 0 0 1 706 293
           L 706 282
-          C 660 290 620 295 575 300`,
+          C 660 280 620 280 575 280`,
       delay: '0s',
       duration: '3s'
     },
@@ -118,8 +118,8 @@ export default function BusinessesChooseMiraai() {
     // ═══════════════════════════════════════════════════════════════
     {
       id: 'path5',
-      d: `M 440 360
-          C 400 400 350 425 294 439
+      d: `M 436 319
+          C 400 350 350 400 294 439
           L 294 428
           A 16 16 0 0 0 278 412
           L 60 412
@@ -129,7 +129,7 @@ export default function BusinessesChooseMiraai() {
           L 278 466
           A 16 16 0 0 0 294 450
           L 294 439
-          C 350 425 400 400 440 360`,
+          C 350 400 400 350 436 319`,
       delay: '0s',
       duration: '3s'
     },
@@ -140,8 +140,8 @@ export default function BusinessesChooseMiraai() {
     // ═══════════════════════════════════════════════════════════════
     {
       id: 'path6',
-      d: `M 560 360
-          C 600 400 650 425 706 439
+      d: `M 564 319
+          C 600 350 650 400 706 439
           L 706 428
           A 16 16 0 0 1 722 412
           L 940 412
@@ -151,21 +151,22 @@ export default function BusinessesChooseMiraai() {
           L 722 466
           A 16 16 0 0 1 706 450
           L 706 439
-          C 650 425 600 400 560 360`,
+          C 650 400 600 350 564 319`,
       delay: '0s',
       duration: '3s'
     }
   ];
 
   return (
-    <section className="bcm-wrap">
+    <section className="bcm-wrap tracking-[0.5px]">
       <div className="bcm-header">
-        <div className="bcm-title">Why Businesses Choose Miraai</div>
+        <div className="bcm-title tracking-[0.5px]">Why Smart Businesses Choose <span className='bg-gradient-to-br from-[#8B5CF6] to-[#D946EF] bg-clip-text text-transparent font-semibold'> Miraai </span>?</div>
+        <div className="bcm-subtitle tracking-[0.5px]">Because smart businesses choose results, not experiments.</div>
       </div>
 
       <div className="bcm-container">
         {/* Connection Lines with Energy Flow Pulse */}
-        <svg className="bcm-lines" viewBox="0 0 1000 600">
+        <svg className="bcm-lines" viewBox="0 0 1000 500">
           <defs>
             {/* Base Line Gradient */}
             <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -184,7 +185,7 @@ export default function BusinessesChooseMiraai() {
             {/* Base Line Glow Filter */}
             <filter id="lineGlow" x="-20%" y="-20%" width="140%" height="140%">
               <feGaussianBlur stdDeviation="1.5" result="blur" />
-              <feMerge>
+              <feMerge>  
                 <feMergeNode in="blur" />
                 <feMergeNode in="SourceGraphic" />
               </feMerge>
@@ -214,7 +215,6 @@ export default function BusinessesChooseMiraai() {
                 opacity="0.38"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                filter="url(#lineGlow)"
                 pathLength="100"
               />
 
@@ -227,7 +227,6 @@ export default function BusinessesChooseMiraai() {
                 fill="none"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                filter="url(#pulseGlow)"
                 pathLength="100"
                 style={{
                   animationDelay: path.delay,
@@ -264,10 +263,10 @@ export default function BusinessesChooseMiraai() {
       <style>{`
         .bcm-wrap {
           width: 100%;
-          padding: 46px 18px 64px;
+          padding: 80px 18px 80px;
           background: #000;
           color: #e9e9ee;
-          font-family: 'Urbanist', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+          font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
           position: relative;
           overflow: hidden;
         }
@@ -289,23 +288,38 @@ export default function BusinessesChooseMiraai() {
         }
 
         .bcm-title {
-          font-size: 30px;
+          font-size: 40px !important;
           font-weight: 800;
-          letter-spacing: 0.2px;
-          color: rgba(255, 255, 255, 0.95);
+          color: #f3f3f6;
+          letter-spacing: 0.5px !important;
+          line-height: 1.15;
+          max-width: 1000px;
+          margin: 0 auto;
+          margin-bottom: 24px;
+        }
+
+        .bcm-subtitle {
+          font-size: 21px !important;
+          color: rgba(255, 255, 255, 0.7);
+          font-weight: 100;
+          max-width: 850px;
+          margin: 0 auto;
+          opacity: 0.8;
+          line-height: 1.6;
+          letter-spacing: 0.5px !important;
         }
 
         .bcm-container {
           position: relative;
           max-width: 1000px;
-          height: 600px;
+          height: 500px;
           margin: 0 auto;
           z-index: 1;
         }
 
         .bcm-center {
           position: absolute;
-          top: 50%;
+          top: 56%;
           left: 50%;
           transform: translate(-50%, -50%);
           z-index: 10;
@@ -529,12 +543,16 @@ export default function BusinessesChooseMiraai() {
         ======================================== */
         @media (max-width: 768px) {
           .bcm-wrap {
-            padding: 40px 16px 60px;
+            padding: 80px 16px 80px;
           }
 
           .bcm-title {
-            font-size: 28px;
+            font-size: 25px !important;
             line-height: 1.2;
+          }
+
+          .bcm-subtitle {
+            font-size: 18px !important;
           }
 
           .bcm-container {
@@ -686,7 +704,7 @@ export default function BusinessesChooseMiraai() {
         ======================================== */
         @media (max-width: 480px) {
           .bcm-wrap {
-            padding: 32px 12px 50px;
+            padding: 80px 12px 80px;
           }
 
           .bcm-header {
@@ -694,7 +712,7 @@ export default function BusinessesChooseMiraai() {
           }
 
           .bcm-title {
-            font-size: 26px;
+            /* Handled in 768px query */
             line-height: 1.25;
             padding: 0 10px;
           }
@@ -764,11 +782,11 @@ export default function BusinessesChooseMiraai() {
         ======================================== */
         @media (max-width: 360px) {
           .bcm-wrap {
-            padding: 28px 10px 40px;
+            padding: 80px 10px 80px;
           }
 
           .bcm-title {
-            font-size: 22px;
+            /* Handled in 768px query */
           }
 
           .bcm-container {

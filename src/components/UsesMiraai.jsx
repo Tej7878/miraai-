@@ -1,9 +1,12 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 
-import textileImg from '../assets/images/Textile.png';
-import lifestyleImg from '../assets/images/Lifestyle.png';
-import jwelleryImg from '../assets/images/Jwellery.png';
+import textileImg from '../assets/images/textile & garments.jpg';
+import lifestyleImg from '../assets/images/lifestyles.webp';
+import jwelleryImg from '../assets/images/jwellery.webp';
+import realEstateImg from '../assets/images/real states.webp';
+import foodImg from '../assets/images/food.webp';
+import carImg from '../assets/images/car.webp';
 
 const originalCards = [
   {
@@ -24,17 +27,17 @@ const originalCards = [
   {
     title: 'Real Estate & Property',
     subtitle: '(Property Developers, Architects,\nInterior Designers, Real Estate Agents)',
-    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=800&fit=crop',
+    image: realEstateImg,
   },
   {
     title: 'Food & Beverage',
     subtitle: '(Restaurants, Cafes, Food Brands,\nBeverage Companies, Catering)',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=800&fit=crop',
+    image: foodImg,
   },
   {
     title: 'Automobile & Vehicles',
     subtitle: '(Car Dealerships, Auto Brands,\nMotorcycle Companies, Luxury Vehicles)',
-    image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&h=800&fit=crop',
+    image: carImg,
   },
 ];
 
@@ -94,10 +97,10 @@ export default function UsesMiraai() {
   }, []);
 
   return (
-    <section className="um-wrap">
+    <section className="um-wrap tracking-[0.5px]">
       <div className="um-header">
-        <div className="um-title">Who Uses Miraai</div>
-        <div className="um-subtitle">
+        <div className="um-title tracking-[0.5px]">Who Uses <span className='bg-gradient-to-br from-[#8B5CF6] to-[#D946EF] bg-clip-text text-transparent font-semibold'> Miraai </span>?</div>
+        <div className="text-lg tracking-[0.5px]">
           Industries That Use Miraai To Reduce Production Costs And Scale High-Quality Content.
         </div>
       </div>
@@ -114,7 +117,7 @@ export default function UsesMiraai() {
           {cards.map((card, index) => (
             <div
               key={`${card.title}-${index}`}
-              className="um-card"
+              className={`um-card ${card.title.includes('Jewellery') ? 'um-card-jewellery' : ''}`}
             >
               <img className="um-img" src={card.image} alt="" />
               <div className="um-overlay" aria-hidden="true" />
@@ -130,10 +133,10 @@ export default function UsesMiraai() {
       <style>{`
         .um-wrap {
           width: 100%;
-          padding: 60px 0 80px;
+          padding: 80px 0;
           background: #000;
           color: #e9e9ee;
-          font-family: 'Urbanist', system-ui, -apple-system, sans-serif;
+          font-family: 'Inter', system-ui, -apple-system, sans-serif;
           overflow: hidden;
         }
 
@@ -144,18 +147,27 @@ export default function UsesMiraai() {
         }
 
         .um-title {
-          font-size: 34px;
+          font-size: 40px !important;
           font-weight: 800;
-          color: #fff;
+          letter-spacing: 0.5px !important;
+          color: #f3f3f6;
+          line-height: 1.15;
+          max-width: 1000px;
+          margin: 0 auto;
           margin-bottom: 12px;
-          letter-spacing: -0.5px;
         }
 
-        .um-subtitle {
-          font-size: 14px;
-          color: rgba(255, 255, 255, 0.6);
-          max-width: 600px;
-          margin: 0 auto;
+        .um-subtitle {  
+          margin-top: 12px;
+          font-size: 18px !important;
+          color: rgba(255, 255, 255, 0.7);
+          font-weight: 500;
+          max-width: 850px;
+          margin-left: auto;
+          margin-right: auto;
+          opacity: 0.8;
+          line-height: 1.6;
+          letter-spacing: 0.5px !important;
         }
 
         .um-container {
@@ -180,7 +192,7 @@ export default function UsesMiraai() {
           display: none;
         }
 
-        .um-card {
+          .um-card {
           position: relative;
           width: 320px;
           height: 420px;
@@ -211,6 +223,10 @@ export default function UsesMiraai() {
 
         .um-card:hover .um-img {
           transform: scale(1.15);
+        }
+
+        .um-card-jewellery .um-img {
+          object-position: center 70%;
         }
 
         .um-overlay {
@@ -249,15 +265,16 @@ export default function UsesMiraai() {
         }
 
         @media (max-width: 768px) {
-          .um-wrap { padding: 40px 0 60px; }
-          .um-title { font-size: 28px; }
+          .um-wrap { padding: 80px 18px 80px 18px; }
+          .um-title { font-size: 25px!important; font-weight: 800; line-height: 1.2; max-width: 90%; }
+          .um-subtitle { font-size: 18px !important; margin-top: 16px; opacity: 0.8; }
           .um-card { width: 280px; height: 360px; }
           .um-rail { gap: 20px; }
         }
 
         @media (max-width: 480px) {
-          .um-title { font-size: 24px; }
-          .um-subtitle { font-size: 13px; padding: 0 15px; }
+          .um-title { font-size: 25px!important; }
+          .um-subtitle { font-size: 18px !important; padding: 0 15px; }
           .um-card { width: 260px; height: 340px; }
           .um-container {
             mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
@@ -265,7 +282,8 @@ export default function UsesMiraai() {
         }
 
         @media (max-width: 360px) {
-          .um-title { font-size: 22px; }
+          .um-title { font-size: 25px!important; }
+          .um-subtitle { font-size: 18px !important; line-height: 1.4; padding: 0 10px; margin-top: 12px; }
           .um-card { width: 260px; border-radius: 20px; }
           .um-card-title { font-size: 17px; }
           .um-text { padding: 20px; }

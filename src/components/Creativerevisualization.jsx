@@ -1,8 +1,21 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import aiGenerationImg from '../assets/images/ai genration.png';
-import customizeImg from '../assets/images/customize and brand.png';
-import inputVisionImg from '../assets/images/input your vision.png';
-import reviewDeployImg from '../assets/images/review and deploy.png';
+import aiGenerationImg from '../assets/images/ai_generation.webp';
+import customizeImg from '../assets/images/customize_brand.webp';
+import inputVisionImg from '../assets/images/input.webp';
+import reviewDeployImg from '../assets/images/review_deploy.webp';
+import jolyImg from '../assets/images/Joly .svg';
+import jolyVideo from '../assets/images/videos/Joly .mp4';
+import joly2Img from '../assets/images/Joly 2 .svg';
+import joly2Video from '../assets/images/videos/Joly 2 .mp4';
+import joly3Img from '../assets/images/Joly 3.svg';
+import joly3Video from '../assets/images/videos/Joly 3.mp4';
+import joly4Img from '../assets/images/Joly 4.svg';
+import joly4Video from '../assets/images/videos/Joly 4.mp4';
+import jwelleryImg from '../assets/images/jwellery.jpg';
+import jwelleryVideo from '../assets/images/videos/Joly 4.mp4';
+import lifestyleImg from '../assets/images/lifestyles.webp';
+import textileImg from '../assets/images/textile & garments.jpg';
+import clothingVideo from '../assets/images/videos/Joly 3.mp4';
 
 
 const features = [
@@ -13,7 +26,8 @@ const features = [
     desc: [
       "Breathe Motion Into Still Images Convert Photos Into Captivating Animated Videos With AI-Powered Fluidity. Add Seamless Motion, Effects, And Emotion Effortlessly."
     ],
-    img: aiGenerationImg,
+    img: jolyImg,
+    video: jolyVideo,
   },
   {
     id: 2,
@@ -22,7 +36,8 @@ const features = [
     desc: [
       "Generate Multiple Variations Of Your Marketing Banners In One Click. Stay Brand-Consistent While Scaling Your Creative Output. Designed For High-Performance Ads."
     ],
-    img: customizeImg,
+    img: joly2Img,
+    video: joly2Video,
   },
   {
     id: 3,
@@ -31,7 +46,8 @@ const features = [
     desc: [
       "Expand The Boundaries Of Your Photos Or Intelligently Fill Missing Details. Fix Composition Errors And Create Formatting Variations. Perfect For Adapting Content To Different Social Platforms."
     ],
-    img: inputVisionImg,
+    img: joly3Img,
+    video: joly3Video,
   },
   {
     id: 4,
@@ -40,11 +56,12 @@ const features = [
     desc: [
       "Scale Your Production By Generating Dozens Of Variations From A Single Seed Image. Test Different Styles, Colors, And Compositions To Find The Perfect High-Performing Creative."
     ],
-    img: reviewDeployImg,
+    img: joly4Img,
+    video: joly4Video,
   }
 ];
 
-const ComparisonSlider = ({ img }) => {
+const ComparisonSlider = ({ img, video }) => {
   const [sliderPos, setSliderPos] = useState(50);
   const containerRef = useRef(null);
   const isDragging = useRef(false);
@@ -104,10 +121,22 @@ const ComparisonSlider = ({ img }) => {
       onMouseDown={onMouseDown}
       onTouchStart={onTouchStart}
     >
-      {/* Background: B&W Image (Right Side) */}
-      <img src={img} alt="" className="cr-compare-img cr-img-bw" />
+      {/* Background: Video or Grayscale Image (Right Side) */}
+      {video ? (
+        <video
+          src={video}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="cr-compare-img"
+          style={{ objectFit: 'cover' }}
+        />
+      ) : (
+        <img src={img} alt="" className="cr-compare-img cr-img-bw" />
+      )}
 
-      {/* Overlay: Color Image (Left Side) - Clipped to be static */}
+      {/* Overlay: Color Image (Left Side) - Clipped */}
       <img
         src={img}
         alt=""
@@ -119,13 +148,8 @@ const ComparisonSlider = ({ img }) => {
       <div className="cr-compare-line" style={{ left: `${sliderPos}%` }}>
         <div className="cr-compare-button">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            {/* Two Vertical Bars */}
-            <path d="M10 7V17" stroke="white" strokeWidth="2" strokeLinecap="round" />
-            <path d="M14 7V17" stroke="white" strokeWidth="2" strokeLinecap="round" />
-            {/* Left Triangle */}
-            <path d="M6 12L9 9V15L6 12Z" fill="white" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            {/* Right Triangle */}
-            <path d="M18 12L15 9V15L18 12Z" fill="white" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M8 12L11 9V15L8 12Z" fill="black" />
+            <path d="M16 12L13 9V15L16 12Z" fill="black" />
           </svg>
         </div>
       </div>
@@ -133,7 +157,7 @@ const ComparisonSlider = ({ img }) => {
   );
 };
 
-export default function Creativerevisualization() {
+export default function Creativerevisualization({ openForm }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const triggerRefs = useRef([]);
 
@@ -172,16 +196,40 @@ export default function Creativerevisualization() {
   };
 
   return (
-    <section className="cr-scroll-track">
+    <section className="cr-scroll-track tracking-[0.5px]">
       <div className="cr-sticky-viewport">
         <div className="cr-wrap">
-          <div className="cr-head">
-            <div className="cr-title"><span>Creative</span><span>Revisualization</span></div>
-            <div className="cr-sub">
+          <div className="cr-head text-center max-w-4xl mx-auto">
+
+            {/* HEADING */}
+            <div
+              className="
+               text-xl sm:text-2xl md:text-3xl
+               font-extrabold
+               leading-tight
+               tracking-[0.5px]
+               text-white"
+            >
+              Creative
+              Revisualization
+            </div>
+
+            {/* SUBHEADING */}
+            <div
+              className="
+               cr-sub
+                mt-4
+                text-sm sm:text-base
+                font-medium
+                leading-relaxed
+                text-white/80
+                tracking-[0.5px]
+               max-w-2xl mx-auto"
+            >
               Transform Your Existing Photos, Videos, And Creatives
-              <br />
               Into High-Performing Marketing Assets Using AI.
             </div>
+
           </div>
 
           <div className="cr-grid">
@@ -195,7 +243,7 @@ export default function Creativerevisualization() {
                   >
                     <div className="cr-card">
                       {feature.img ? (
-                        <ComparisonSlider img={feature.img} />
+                        <ComparisonSlider img={feature.img} video={feature.video} />
                       ) : (
                         <div className="cr-img-placeholder" style={{ background: feature.gradient }}>
                           <span className="placeholder-number">{index + 1}</span>
@@ -240,10 +288,10 @@ export default function Creativerevisualization() {
                     <div className="cr-r-title">
                       {feature.titleLines ? (
                         feature.titleLines.map((line, i) => (
-                          <span key={i} className="cr-r-title-line">{line}</span>
+                          <p key={i} className="text-2xl">{line}</p>
                         ))
                       ) : (
-                        feature.title
+                        <p className="text-2xl">{feature.title}</p>
                       )}
                     </div>
                     <div className="cr-r-desc">
@@ -255,10 +303,17 @@ export default function Creativerevisualization() {
                 ))}
               </div>
 
-              <button className="cr-try-btn" type="button" aria-label="Try it now">
-                <span className="cr-btn-star">✦</span>
-                <span className="cr-btn-text">Try It Now</span>
-                <span className="cr-btn-star">✦</span>
+              <button className="cr-try-btn group relative overflow-hidden" type="button" aria-label="Try it now" onClick={openForm}>
+                <span className="relative z-10">✦</span>
+                <span className="relative z-10 block overflow-hidden">
+                  <span className="block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full">
+                    Try It Now
+                  </span>
+                  <span className="absolute inset-0 block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] translate-y-full group-hover:translate-y-0">
+                    Try It Now
+                  </span>
+                </span>
+                <span className="relative z-10">✦</span>
               </button>
             </div>
           </div>
@@ -293,6 +348,7 @@ export default function Creativerevisualization() {
           display: flex;
           align-items: center;
           justify-content: center;
+          padding-top: 0;
         }
 
         .cr-triggers {
@@ -315,7 +371,7 @@ export default function Creativerevisualization() {
           max-width: 1280px;
           margin: 0 auto;
           color: rgba(255, 255, 255, 0.92);
-          font-family: 'Urbanist', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+          font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
         }
 
         .cr-wrap::before {
@@ -331,19 +387,22 @@ export default function Creativerevisualization() {
 
         .cr-head {
           text-align: center;
-          margin-bottom: 60px;
+          margin-bottom: 30px;
           transition: opacity 0.3s;
         }
 
         .cr-title {
-          font-size: 36px;
+          font-size: 40px !important;
           font-weight: 800;
-          letter-spacing: 0.2px;
-          color: rgba(255, 255, 255, 0.95);
+          letter-spacing: 0.5px !important;
+          color: #f3f3f6;
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
           gap: 0 10px;
+          line-height: 1.15;
+          max-width: 1000px;
+          margin: 0 auto;
         }
 
         .cr-title span {
@@ -351,10 +410,16 @@ export default function Creativerevisualization() {
         }
 
         .cr-sub {
-          margin-top: 10px;
-          font-size: 13px;
-          line-height: 1.5;
-          color: rgba(255, 255, 255, 0.6);
+          margin-top: 12px;
+          font-size: 21px !important;
+          line-height: 1.6;
+          color: rgba(255, 255, 255, 0.7);
+          opacity: 0.8;
+          max-width: 850px;
+          margin-left: auto;
+          margin-right: auto;
+          font-weight: 500;
+          letter-spacing: 0.5px !important;
         }
 
         .cr-grid {
@@ -375,7 +440,9 @@ export default function Creativerevisualization() {
            position: relative;
            width: 100%;
            max-width: 520px;
+           max-height: 55vh;
            aspect-ratio: 1/1;
+           margin: 0 auto;
         }
 
         .cr-card-layer {
@@ -465,8 +532,8 @@ export default function Creativerevisualization() {
             width: 44px;
             height: 44px;
             /* Gradient matching reference: Purple/Pink mix */
-            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
-            border: 2px solid white;
+            background: #fff;
+            border: none;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -556,7 +623,7 @@ export default function Creativerevisualization() {
         }
         
         .cr-r-title {
-          font-size: 26px;
+          font-size: 21px !important;
           font-weight: 800;
           color: rgba(255, 255, 255, 0.95);
           margin-bottom: 12px;
@@ -570,7 +637,7 @@ export default function Creativerevisualization() {
         }
 
         .cr-r-desc {
-          font-size: 14px;
+          font-size: 18px !important;
           line-height: 1.6;
           color: rgba(255, 255, 255, 0.6);
         }
@@ -580,9 +647,10 @@ export default function Creativerevisualization() {
         }
 
         .cr-try-btn {
-          margin-top: 40px;
+          margin-top: 30px;
           border: 0;
-          background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 50%, #a78bfa 100%);
+          background: #fff;
+          color: #000;
           padding: 14px 28px;
           cursor: pointer;
           display: inline-flex;
@@ -591,13 +659,12 @@ export default function Creativerevisualization() {
           gap: 10px;
           border-radius: 999px;
           transition: transform 0.2s, filter 0.2s, box-shadow 0.2s;
-          box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+          box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+          font-weight: 700;
         }
 
         .cr-try-btn:hover {
-          filter: brightness(1.1);
-          transform: translateY(-2px);
-          box-shadow: 0 6px 28px rgba(139, 92, 246, 0.5);
+          box-shadow: 0 6px 28px rgba(255, 255, 255, 0.25);
         }
 
         .cr-btn-star {
@@ -607,8 +674,8 @@ export default function Creativerevisualization() {
 
         .cr-btn-text {
           font-size: 14px;
-          font-weight: 600;
-          color: #fff;
+          font-weight: 700;
+          color: inherit;
           letter-spacing: 0.3px;
         }
 
@@ -623,7 +690,7 @@ export default function Creativerevisualization() {
           .cr-sticky-viewport {
             position: relative;
             height: auto;
-            padding: 50px 0;
+            padding: 10px 0 20px;
             top: 0;
             display: block;
           }
@@ -655,6 +722,44 @@ export default function Creativerevisualization() {
             opacity: 1;
             transform: none;
           }
+
+          /* Show navigation buttons on tablet */
+          .cr-nav-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+          }
+
+          .cr-nav-prev {
+            left: 8px;
+          }
+
+          .cr-nav-next {
+            right: 8px;
+          }
+        }
+
+        /* ========================================
+           RESPONSIVE - Tablet/Mobile (max-width: 768px)
+        ======================================== */
+        @media (max-width: 768px) {
+          .cr-title {
+            font-size: 25px !important;
+          }
+
+          .cr-sub {
+            font-size: 18px !important;
+          }
+
+          .cr-r-title {
+            font-size: 16px !important;
+          }
+
+          .cr-r-desc {
+            font-size: 16px !important;
+          }
         }
 
         /* ========================================
@@ -670,21 +775,25 @@ export default function Creativerevisualization() {
           }
 
           .cr-title {
-            font-size: 32px;
-            line-height: 1.15;
-            flex-direction: column;
-            gap: 0;
+            /* Handled in 768px query */
+            line-height: 1.2;
+            flex-direction: row;
+            gap: 0 8px;
+            max-width: 90%;
+            margin: 0 auto;
           }
 
           .cr-title span {
-            display: block;
+            display: inline-block;
           }
 
           .cr-sub {
-            font-size: 13px;
+            /* Handled in 768px query */
             line-height: 1.55;
-            margin-top: 12px;
+            margin-top: 16px;
             padding: 0 10px;
+            opacity: 0.8;
+            max-width: 100%;
           }
 
           .cr-sub br {
@@ -714,27 +823,15 @@ export default function Creativerevisualization() {
             height: 20px;
           }
 
-          /* Show navigation buttons on mobile */
           .cr-nav-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
             width: 36px;
             height: 36px;
-          }
-
-          .cr-nav-prev {
-            left: 8px;
-          }
-
-          .cr-nav-next {
-            right: 8px;
           }
 
           .cr-right {
             max-width: 100%;
             width: 100%;
-            text-align: left;
+            text-align: center;
             padding: 0 4px;
             overflow: hidden;
           }
@@ -751,11 +848,12 @@ export default function Creativerevisualization() {
           }
 
           .cr-r-title {
-            font-size: 24px;
+            /* Handled in 768px query */
             margin-bottom: 16px;
             font-weight: 800;
             line-height: 1.2;
             flex-direction: column;
+            align-items: center;
             gap: 0;
             word-wrap: break-word;
             overflow-wrap: break-word;
@@ -802,7 +900,7 @@ export default function Creativerevisualization() {
         ======================================== */
         @media (max-width: 480px) {
           .cr-sticky-viewport {
-            padding: 40px 0;
+            padding: 80px 0 20px;
           }
 
           .cr-wrap {
@@ -814,7 +912,7 @@ export default function Creativerevisualization() {
           }
 
           .cr-title {
-            font-size: 28px;
+            font-size: 22px;
           }
 
           .cr-sub {
@@ -896,7 +994,7 @@ export default function Creativerevisualization() {
         ======================================== */
         @media (max-width: 360px) {
           .cr-sticky-viewport {
-            padding: 32px 0;
+            padding: 80px 0 20px;
           }
 
           .cr-wrap {
@@ -908,7 +1006,7 @@ export default function Creativerevisualization() {
           }
 
           .cr-title {
-            font-size: 24px;
+            font-size: 20px;
           }
 
           .cr-sub {

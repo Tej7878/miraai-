@@ -146,7 +146,7 @@ const Features = () => {
     };
 
     return (
-        <div ref={sectionRef} className="bg-[#000004] min-h-screen py-5 px-4 md:px-8 relative overflow-hidden">
+        <div ref={sectionRef} className="bg-[#000004] min-h-auto py-20 px-4 md:px-8 relative overflow-hidden font-['Inter'] tracking-[0.5px]">
             {/* Background glow */}
             <div className="absolute top-[20%] right-1/2 translate-x-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(139,92,246,0.08)_0%,transparent_60%)] pointer-events-none z-0" />
 
@@ -155,10 +155,12 @@ const Features = () => {
                 {/* Header Section */}
                 {isMobile ? (
                     <div className="text-center mb-10">
-                        <h2 className="text-2xl font-bold text-white mb-3 leading-tight">
-                            Powerful Platform<br />Features
+                        <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-3xl 
+             font-extrabold leading-tight tracking-[0.5px]
+             text-white text-center mb-10 md:mb-16">
+                            Powerful Platform Features
                         </h2>
-                        <p className="text-gray-400 text-xs mx-auto max-w-[400px]">
+                        <p className="text-base sm:text-lg md:text-xl lg:text-[18px] font-medium leading-relaxed tracking-[0.5px] text-white/80 text-center max-w-3xl">
                             Everything You Need In One AI Production Platform.
                         </p>
                     </div>
@@ -169,10 +171,10 @@ const Features = () => {
                         animate={isInView ? "visible" : "hidden"}
                         variants={headerVariants}
                     >
-                        <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-bold text-white mb-4 leading-tight">
+                        <h2 className="text-[40px] font-bold text-white tracking-[0.5px] max-w-none mx-auto leading-tight mb-6">
                             Powerful Platform Features
                         </h2>
-                        <p className="text-gray-400 text-lg mx-auto max-w-[600px]">
+                        <p className="text-gray-400 text-[21px] tracking-[0.5px] max-w-[850px] mx-auto leading-relaxed font-medium opacity-80">
                             Everything You Need In One AI Production Platform.
                         </p>
                     </motion.div>

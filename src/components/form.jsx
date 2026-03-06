@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const Form = ({ isOpen, onClose }) => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         fullName: '',
         companyName: '',
@@ -8,6 +11,7 @@ const Form = ({ isOpen, onClose }) => {
         phoneNumber: '',
         role: '',
         industry: '',
+        city: '',
         projectRequirement: ''
     });
 
@@ -33,6 +37,10 @@ const Form = ({ isOpen, onClose }) => {
         'Other'
     ];
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({
@@ -41,17 +49,85 @@ const Form = ({ isOpen, onClose }) => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
-        // Add your form submission logic here
-        onClose();
+        setIsSubmitting(true);
+
+        try {
+            const response = await fetch('/api/miraai_marketing/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    full_name: formData.fullName,
+                    company_name: formData.companyName,
+                    work_email: formData.workEmail,
+                    phone_number: formData.phoneNumber,
+                    role: formData.role,
+                    industry: formData.industry,
+                    city: formData.city,
+                    project_requirement: formData.projectRequirement,
+                }),
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                console.log('Form submission successful:', result);
+                navigate('/thank-you');
+                setFormData({
+                    fullName: '',
+                    companyName: '',
+                    workEmail: '',
+                    phoneNumber: '',
+                    role: '',
+                    industry: '',
+                    city: '',
+                    projectRequirement: ''
+                });
+            } else {
+                let errorData;
+                try {
+                    errorData = await response.json();
+                } catch (e) {
+                    errorData = await response.text();
+                }
+
+                console.error(`Submission failed. Status: ${response.status}`, errorData);
+
+                if (response.status === 422 && errorData.detail && Array.isArray(errorData.detail)) {
+                    // Create a user-friendly error message from the validation details
+                    const formattedErrors = errorData.detail.map(err => {
+                        // Extract field name (last item in loc array, e.g., 'project_requirement')
+                        const fieldNameKey = err.loc[err.loc.length - 1];
+                        // Convert user_name to User Name
+                        const fieldName = fieldNameKey
+                            .replace(/_/g, ' ')
+                            .replace(/\b\w/g, char => char.toUpperCase());
+
+                        return `${fieldName}: ${err.msg}`;
+                    }).join('\n');
+
+                    alert(`Please fix the following errors:\n\n${formattedErrors}`);
+                } else if (response.status === 422) {
+                    // Fallback if detail array is missing
+                    alert(`Validation Error (422): ${JSON.stringify(errorData)}`);
+                } else {
+                    alert(`Submission failed. (Status: ${response.status}): ${typeof errorData === 'object' ? JSON.stringify(errorData) : errorData}`);
+                }
+            }
+        } catch (error) {
+            console.error('Network or client error:', error);
+            alert('Could not reach the server. Please check your internet connection or if the backend is running.');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center tracking-[0.5px]">
             {/* Backdrop */}
             <div
                 className="absolute inset-0 bg-black/70 backdrop-blur-sm"
@@ -59,7 +135,18 @@ const Form = ({ isOpen, onClose }) => {
             />
 
             {/* Modal */}
-            <div className="relative w-[95%] max-w-[700px] max-h-[90vh] overflow-y-auto bg-[#0A0A0A] border border-[rgba(255,255,255,0.1)] rounded-2xl p-6 md:p-8 shadow-[0_0_60px_rgba(139,92,246,0.2)]">
+            <div className="relative w-[95%] max-w-[700px] max-h-[95vh] overflow-y-auto bg-[#000004] border border-[#22D3EE1A] backdrop-blur-md rounded-2xl p-5 md:p-6 shadow-[0_0_60px_rgba(34,211,238,0.1)] hide-scrollbar font-['Inter']">
+
+                <style>{`
+                    .hide-scrollbar::-webkit-scrollbar {
+                        display: none;
+                    }
+                    .hide-scrollbar {
+                        -ms-overflow-style: none;
+                        scrollbar-width: none;
+                    }
+                `}</style>
+
 
                 {/* Close Button */}
                 <button
@@ -70,17 +157,17 @@ const Form = ({ isOpen, onClose }) => {
                 </button>
 
                 {/* Title */}
-                <h2 className="text-xl md:text-2xl font-bold text-white mb-6 pr-8">
+                <h2 className="text-xl md:text-2xl font-bold text-white mb-4 pr-8 tracking-[0.5px]">
                     Get Your Personalized Demo
                 </h2>
 
                 {/* Form */}
                 <form onSubmit={handleSubmit}>
                     {/* Row 1: Full Name & Company Name */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
                         <div>
-                            <label className="block text-gray-300 font-bold text-sm mb-2">
-                                Full Name <span className="text-white-400">*</span>
+                            <label className="block text-gray-300 font-bold text-sm mb-1 tracking-[0.5px]">
+                                Full Name <span className="text-gray-400 tracking-[0.5px]">*</span>
                             </label>
                             <input
                                 type="text"
@@ -89,12 +176,12 @@ const Form = ({ isOpen, onClose }) => {
                                 onChange={handleChange}
                                 placeholder="Enter your full name"
                                 required
-                                className="w-full bg-transparent border border-[rgba(255,255,255,0.15)] rounded-lg px-4 py-3 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#8B5CF6] transition-colors"
+                                className="w-full bg-[#000004] border border-[#22D3EE1A] rounded-lg px-4 py-3 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#22D3EE] transition-colors"
                             />
                         </div>
                         <div>
-                            <label className="block text-gray-300 font-bold text-sm mb-2">
-                                Company Name <span className="text-white-400">*</span>
+                            <label className="block text-gray-300 font-bold text-sm mb-1 tracking-[0.5px]">
+                                Company Name <span className="text-gray-400 tracking-[0.5px]">*</span>
                             </label>
                             <input
                                 type="text"
@@ -103,16 +190,16 @@ const Form = ({ isOpen, onClose }) => {
                                 onChange={handleChange}
                                 placeholder="Enter Your Company Name"
                                 required
-                                className="w-full bg-transparent border border-[rgba(255,255,255,0.15)] rounded-lg px-4 py-3 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#8B5CF6] transition-colors"
+                                className="w-full bg-[#000004] border border-[#22D3EE1A] rounded-lg px-4 py-3 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#22D3EE] transition-colors"
                             />
                         </div>
                     </div>
 
                     {/* Row 2: Work Email & Phone Number */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
                         <div>
-                            <label className="block text-gray-300 font-bold text-sm mb-2">
-                                Work Email <span className="text-white-400">*</span>
+                            <label className="block text-gray-300 font-bold text-sm mb-1 tracking-[0.5px]">
+                                Work Email <span className="text-gray-400 tracking-[0.5px]">*</span>
                             </label>
                             <input
                                 type="email"
@@ -121,12 +208,12 @@ const Form = ({ isOpen, onClose }) => {
                                 onChange={handleChange}
                                 placeholder="you@company.com"
                                 required
-                                className="w-full bg-transparent border border-[rgba(255,255,255,0.15)] rounded-lg px-4 py-3 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#8B5CF6] transition-colors"
+                                className="w-full bg-[#000004] border border-[#22D3EE1A] rounded-lg px-4 py-3 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#22D3EE] transition-colors"
                             />
                         </div>
                         <div>
-                            <label className="block text-gray-300 font-bold text-sm mb-2">
-                                Phone Number <span className="text-white-400">*</span>
+                            <label className="block text-gray-300 font-bold text-sm mb-1 tracking-[0.5px]">
+                                Phone Number <span className="text-gray-400 tracking-[0.5px]">*</span>
                             </label>
                             <input
                                 type="tel"
@@ -135,23 +222,23 @@ const Form = ({ isOpen, onClose }) => {
                                 onChange={handleChange}
                                 placeholder="+91 (555) 000-0000"
                                 required
-                                className="w-full bg-transparent border border-[rgba(255,255,255,0.15)] rounded-lg px-4 py-3 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#8B5CF6] transition-colors"
+                                className="w-full bg-[#000004] border border-[#22D3EE1A] rounded-lg px-4 py-3 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#22D3EE] transition-colors"
                             />
                         </div>
                     </div>
 
                     {/* Row 3: Role & Industry */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
                         <div>
-                            <label className="block text-gray-300 font-bold text-sm mb-2">
-                                Role <span className="text-white-400">*</span>
+                            <label className="block text-gray-300 font-bold text-sm mb-1 tracking-[0.5px]">
+                                Role <span className="text-gray-400 tracking-[0.5px]">*</span>
                             </label>
                             <select
                                 name="role"
                                 value={formData.role}
                                 onChange={handleChange}
                                 required
-                                className="w-full bg-[#0A0A0A] border border-[rgba(255,255,255,0.15)] rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-[#8B5CF6] transition-colors appearance-none cursor-pointer"
+                                className="w-full bg-[#000004] border border-[#22D3EE1A] rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-[#22D3EE] transition-colors appearance-none cursor-pointer"
                                 style={{
                                     backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239CA3AF'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
                                     backgroundRepeat: 'no-repeat',
@@ -166,15 +253,15 @@ const Form = ({ isOpen, onClose }) => {
                             </select>
                         </div>
                         <div>
-                            <label className="block text-gray-300 font-bold text-sm mb-2">
-                                Industry / Business Type <span className="text-white-400">*</span>
+                            <label className="block text-gray-300 font-bold text-sm mb-1 tracking-[0.5px]">
+                                Industry / Business Type <span className="text-gray-400 tracking-[0.5px]">*</span>
                             </label>
                             <select
                                 name="industry"
                                 value={formData.industry}
                                 onChange={handleChange}
                                 required
-                                className="w-full bg-[#0A0A0A] border border-[rgba(255,255,255,0.15)] rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-[#8B5CF6] transition-colors appearance-none cursor-pointer"
+                                className="w-full bg-[#000004] border border-[#22D3EE1A] rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-[#22D3EE] transition-colors appearance-none cursor-pointer"
                                 style={{
                                     backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239CA3AF'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
                                     backgroundRepeat: 'no-repeat',
@@ -190,9 +277,25 @@ const Form = ({ isOpen, onClose }) => {
                         </div>
                     </div>
 
-                    {/* Row 4: Project Requirement */}
-                    <div className="mb-6">
-                        <label className="block text-gray-300 font-bold text-sm mb-2">
+                    {/* Row 4: City */}
+                    <div className="mb-3">
+                        <label className="block text-gray-300 font-bold text-sm mb-1 tracking-[0.5px]">
+                            City <span className="text-gray-400 tracking-[0.5px]">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            name="city"
+                            value={formData.city}
+                            onChange={handleChange}
+                            placeholder="Enter your city"
+                            required
+                            className="w-full bg-[#000004] border border-[#22D3EE1A] rounded-lg px-4 py-3 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#22D3EE] transition-colors"
+                        />
+                    </div>
+
+                    {/* Row 5: Project Requirement */}
+                    <div className="mb-4">
+                        <label className="block text-gray-300 font-bold text-sm mb-1 tracking-[0.5px]">
                             Project Requirement
                         </label>
                         <textarea
@@ -201,7 +304,7 @@ const Form = ({ isOpen, onClose }) => {
                             onChange={handleChange}
                             placeholder='Example: "We need product videos for 50 SKUs in 5 languages"'
                             rows={4}
-                            className="w-full bg-transparent border border-[rgba(255,255,255,0.15)] rounded-lg px-4 py-3 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#8B5CF6] transition-colors resize-none"
+                            className="w-full bg-[#000004] border border-[#22D3EE1A] rounded-lg px-4 py-3 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-[#22D3EE] transition-colors resize-none"
                         />
                     </div>
 
@@ -209,11 +312,19 @@ const Form = ({ isOpen, onClose }) => {
                     <div className="flex justify-center">
                         <button
                             type="submit"
-                            className="bg-[#8B5CF6] text-white font-semibold py-3 px-8 rounded-full flex items-center gap-2 hover:bg-[#7C4FE0] transition-colors shadow-[0_0_20px_rgba(139,92,246,0.4)] hover:shadow-[0_0_30px_rgba(139,92,246,0.6)]"
+                            disabled={isSubmitting}
+                            className={`group relative bg-white text-black font-semibold py-2.5 px-8 rounded-full flex items-center gap-2 overflow-hidden transition-all shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_25px_rgba(255,255,255,0.3)] tracking-[0.5px] ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                         >
-                            <span>✦</span>
-                            Submit Your Request
-                            <span>✦</span>
+                            <span className="relative z-10">✦</span>
+                            <span className="relative z-10 block overflow-hidden">
+                                <span className="block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full">
+                                    {isSubmitting ? 'Submitting...' : 'Submit Your Request'}
+                                </span>
+                                <span className="absolute inset-0 block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] translate-y-full group-hover:translate-y-0">
+                                    {isSubmitting ? 'Submitting...' : 'Submit Your Request'}
+                                </span>
+                            </span>
+                            <span className="relative z-10">✦</span>
                         </button>
                     </div>
                 </form>
