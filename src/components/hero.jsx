@@ -15,6 +15,7 @@ const videoSources = [v1, v2, v3, v4, v5, v6];
 
 // Card positions around center - balanced layout (3 top, 3 bottom)
 const cardConfigs = [
+<<<<<<< Updated upstream
   // Top side cards
   { x: -500, y: -200, rotate: 0, scale: 0.95 },
   { x: 0, y: -280, rotate: 0, scale: 0.95 },
@@ -23,6 +24,16 @@ const cardConfigs = [
   { x: -450, y: 150, rotate: 0, scale: 0.92 },
   { x: 0, y: 280, rotate: 0, scale: 0.92 },
   { x: 450, y: 150, rotate: 0, scale: 0.92 },
+=======
+  // Left side cards
+  { x: -200, y: -200, rotate: -12, scale: 0.95 },
+  { x: -380, y: 80, rotate: 8, scale: 0.92 },
+  { x: -100, y: 220, rotate: -10, scale: 0.88 },
+  // Right side cards
+  { x: 200, y: -200, rotate: 12, scale: 0.95 },
+  { x: 380, y: 80, rotate: -8, scale: 0.92 },
+  { x: 100, y: 220, rotate: 6, scale: 0.88 },
+>>>>>>> Stashed changes
 ];
 
 // Desktop Floating Video Card Component
@@ -83,6 +94,10 @@ const FloatingVideoCard = ({ src, config, index, randomValues }) => {
       initial={{ x: 0, y: 0, scale: 0.65, opacity: 0, rotate: 0 }}
       animate={controls}
       whileHover={{
+<<<<<<< Updated upstream
+=======
+        scale: config.scale * 1.08,
+>>>>>>> Stashed changes
         rotate: 0,
         zIndex: 100,
         boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
@@ -164,17 +179,27 @@ export default function FloatingVideoHero() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+<<<<<<< Updated upstream
   // Auto-cycle videos on mobile (one by one)
+=======
+  // Auto-cycle videos on mobile (two by two)
+>>>>>>> Stashed changes
   useEffect(() => {
     if (!isMobile) return;
 
     const interval = setInterval(() => {
+<<<<<<< Updated upstream
       setActiveVideoIndex((prev) => (prev + 1) % videoSources.length);
     }, 3000); // Change video every 3 seconds
+=======
+      setActiveVideoIndex((prev) => (prev + 2) % videoSources.length);
+    }, 3000); // Change pair every 3 seconds
+>>>>>>> Stashed changes
 
     return () => clearInterval(interval);
   }, [isMobile]);
 
+<<<<<<< Updated upstream
   // Auto-scroll to center active video
   useEffect(() => {
     if (!isMobile || !scrollContainerRef.current || !cardRefs.current[activeVideoIndex]) return;
@@ -271,6 +296,103 @@ export default function FloatingVideoHero() {
                 key={index}
                 className={`dot ${activeVideoIndex === index ? 'active' : ''}`}
                 onClick={() => setActiveVideoIndex(index)}
+=======
+  // Auto-scroll to center active video pair
+  useEffect(() => {
+    if (!isMobile || !scrollContainerRef.current) return;
+
+    const startIndex = Math.floor(activeVideoIndex / 2) * 2;
+    const firstCard = cardRefs.current[startIndex];
+    const lastCard = cardRefs.current[startIndex + 1] || firstCard;
+
+    if (!firstCard) return;
+
+    const container = scrollContainerRef.current;
+    const containerWidth = container.offsetWidth;
+    const pairLeft = firstCard.offsetLeft;
+    const pairWidth = lastCard.offsetLeft + lastCard.offsetWidth - pairLeft;
+
+    // Scroll to center the active pair
+    const scrollTo = pairLeft - (containerWidth / 2) + (pairWidth / 2);
+    container.scrollTo({ left: scrollTo, behavior: 'smooth' });
+  }, [activeVideoIndex, isMobile]);
+
+  // Generate random values for desktop floating
+  const randomValues = useMemo(() =>
+    cardConfigs.map(() => ({
+      duration: 4 + Math.random() * 3,
+      xAmp: 8 + Math.random() * 17,
+      yAmp: 10 + Math.random() * 20,
+      rotAmp: 2 + Math.random() * 4,
+    })), []
+  );
+
+  // Content entry animation
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      contentControls.start('visible');
+    }, isMobile ? 500 : 1500);
+    return () => clearTimeout(timer);
+  }, [contentControls, isMobile]);
+
+  return (
+    <section className={`hero-section ${isMobile ? 'mobile' : ''}`}>
+      {/* Desktop: Floating Cards */}
+      {!isMobile && (
+        <div className="cards-container">
+          {videoSources.map((src, index) => (
+            <FloatingVideoCard
+              key={index}
+              src={src}
+              config={cardConfigs[index]}
+              index={index}
+              randomValues={randomValues[index]}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Center Content */}
+      <motion.div
+        className="hero-content"
+        variants={contentContainerVariants}
+        initial="hidden"
+        animate={contentControls}
+      >
+        <motion.h1 className="hero-heading" variants={contentItemVariants}>
+          Create winning ads <span className="heading-italic">with AI</span>
+        </motion.h1>
+
+        <motion.p className="hero-subheading" variants={contentItemVariants}>
+          Use our library of 1,000+ Captivating AI Actors, or create your own AI Avatar
+        </motion.p>
+      </motion.div>
+
+      {/* Mobile: Horizontal Video Row - 2 at a time */}
+      {isMobile && (
+        <div className="mobile-videos-container">
+          <div className="mobile-videos-row" ref={scrollContainerRef}>
+            {videoSources.map((src, index) => {
+              const isActive = Math.floor(index / 2) === Math.floor(activeVideoIndex / 2);
+              return (
+                <MobileVideoCard
+                  key={index}
+                  src={src}
+                  isActive={isActive}
+                  index={index}
+                  cardRef={(el) => (cardRefs.current[index] = el)}
+                />
+              );
+            })}
+          </div>
+          {/* Progress dots - mapped to pairs */}
+          <div className="progress-dots">
+            {[...Array(Math.ceil(videoSources.length / 2))].map((_, i) => (
+              <button
+                key={i}
+                className={`dot ${Math.floor(activeVideoIndex / 2) === i ? 'active' : ''}`}
+                onClick={() => setActiveVideoIndex(i * 2)}
+>>>>>>> Stashed changes
               />
             ))}
           </div>
@@ -290,6 +412,7 @@ export default function FloatingVideoHero() {
           align-items: center;
           justify-content: center;
           background: #000000;
+<<<<<<< Updated upstream
         }
 
         .hero-button {
@@ -308,6 +431,8 @@ export default function FloatingVideoHero() {
         .hero-button:hover {
           transform: translateY(-2px);
           box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+=======
+>>>>>>> Stashed changes
         }
 
         /* Mobile Layout */
@@ -392,7 +517,7 @@ export default function FloatingVideoHero() {
         /* Mobile Videos Container */
         .mobile-videos-container {
           width: 100%;
-          padding: 0 16px;
+          padding: 0 6px;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -401,14 +526,14 @@ export default function FloatingVideoHero() {
 
         .mobile-videos-row {
           display: flex;
-          gap: 12px;
+          gap: 8px;
           overflow-x: auto;
           padding: 10px 0;
           scroll-snap-type: x mandatory;
           -webkit-overflow-scrolling: touch;
           scrollbar-width: none;
           width: 100%;
-          justify-content: flex-start;
+          justify-content: center;
         }
 
         .mobile-videos-row::-webkit-scrollbar {
@@ -417,8 +542,13 @@ export default function FloatingVideoHero() {
 
         .mobile-card {
           flex-shrink: 0;
+<<<<<<< Updated upstream
           width: 165px;
           height: 282px;
+=======
+          width: calc(50% - 4px);
+          aspect-ratio: 9 / 16;
+>>>>>>> Stashed changes
           border-radius: 12px;
           overflow: hidden;
           background: #111;
@@ -519,8 +649,12 @@ export default function FloatingVideoHero() {
             font-size: 24px;
           }
           .mobile-card {
+<<<<<<< Updated upstream
             width: 165px;
             height: 282px;
+=======
+            width: calc(50% - 4px);
+>>>>>>> Stashed changes
           }
         }
       `}</style>
