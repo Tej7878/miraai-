@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import miraiLogo from '../assets/images/mirai.svg';
+import miraiLogo from '../assets/images/mirai.webp';
 import Form from './form';
 
 const Header = ({ openForm }) => {
@@ -59,7 +59,7 @@ const Header = ({ openForm }) => {
 
                     {/* Button Section */}
                     <button
-                        onClick={openForm}  
+                        onClick={openForm}
                         className="group relative bg-white lg:px-6 text-black border-none py-2 px-2 md:py-[0.6rem]  rounded-[2rem] font-bold font-['Inter'] tracking-[0.5px] text-xs md:text-[0.9rem] cursor-pointer transition-all duration-300 ease-in-out shadow-[0_0_15px_rgba(255,255,255,0.2)] overflow-hidden"
                     >
                         <span className="relative block overflow-hidden">

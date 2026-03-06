@@ -1,5 +1,5 @@
 import React from 'react';
-import rightIcon from '../assets/images/right.svg';
+import rightIcon from '../assets/images/right.webp';
 
 const ThankU = ({ onClose }) => {
     return (

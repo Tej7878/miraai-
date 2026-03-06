@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 
-import textileImg from '../assets/images/textile & garments.jpg';
+import textileImg from '../assets/textile & garments.webp';
 import lifestyleImg from '../assets/images/lifestyles.webp';
 import jwelleryImg from '../assets/images/jwellery.webp';
 import realEstateImg from '../assets/images/real states.webp';

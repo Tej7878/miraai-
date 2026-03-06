@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import rightIcon from '../assets/images/right.svg';
+import rightIcon from '../assets/images/right.webp';
 
 const DoBest = () => {
     const comparisonData = [

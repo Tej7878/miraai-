@@ -1,6 +1,6 @@
 import React from 'react';
 
-import mirraiLogo from '../assets/images/mirai.svg';
+import mirraiLogo from '../assets/images/mirai.webp';
 
 import { Link } from 'react-router-dom';
 

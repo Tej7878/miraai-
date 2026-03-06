@@ -79,7 +79,7 @@ export default function Aidesigngenration() {
         {/* Video Container */}
         <div className="adg-video-container">
           {card.src && card.src.includes('.gif') ? (
-            <img src={card.src} className="adg-video" alt={card.title} />
+            <img src={card.src} className="adg-video" alt={card.title} loading="lazy" />
           ) : (
             <video
               className="adg-video"

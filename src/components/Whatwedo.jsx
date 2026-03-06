@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import whatwedoImg from '../assets/images/what we do.jpeg';
+import whatwedoImg from '../assets/images/what we do.webp';
 
 const Whatwedo = () => {
     const sectionRef = useRef(null);

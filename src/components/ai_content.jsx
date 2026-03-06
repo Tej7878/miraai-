@@ -6,7 +6,7 @@ import fashionImg from '../assets/images/fashion.webp';
 import jewelleryImg from '../assets/images/jwellery.webp';
 import realEstateImg from '../assets/images/real_estate.webp';
 import ecommerceImg from '../assets/images/e-commerce.webp';
-import retailServiceImg from '../assets/images/retail___service.jpg';
+import retailServiceImg from '../assets/images/retail___service.webp';
 
 const categories = [
     {

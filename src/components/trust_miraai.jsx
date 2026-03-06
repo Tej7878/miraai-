@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion, useInView } from 'framer-motion';
-import WhyMiraaiImage from '../assets/images/why_Miraai.svg';
+import WhyMiraaiImage from '../assets/images/why_Miraai.webp';
 
 const TrustMiraai = () => {
     const sectionRef = useRef(null);

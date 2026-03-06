@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { motion, useAnimationControls } from 'framer-motion';
-import { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useMemo } from 'react';
 
 // Import local videos
 import v1 from '../assets/images/videos/Cloth 1.gif';
@@ -15,35 +15,18 @@ const videoSources = [v1, v2, v3, v4, v5, v6];
 
 // Card positions around center - balanced layout (3 top, 3 bottom)
 const cardConfigs = [
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-  // Top side cards
-  { x: -500, y: -200, rotate: 0, scale: 0.95 },
-  { x: 0, y: -280, rotate: 0, scale: 0.95 },
-  { x: 500, y: -200, rotate: 0, scale: 0.95 },
-  // Bottom side cards
-  { x: -450, y: 150, rotate: 0, scale: 0.92 },
-  { x: 0, y: 280, rotate: 0, scale: 0.92 },
-  { x: 450, y: 150, rotate: 0, scale: 0.92 },
-=======
-=======
->>>>>>> Stashed changes
   // Left side cards
-  { x: -200, y: -200, rotate: -12, scale: 0.95 },
-  { x: -380, y: 80, rotate: 8, scale: 0.92 },
-  { x: -100, y: 220, rotate: -10, scale: 0.88 },
+  { x: -500, y: -200, rotate: 0, scale: 1.15 }, // green sadie
+  { x: 0, y: -300, rotate: 0, scale: 1.15 }, // purpel sadie
+  { x: -440, y: 160, rotate: 0, scale: 1.15 }, // rashmika video
   // Right side cards
-  { x: 200, y: -200, rotate: 12, scale: 0.95 },
-  { x: 380, y: 80, rotate: -8, scale: 0.92 },
-  { x: 100, y: 220, rotate: 6, scale: 0.88 },
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+  { x: 500, y: -200, rotate: 0, scale: 1.15 },
+  { x: 0, y: 300, rotate: 0, scale: 1.15 },
+  { x: 470, y: 150, rotate: 0, scale: 1.15 },
 ];
 
 // Desktop Floating Video Card Component
-const FloatingVideoCard = ({ src, config, index, randomValues, windowWidth }) => {
+const FloatingVideoCard = React.memo(({ src, config, index, randomValues, windowWidth }) => {
   const controls = useAnimationControls();
   const { duration, xAmp, yAmp, rotAmp } = randomValues;
 
@@ -52,7 +35,9 @@ const FloatingVideoCard = ({ src, config, index, randomValues, windowWidth }) =>
   const adjustedX = config.x * scaleX;
 
   useEffect(() => {
+    let isAlive = true;
     const animateSequence = async () => {
+      if (!isAlive) return;
       await controls.start({
         x: -adjustedX * 0.15,
         y: -config.y * 0.15,
@@ -68,6 +53,7 @@ const FloatingVideoCard = ({ src, config, index, randomValues, windowWidth }) =>
         },
       });
 
+      if (!isAlive) return;
       await controls.start({
         x: adjustedX,
         y: config.y,
@@ -83,6 +69,7 @@ const FloatingVideoCard = ({ src, config, index, randomValues, windowWidth }) =>
         },
       });
 
+      if (!isAlive) return;
       controls.start({
         x: [adjustedX - xAmp, adjustedX + xAmp, adjustedX - xAmp],
         y: [config.y - yAmp, config.y + yAmp, config.y - yAmp],
@@ -96,6 +83,7 @@ const FloatingVideoCard = ({ src, config, index, randomValues, windowWidth }) =>
     };
 
     animateSequence();
+    return () => { isAlive = false; };
   }, [controls, config, index, duration, xAmp, yAmp, rotAmp, adjustedX]);
 
   return (
@@ -103,32 +91,18 @@ const FloatingVideoCard = ({ src, config, index, randomValues, windowWidth }) =>
       className="floating-card"
       initial={{ x: 0, y: 0, scale: 0.65, opacity: 0, rotate: 0 }}
       animate={controls}
-      whileHover={{
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-        scale: config.scale * 1.08,
->>>>>>> Stashed changes
-=======
-        scale: config.scale * 1.08,
->>>>>>> Stashed changes
-        rotate: 0,
-        zIndex: 100,
-        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-        transition: { duration: 0.22 },
-      }}
     >
       {src.includes('.gif') ? (
-        <img src={src} className="card-video" alt="" />
+        <img src={src} className="card-video" alt="" loading="lazy" />
       ) : (
-        <video src={src} autoPlay muted loop playsInline className="card-video" />
+        <video src={src} autoPlay muted loop playsInline className="card-video" preload="metadata" />
       )}
     </motion.div>
   );
-};
+});
 
 // Mobile Video Card - plays only when active
-const MobileVideoCard = ({ src, isActive, index, cardRef }) => {
+const MobileVideoCard = React.memo(({ src, isActive, index, cardRef }) => {
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -152,7 +126,7 @@ const MobileVideoCard = ({ src, isActive, index, cardRef }) => {
       transition={{ delay: index * 0.1, duration: 0.5 }}
     >
       {src.includes('.gif') ? (
-        <img src={src} className="mobile-card-video" alt="" />
+        <img src={src} className="mobile-card-video" alt="" loading="lazy" />
       ) : (
         <video
           ref={videoRef}
@@ -161,12 +135,13 @@ const MobileVideoCard = ({ src, isActive, index, cardRef }) => {
           loop
           playsInline
           className="mobile-card-video"
+          preload="none"
         />
       )}
       {isActive && <div className="active-indicator" />}
     </motion.div>
   );
-};
+});
 
 // Hero Content Variants
 const contentContainerVariants = {
@@ -198,7 +173,7 @@ export default function FloatingVideoHero({ openForm }) {
   // Check if mobile and update width
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <= 1024);
       setWindowWidth(window.innerWidth);
     };
     handleResize();
@@ -206,49 +181,34 @@ export default function FloatingVideoHero({ openForm }) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-  // Auto-cycle videos on mobile (one by one)
-=======
   // Auto-cycle videos on mobile (two by two)
->>>>>>> Stashed changes
-=======
-  // Auto-cycle videos on mobile (two by two)
->>>>>>> Stashed changes
   useEffect(() => {
     if (!isMobile) return;
 
     const interval = setInterval(() => {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-      setActiveVideoIndex((prev) => (prev + 1) % videoSources.length);
-    }, 3000); // Change video every 3 seconds
-=======
       setActiveVideoIndex((prev) => (prev + 2) % videoSources.length);
     }, 3000); // Change pair every 3 seconds
->>>>>>> Stashed changes
-=======
-      setActiveVideoIndex((prev) => (prev + 2) % videoSources.length);
-    }, 3000); // Change pair every 3 seconds
->>>>>>> Stashed changes
 
     return () => clearInterval(interval);
   }, [isMobile]);
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-  // Auto-scroll to center active video
+  // Auto-scroll to center active video pair
   useEffect(() => {
-    if (!isMobile || !scrollContainerRef.current || !cardRefs.current[activeVideoIndex]) return;
+    if (!isMobile || !scrollContainerRef.current) return;
+
+    const startIndex = Math.floor(activeVideoIndex / 2) * 2;
+    const firstCard = cardRefs.current[startIndex];
+    const lastCard = cardRefs.current[startIndex + 1] || firstCard;
+
+    if (!firstCard) return;
 
     const container = scrollContainerRef.current;
-    const activeCard = cardRefs.current[activeVideoIndex];
     const containerWidth = container.offsetWidth;
-    const cardLeft = activeCard.offsetLeft;
-    const cardWidth = activeCard.offsetWidth;
+    const pairLeft = firstCard.offsetLeft;
+    const pairWidth = lastCard.offsetLeft + lastCard.offsetWidth - pairLeft;
 
-    // Scroll to center the active card
-    const scrollTo = cardLeft - (containerWidth / 2) + (cardWidth / 2);
+    // Scroll to center the active pair
+    const scrollTo = pairLeft - (containerWidth / 2) + (pairWidth / 2);
     container.scrollTo({ left: scrollTo, behavior: 'smooth' });
   }, [activeVideoIndex, isMobile]);
 
@@ -297,22 +257,14 @@ export default function FloatingVideoHero({ openForm }) {
       >
         <motion.h1
           variants={contentItemVariants}
-          className="text-[18px] sm:text-xl md:text-5xl lg:text-3xl 
-             font-extrabold leading-tight tracking-[0.5px]
-             text-white text-center max-w-5xl "
+          className="text-[18px] sm:text-xl md:text-5xl lg:text-3xl font-extrabold leading-tight tracking-[0.5px] text-white text-center max-w-5xl"
         >
           India's 1st Premium AI-Powered Image & Video Production Services
         </motion.h1>
 
         <motion.p
           variants={contentItemVariants}
-          className=" 
-             text-base sm:text-lg md:text-xl lg:text-[18px]
-             font-medium 
-             leading-relaxed tracking-[0.5px]
-             text-white/80 
-             text-center 
-             max-w-3xl "
+          className="text-base sm:text-lg md:text-xl lg:text-[18px] font-medium leading-relaxed tracking-[0.5px] text-white/80 text-center max-w-3xl"
         >
           70% cost reduction, 10x faster — no studios or crews required.
         </motion.p>
@@ -332,167 +284,6 @@ export default function FloatingVideoHero({ openForm }) {
             </span>
           </span>
         </motion.button>
-      </motion.div>
-
-      {/* Mobile: Horizontal Video Row */}
-      {isMobile && (
-        <div className="mobile-videos-container">
-          <div className="mobile-videos-row" ref={scrollContainerRef}>
-            {videoSources.map((src, index) => (
-              <MobileVideoCard
-                key={index}
-                src={src}
-                isActive={activeVideoIndex === index}
-                index={index}
-                cardRef={(el) => (cardRefs.current[index] = el)}
-              />
-            ))}
-          </div>
-          {/* Progress dots */}
-          <div className="progress-dots">
-            {videoSources.map((_, index) => (
-              <button
-                key={index}
-                className={`dot ${activeVideoIndex === index ? 'active' : ''}`}
-                onClick={() => setActiveVideoIndex(index)}
-=======
-  // Auto-scroll to center active video pair
-  useEffect(() => {
-    if (!isMobile || !scrollContainerRef.current) return;
-
-    const startIndex = Math.floor(activeVideoIndex / 2) * 2;
-    const firstCard = cardRefs.current[startIndex];
-    const lastCard = cardRefs.current[startIndex + 1] || firstCard;
-
-    if (!firstCard) return;
-
-    const container = scrollContainerRef.current;
-    const containerWidth = container.offsetWidth;
-    const pairLeft = firstCard.offsetLeft;
-    const pairWidth = lastCard.offsetLeft + lastCard.offsetWidth - pairLeft;
-
-    // Scroll to center the active pair
-    const scrollTo = pairLeft - (containerWidth / 2) + (pairWidth / 2);
-    container.scrollTo({ left: scrollTo, behavior: 'smooth' });
-  }, [activeVideoIndex, isMobile]);
-
-  // Generate random values for desktop floating
-  const randomValues = useMemo(() =>
-    cardConfigs.map(() => ({
-      duration: 4 + Math.random() * 3,
-      xAmp: 8 + Math.random() * 17,
-      yAmp: 10 + Math.random() * 20,
-      rotAmp: 2 + Math.random() * 4,
-    })), []
-  );
-
-  // Content entry animation
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      contentControls.start('visible');
-    }, isMobile ? 500 : 1500);
-    return () => clearTimeout(timer);
-  }, [contentControls, isMobile]);
-
-  return (
-    <section className={`hero-section ${isMobile ? 'mobile' : ''}`}>
-      {/* Desktop: Floating Cards */}
-      {!isMobile && (
-        <div className="cards-container">
-          {videoSources.map((src, index) => (
-            <FloatingVideoCard
-              key={index}
-              src={src}
-              config={cardConfigs[index]}
-              index={index}
-              randomValues={randomValues[index]}
-            />
-          ))}
-        </div>
-      )}
-
-      {/* Center Content */}
-      <motion.div
-        className="hero-content"
-        variants={contentContainerVariants}
-        initial="hidden"
-        animate={contentControls}
-      >
-        <motion.h1 className="hero-heading" variants={contentItemVariants}>
-          Create winning ads <span className="heading-italic">with AI</span>
-        </motion.h1>
-
-=======
-  // Auto-scroll to center active video pair
-  useEffect(() => {
-    if (!isMobile || !scrollContainerRef.current) return;
-
-    const startIndex = Math.floor(activeVideoIndex / 2) * 2;
-    const firstCard = cardRefs.current[startIndex];
-    const lastCard = cardRefs.current[startIndex + 1] || firstCard;
-
-    if (!firstCard) return;
-
-    const container = scrollContainerRef.current;
-    const containerWidth = container.offsetWidth;
-    const pairLeft = firstCard.offsetLeft;
-    const pairWidth = lastCard.offsetLeft + lastCard.offsetWidth - pairLeft;
-
-    // Scroll to center the active pair
-    const scrollTo = pairLeft - (containerWidth / 2) + (pairWidth / 2);
-    container.scrollTo({ left: scrollTo, behavior: 'smooth' });
-  }, [activeVideoIndex, isMobile]);
-
-  // Generate random values for desktop floating
-  const randomValues = useMemo(() =>
-    cardConfigs.map(() => ({
-      duration: 4 + Math.random() * 3,
-      xAmp: 8 + Math.random() * 17,
-      yAmp: 10 + Math.random() * 20,
-      rotAmp: 2 + Math.random() * 4,
-    })), []
-  );
-
-  // Content entry animation
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      contentControls.start('visible');
-    }, isMobile ? 500 : 1500);
-    return () => clearTimeout(timer);
-  }, [contentControls, isMobile]);
-
-  return (
-    <section className={`hero-section ${isMobile ? 'mobile' : ''}`}>
-      {/* Desktop: Floating Cards */}
-      {!isMobile && (
-        <div className="cards-container">
-          {videoSources.map((src, index) => (
-            <FloatingVideoCard
-              key={index}
-              src={src}
-              config={cardConfigs[index]}
-              index={index}
-              randomValues={randomValues[index]}
-            />
-          ))}
-        </div>
-      )}
-
-      {/* Center Content */}
-      <motion.div
-        className="hero-content"
-        variants={contentContainerVariants}
-        initial="hidden"
-        animate={contentControls}
-      >
-        <motion.h1 className="hero-heading" variants={contentItemVariants}>
-          Create winning ads <span className="heading-italic">with AI</span>
-        </motion.h1>
-
->>>>>>> Stashed changes
-        <motion.p className="hero-subheading" variants={contentItemVariants}>
-          Use our library of 1,000+ Captivating AI Actors, or create your own AI Avatar
-        </motion.p>
       </motion.div>
 
       {/* Mobile: Horizontal Video Row - 2 at a time */}
@@ -519,10 +310,6 @@ export default function FloatingVideoHero({ openForm }) {
                 key={i}
                 className={`dot ${Math.floor(activeVideoIndex / 2) === i ? 'active' : ''}`}
                 onClick={() => setActiveVideoIndex(i * 2)}
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
               />
             ))}
           </div>
@@ -556,6 +343,7 @@ export default function FloatingVideoHero({ openForm }) {
           cursor: pointer;
           transition: all 0.3s ease;
           box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
+          margin-top: 10px;
         }
 
         .hero-button:hover {
@@ -586,14 +374,12 @@ export default function FloatingVideoHero({ openForm }) {
         /* Floating Card - Desktop */
         .floating-card {
           position: absolute;
-          width: 165px;
-          height: 282px;
-          border-radius: 16px;
+          width: 150px;
+          height: 240px;
+          border-radius: 20px;
           overflow: hidden;
           background: #111;
           box-shadow: 0 15px 50px -5px rgba(0, 0, 0, 0.5), 0 0 30px rgba(100, 100, 255, 0.1);
-          cursor: pointer;
-          transition: box-shadow 0.22s ease;
         }
 
         .card-video {
@@ -673,16 +459,8 @@ export default function FloatingVideoHero({ openForm }) {
 
         .mobile-card {
           flex-shrink: 0;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-          width: 165px;
-          height: 282px;
-=======
-=======
->>>>>>> Stashed changes
           width: calc(50% - 4px);
           aspect-ratio: 9 / 16;
->>>>>>> Stashed changes
           border-radius: 12px;
           overflow: hidden;
           background: #111;
@@ -747,18 +525,10 @@ export default function FloatingVideoHero({ openForm }) {
           border-radius: 4px;
         }
 
-        /* Responsive - Tablet */
+        /* Responsive - Tablet & Mobile Overlay */
         @media (max-width: 1024px) {
-          .floating-card {
-            width: 165px;
-            height: 282px;
-          }
-        }
-
-        /* Responsive - Mobile */
-        @media (max-width: 768px) {
           .hero-heading {
-            font-size: 25px !important;
+            font-size: 28px !important;
             padding: 0 20px;
           }
           .hero-subheading {
@@ -766,7 +536,10 @@ export default function FloatingVideoHero({ openForm }) {
             padding: 0 20px;
           }
           .hero-content {
-            padding: 5rem 2rem 5rem 2rem;
+            padding: 4rem 2rem;
+          }
+          .mobile-card {
+            width: 150px; /* Reduced size for tablets */
           }
         }
 
@@ -777,19 +550,10 @@ export default function FloatingVideoHero({ openForm }) {
             gap: 30px;
           }
           .hero-heading {
-            font-size: 24px;
+            font-size: 24px !important;
           }
           .mobile-card {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            width: 165px;
-            height: 282px;
-=======
             width: calc(50% - 4px);
->>>>>>> Stashed changes
-=======
-            width: calc(50% - 4px);
->>>>>>> Stashed changes
           }
         }
       `}</style>
