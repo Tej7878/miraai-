@@ -291,7 +291,7 @@ export default function FloatingVideoHero({ openForm }) {
         <div className="mobile-videos-container">
           <div className="mobile-videos-row" ref={scrollContainerRef}>
             {videoSources.map((src, index) => {
-              const isActive = Math.floor(index / 2) === Math.floor(activeVideoIndex / 2);
+              const isActive = Math.floor(index / 1) === Math.floor(activeVideoIndex / 1);
               return (
                 <MobileVideoCard
                   key={index}
@@ -305,11 +305,11 @@ export default function FloatingVideoHero({ openForm }) {
           </div>
           {/* Progress dots - mapped to pairs */}
           <div className="progress-dots">
-            {[...Array(Math.ceil(videoSources.length / 2))].map((_, i) => (
+            {[...Array(Math.ceil(videoSources.length / 1))].map((_, i) => (
               <button
                 key={i}
-                className={`dot ${Math.floor(activeVideoIndex / 2) === i ? 'active' : ''}`}
-                onClick={() => setActiveVideoIndex(i * 2)}
+                className={`dot ${Math.floor(activeVideoIndex / 1) === i ? 'active' : ''}`}
+                onClick={() => setActiveVideoIndex(i * 1)}
               />
             ))}
           </div>
@@ -445,12 +445,12 @@ export default function FloatingVideoHero({ openForm }) {
           display: flex;
           gap: 8px;
           overflow-x: auto;
-          padding: 0px 0;
+          padding: 0 8px;
           scroll-snap-type: x mandatory;
           -webkit-overflow-scrolling: touch;
           scrollbar-width: none;
           width: 100%;
-          justify-content: center;
+          box-sizing: border-box;
         }
 
         .mobile-videos-row::-webkit-scrollbar {
@@ -459,13 +459,13 @@ export default function FloatingVideoHero({ openForm }) {
 
         .mobile-card {
           flex-shrink: 0;
-          width: calc(50% - 4px);
+          width: calc(50vw - 16px);
           aspect-ratio: 9 / 16;
           border-radius: 12px;
           overflow: hidden;
           background: #111;
           box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-          scroll-snap-align: center;
+          scroll-snap-align: start;
           position: relative;
           opacity: 0.5;
           transform: scale(0.9);
@@ -539,7 +539,7 @@ export default function FloatingVideoHero({ openForm }) {
             padding: 4rem 2rem;
           }
           .mobile-card {
-            width: 150px; /* Reduced size for tablets */
+            width: calc(50vw - 16px);
           }
         }
 
@@ -553,7 +553,7 @@ export default function FloatingVideoHero({ openForm }) {
             font-size: 24px !important;
           }
           .mobile-card {
-            width: calc(50% - 4px);
+            width: calc(50vw - 16px);
           }
         }
       `}</style>
