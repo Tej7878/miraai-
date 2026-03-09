@@ -387,6 +387,7 @@ export default function Creativerevisualization({ openForm }) {
 
         .cr-head {
           text-align: center;
+          margin-top: 60px;
           margin-bottom: 30px;
           transition: opacity 0.3s;
         }
@@ -771,6 +772,7 @@ export default function Creativerevisualization({ openForm }) {
           }
 
           .cr-head {
+            margin-top: 40px;
             margin-bottom: 32px;
           }
 
@@ -908,6 +910,7 @@ export default function Creativerevisualization({ openForm }) {
           }
 
           .cr-head {
+            margin-top: 40px;
             margin-bottom: 28px;
           }
 
@@ -1002,6 +1005,7 @@ export default function Creativerevisualization({ openForm }) {
           }
 
           .cr-head {
+            margin-top: 40px;
             margin-bottom: 24px;
           }
 
