@@ -54,7 +54,7 @@ const Form = ({ isOpen, onClose }) => {
         setIsSubmitting(true);
 
         try {
-            const response = await fetch('/api/miraai_marketing/', {
+            const response = await fetch('http://3.110.177.95:2225/api/miraai_marketing/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -71,10 +71,21 @@ const Form = ({ isOpen, onClose }) => {
                 }),
             });
 
+            // read body once
+            const text = await response.text();
+            let data;
+
+            try {
+                data = JSON.parse(text);
+            } catch {
+                data = text;
+            }
+
             if (response.ok) {
-                const result = await response.json();
-                console.log('Form submission successful:', result);
+                console.log('Form submission successful:', data);
+
                 navigate('/thank-you');
+
                 setFormData({
                     fullName: '',
                     companyName: '',
@@ -85,42 +96,40 @@ const Form = ({ isOpen, onClose }) => {
                     city: '',
                     projectRequirement: ''
                 });
+
             } else {
-                let errorData;
-                try {
-                    errorData = await response.json();
-                } catch (e) {
-                    errorData = await response.text();
-                }
+                console.error(`Submission failed. Status: ${response.status}`, data);
 
-                console.error(`Submission failed. Status: ${response.status}`, errorData);
+                if (response.status === 422 && data.detail && Array.isArray(data.detail)) {
 
-                if (response.status === 422 && errorData.detail && Array.isArray(errorData.detail)) {
-                    // Create a user-friendly error message from the validation details
-                    const formattedErrors = errorData.detail.map(err => {
-                        // Extract field name (last item in loc array, e.g., 'project_requirement')
+                    const formattedErrors = data.detail.map(err => {
                         const fieldNameKey = err.loc[err.loc.length - 1];
-                        // Convert user_name to User Name
+
                         const fieldName = fieldNameKey
                             .replace(/_/g, ' ')
                             .replace(/\b\w/g, char => char.toUpperCase());
 
                         return `${fieldName}: ${err.msg}`;
+
                     }).join('\n');
 
                     alert(`Please fix the following errors:\n\n${formattedErrors}`);
-                } else if (response.status === 422) {
-                    // Fallback if detail array is missing
-                    alert(`Validation Error (422): ${JSON.stringify(errorData)}`);
+
                 } else {
-                    alert(`Submission failed. (Status: ${response.status}): ${typeof errorData === 'object' ? JSON.stringify(errorData) : errorData}`);
+                    alert(`Submission failed (${response.status}): ${typeof data === 'object' ? JSON.stringify(data) : data}`);
                 }
             }
+
         } catch (error) {
+
             console.error('Network or client error:', error);
+
             alert('Could not reach the server. Please check your internet connection or if the backend is running.');
+
         } finally {
+
             setIsSubmitting(false);
+
         }
     };
 
