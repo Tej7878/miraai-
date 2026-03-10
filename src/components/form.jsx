@@ -54,7 +54,7 @@ const Form = ({ isOpen, onClose }) => {
         setIsSubmitting(true);
 
         try {
-            const response = await fetch('http://3.110.177.95:2225/api/miraai_marketing/', {
+            const response = await fetch('https://miraai.inaiverse.com/submit_form.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
