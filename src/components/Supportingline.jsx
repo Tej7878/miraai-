@@ -51,7 +51,7 @@ const steps = [
 
 export default function Supportingline() {
   return (
-    <section className="sl-wrap tracking-[0.5px]">
+    <section className="sl-wrap bg-[#000004] relative w-full py-10 px-4 md:px-8 font-['Inter'] tracking-[0.5px] tracking-[0.5px]">
       <motion.div
         className="sl-header"
         initial={{ opacity: 0, y: 30 }}
@@ -126,7 +126,7 @@ export default function Supportingline() {
         .sl-wrap {
           width: 100%;
           min-height: auto;
-          padding: 80px 18px 80px;
+          padding: 40px 18px 40px;
           background: #000004;
           color: #e9e9ee;
           font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
@@ -134,7 +134,7 @@ export default function Supportingline() {
 
         .sl-header {
           text-align: center;
-          margin-bottom: 48px;
+          margin-bottom: 40px;
         }
 
         .sl-title {
@@ -144,11 +144,10 @@ export default function Supportingline() {
           color: #f3f3f6;
           line-height: 1.15;
           max-width: 1000px;
-          margin: 0 auto;
+          margin: 0 auto 12px auto;
         }
 
         .sl-subtitle {
-          margin-top: 12px;
           font-family: 'Inter', sans-serif;
           font-size: 21px !important;
           color: rgba(255, 255, 255, 0.7);
@@ -221,11 +220,7 @@ export default function Supportingline() {
           height: 380px; 
           border-radius: 22px;
           overflow: hidden;
-<<<<<<< Updated upstream
           padding: 4px;
-=======
-          padding: 1px;
->>>>>>> Stashed changes
         }
 
         /* Snake/Tracing Border Effect - Conic Gradient */
@@ -421,7 +416,7 @@ export default function Supportingline() {
         ======================================== */
         @media (max-width: 900px) {
            .sl-wrap {
-            padding: 80px 16px 80px;
+            padding: 40px 16px 40px;
           }
 
           .sl-header {

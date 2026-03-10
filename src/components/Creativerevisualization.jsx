@@ -130,7 +130,7 @@ const ComparisonSlider = ({ img, video }) => {
           muted
           playsInline
           className="cr-compare-img"
-          style={{ objectFit: 'cover' }}
+          style={{ objectFit: 'cover', objectPosition: 'top center' }}
         />
       ) : (
         <img src={img} alt="" className="cr-compare-img cr-img-bw" />
@@ -197,7 +197,7 @@ export default function Creativerevisualization({ openForm }) {
 
   return (
     <section className="cr-scroll-track tracking-[0.5px]">
-      <div className="cr-sticky-viewport">
+      <div className="cr-sticky-viewport bg-[#000004] min-h-auto py-10 px-4 md:px-8 relative overflow-hidden font-['Inter'] tracking-[0.5px]">
         <div className="cr-wrap">
           <div className="cr-head text-center max-w-4xl mx-auto">
 
@@ -208,7 +208,8 @@ export default function Creativerevisualization({ openForm }) {
                font-extrabold
                leading-tight
                tracking-[0.5px]
-               text-white"
+               text-white
+               mb-[12px]"
             >
               Creative
               Revisualization
@@ -217,14 +218,12 @@ export default function Creativerevisualization({ openForm }) {
             {/* SUBHEADING */}
             <div
               className="
-               cr-sub
-                mt-4
                 text-sm sm:text-base
                 font-medium
                 leading-relaxed
                 text-white/80
                 tracking-[0.5px]
-               max-w-2xl mx-auto"
+               max-w-4xl mx-auto"
             >
               Transform Your Existing Photos, Videos, And Creatives
               Into High-Performing Marketing Assets Using AI.
@@ -348,7 +347,6 @@ export default function Creativerevisualization({ openForm }) {
           display: flex;
           align-items: center;
           justify-content: center;
-          padding-top: 0;
         }
 
         .cr-triggers {
@@ -387,8 +385,8 @@ export default function Creativerevisualization({ openForm }) {
 
         .cr-head {
           text-align: center;
-          margin-top: 60px;
-          margin-bottom: 30px;
+          margin-top: 0px;
+          margin-bottom: 40px;
           transition: opacity 0.3s;
         }
 
@@ -502,6 +500,7 @@ export default function Creativerevisualization({ openForm }) {
            width: 100%;
            height: 100%;
            object-fit: cover;
+           object-position: top center;
            pointer-events: none;
         }
 
@@ -772,8 +771,8 @@ export default function Creativerevisualization({ openForm }) {
           }
 
           .cr-head {
-            margin-top: 40px;
-            margin-bottom: 32px;
+            margin-top: 0px;
+            margin-bottom: 40px;
           }
 
           .cr-title {
@@ -910,8 +909,8 @@ export default function Creativerevisualization({ openForm }) {
           }
 
           .cr-head {
-            margin-top: 40px;
-            margin-bottom: 28px;
+            margin-top: 0px;
+            margin-bottom: 40px;
           }
 
           .cr-title {
@@ -1005,8 +1004,8 @@ export default function Creativerevisualization({ openForm }) {
           }
 
           .cr-head {
-            margin-top: 40px;
-            margin-bottom: 24px;
+            margin-top: 0px;
+            margin-bottom: 40px;
           }
 
           .cr-title {

@@ -39,7 +39,7 @@ export default function Calltoaction({ openForm }) {
       <style>{`
         .cta-wrap {
           width: 100%;
-          padding: 80px 18px 80px;
+          padding: 40px 18px 40px;
           background: #000;
           color: rgba(255, 255, 255, 0.92);
           font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
@@ -76,7 +76,7 @@ export default function Calltoaction({ openForm }) {
 
         .cta-card {
           border-radius: 22px;
-          padding: 74px 18px 64px;
+          padding: 40px 18px 40px;
           text-align: center;
           background: rgba(255, 255, 255, 0.04);
           box-shadow: 0 26px 90px rgba(0, 0, 0, 0.88);

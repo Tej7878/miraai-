@@ -45,7 +45,7 @@ const Whatwedo = () => {
     };
 
     return (
-        <section ref={sectionRef} className="bg-[#000004] py-20 px-4 md:px-8 relative overflow-hidden tracking-[0.5px]" style={{ fontFamily: "'Inter', sans-serif" }}>
+        <section ref={sectionRef} className="bg-[#000004] py-10 px-4 md:px-8 relative overflow-hidden tracking-[0.5px]" style={{ fontFamily: "'Inter', sans-serif" }}>
             <style>{`
                 .wwd-section * {
                     font-family: 'Inter', sans-serif !important;
@@ -53,12 +53,12 @@ const Whatwedo = () => {
             `}</style>
             <div className="max-w-[1200px] mx-auto wwd-section">
 
-                <div className="text-center mb-9 md:mb-16">
+                <div className="text-center mb-9 md:mb-10">
                     <motion.h2
                         initial={{ opacity: 0, y: -20 }}
                         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
                         transition={{ duration: 0.6 }}
-                        className="text-[25px] md:text-[40px] font-bold text-white tracking-[0.5px] max-w-[1000px] mx-auto leading-tight mb-6"
+                        className="text-[25px] md:text-[40px] font-bold text-white tracking-[0.5px] max-w-[1000px] mx-auto leading-tight mb-3"
                     >
                         Create Premium Content Faster With <span className='bg-gradient-to-br from-[#8B5CF6] to-[#D946EF] bg-clip-text text-transparent font-semibold'> Miraai </span>
                     </motion.h2>
@@ -66,7 +66,7 @@ const Whatwedo = () => {
                         initial={{ opacity: 0 }}
                         animate={isInView ? { opacity: 1 } : { opacity: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="text-gray-400 text-[18px] md:text-[21px] lg:text-[20px] font-medium tracking-[0.5px] opacity-80 max-w-[850px] mx-auto leading-relaxed"
+                        className="text-gray-400 text-[18px] md:text-[21px] lg:text-[20px] font-medium tracking-[0.5px] opacity-80 max-w-[1000px] mx-auto leading-relaxed"
                     >
                         Miraai combines advanced AI with human creativity to deliver enterprise-grade content.
                     </motion.p>

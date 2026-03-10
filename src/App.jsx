@@ -9,6 +9,10 @@ import RefundPolicy from './components/refund_policy';
 import Disclaimer from './components/disclaimer';
 import './App.css';
 
+if ('scrollRestoration' in window.history) {
+  window.history.scrollRestoration = 'manual';
+}
+
 function ScrollToTop() {
   const { pathname } = useLocation();
 

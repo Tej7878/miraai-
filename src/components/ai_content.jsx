@@ -110,20 +110,20 @@ const AiContent = () => {
     };
 
     return (
-        <div ref={sectionRef} className="bg-[#000004] relative w-full py-20 px-4 md:px-8 font-['Inter'] tracking-[0.5px]">
+        <div ref={sectionRef} className="bg-[#000004] relative w-full py-10 px-4 md:px-8 font-['Inter'] tracking-[0.5px]">
             <div className="max-w-[1200px] mx-auto">
 
                 {/* Header */}
                 <motion.div
-                    className="text-center mb-8 md:mb-16"
+                    className="text-center mb-8 md:mb-10"
                     initial="hidden"
                     animate={isInView ? "visible" : "hidden"}
                     variants={headerVariants}
                 >
-                    <h2 className="text-[25px] md:text-[40px] font-bold text-white mb-6 tracking-[0.5px] leading-tight">
+                    <h2 className="text-[25px] md:text-[40px] font-bold text-white mb-3 tracking-[0.5px] leading-tight">
                         AI Content & Ad Creation Gallery
                     </h2>
-                    <p className="text-gray-400 text-base tracking-[0.5px] mb-8 leading-relaxed">
+                    <p className="text-gray-400 text-base tracking-[0.5px] leading-relaxed">
                         Explore Real Campaigns, Branding Ads, And AI-Generated Videos.
                     </p>
                 </motion.div>

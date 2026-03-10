@@ -47,11 +47,11 @@ const DoBest = () => {
     ];
 
     return (
-        <section className="bg-[#000004] py-20 px-4 md:px-4 font-['Inter'] tracking-[0.5px]">
+        <section className="bg-[#000004] py-10 px-4 md:px-4 font-['Inter'] tracking-[0.5px]">
             <style>{styles}</style>
             <div className="max-w-[1200px] mx-auto">
                 <motion.h2
-                    className="text-[25px] md:text-[40px] font-bold text-white text-center mb-10 md:mb-16 tracking-[0.5px] px-4 leading-tight"
+                    className="text-[25px] md:text-[40px] font-bold text-white text-center mb-10 md:mb-10 tracking-[0.5px] px-4 leading-tight"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}

@@ -108,7 +108,7 @@ export default function Aidesigngenration() {
         {/* Header */}
         <header className="adg-head">
           <h2 className="adg-title tracking-[0.5px]">AI Design Generation</h2>
-          <p className="text-[18px] text-[#adadadff] mt-2 tracking-[0.5px]">
+          <p className="text-[18px] text-[#adadadff] tracking-[0.5px]">
             Turn Ideas And Descriptions Into Professional Ads And Visuals Instantly Using AI
           </p>
         </header>
@@ -131,7 +131,7 @@ export default function Aidesigngenration() {
       <style>{`
         .adg-wrap {
           width: 100%;
-          padding: 80px 0 80px;
+          padding: 40px 0 40px;
           background: #000;
           color: rgba(255, 255, 255, 0.92);
           font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
@@ -159,7 +159,7 @@ export default function Aidesigngenration() {
 
         .adg-head {
           text-align: center;
-          margin-bottom: 60px;
+          margin-bottom: 40px;
           padding: 0 20px;
         }
 
@@ -170,7 +170,7 @@ export default function Aidesigngenration() {
           color: #ebebebff;
           line-height: 1.15;
           max-width: 1000px;
-          margin: 0 auto;
+          margin: 0 auto 12px auto;
         }
 
         .adg-sub {
@@ -355,7 +355,7 @@ export default function Aidesigngenration() {
         }
 
         @media (max-width: 680px) {
-          .adg-wrap { padding: 80px 0 80px; }
+          .adg-wrap { padding: 40px 0 40px; }
           /* .adg-title processed in 768px query */
           .adg-carousel-track { padding: 0 40px; gap: 20px; }
           .adg-video-card { width: 260px; height: 380px; opacity: 1; transform: scale(1); }

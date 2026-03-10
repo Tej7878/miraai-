@@ -185,7 +185,7 @@ export default function BusinessesChooseMiraai() {
             {/* Base Line Glow Filter */}
             <filter id="lineGlow" x="-20%" y="-20%" width="140%" height="140%">
               <feGaussianBlur stdDeviation="1.5" result="blur" />
-              <feMerge>  
+              <feMerge>
                 <feMergeNode in="blur" />
                 <feMergeNode in="SourceGraphic" />
               </feMerge>
@@ -263,7 +263,7 @@ export default function BusinessesChooseMiraai() {
       <style>{`
         .bcm-wrap {
           width: 100%;
-          padding: 80px 18px 80px;
+          padding: 40px 18px 40px;
           background: #000;
           color: #e9e9ee;
           font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
@@ -284,7 +284,7 @@ export default function BusinessesChooseMiraai() {
 
         .bcm-header {
           text-align: center;
-          margin-bottom: 34px;
+          margin-bottom: 40px;
         }
 
         .bcm-title {
@@ -295,7 +295,7 @@ export default function BusinessesChooseMiraai() {
           line-height: 1.15;
           max-width: 1000px;
           margin: 0 auto;
-          margin-bottom: 24px;
+          margin-bottom: 12px;
         }
 
         .bcm-subtitle {
@@ -543,7 +543,7 @@ export default function BusinessesChooseMiraai() {
         ======================================== */
         @media (max-width: 768px) {
           .bcm-wrap {
-            padding: 80px 16px 80px;
+            padding: 40px 16px 40px;
           }
 
           .bcm-title {
@@ -704,7 +704,7 @@ export default function BusinessesChooseMiraai() {
         ======================================== */
         @media (max-width: 480px) {
           .bcm-wrap {
-            padding: 80px 12px 80px;
+            padding: 40px 12px 40px;
           }
 
           .bcm-header {
@@ -782,7 +782,7 @@ export default function BusinessesChooseMiraai() {
         ======================================== */
         @media (max-width: 360px) {
           .bcm-wrap {
-            padding: 80px 10px 80px;
+            padding: 40px 10px 40px;
           }
 
           .bcm-title {

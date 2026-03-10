@@ -107,7 +107,7 @@ export default function Whatourclientssay() {
           transition={{ duration: 0.8 }}
         >
           <div className="wcs-title tracking-[0.5px]">What Our Clients Say</div>
-          <div className="text-[18px] mt-3 text-[#ffffffb3] tracking-[0.5px]">
+          <div className="text-[18px] text-[#ffffffb3] tracking-[0.5px]">
             Trusted By Forward-Thinking Teams For Reliable, Intelligent, And
             <br />
             High-Impact Creative Production.
@@ -243,7 +243,7 @@ export default function Whatourclientssay() {
       <style>{`
         .wcs-wrap {
           width: 100%;
-          padding: 80px 18px 80px;
+          padding: 40px 18px 40px;
           background: #000;
           color: rgba(255, 255, 255, 0.92);
           font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
@@ -271,7 +271,7 @@ export default function Whatourclientssay() {
 
         .wcs-head {
           text-align: center;
-          margin-bottom: 52px;
+          margin-bottom: 40px;
         }
 
         .wcs-title {
@@ -281,7 +281,7 @@ export default function Whatourclientssay() {
           color: #f3f3f6;
           line-height: 1.15;
           max-width: 1000px;
-          margin: 0 auto;
+          margin: 0 auto 12px auto;
         }
 
         .wcs-sub {
@@ -305,7 +305,7 @@ export default function Whatourclientssay() {
         .wcs-viewport {
           width: 100%;
           overflow: hidden;
-          padding: 40px 40px;
+          padding: 10px 10px;
           box-sizing: border-box;
           cursor: grab;
           user-select: none;
@@ -432,7 +432,7 @@ export default function Whatourclientssay() {
         ======================================== */
         @media (max-width: 680px) {
           .wcs-wrap {
-            padding: 80px 16px 80px;
+            padding: 40px 16px 40px;
           }
 
           .wcs-head {
@@ -508,7 +508,7 @@ export default function Whatourclientssay() {
         ======================================== */
         @media (max-width: 480px) {
           .wcs-wrap {
-            padding: 80px 14px 80px;
+            padding: 40px 14px 40px;
           }
 
           .wcs-head {
@@ -559,7 +559,7 @@ export default function Whatourclientssay() {
         ======================================== */
         @media (max-width: 360px) {
           .wcs-wrap {
-            padding: 80px 12px 80px;
+            padding: 40px 12px 40px;
           }
 
           .wcs-head {

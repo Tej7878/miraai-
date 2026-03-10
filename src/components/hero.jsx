@@ -322,7 +322,7 @@ export default function FloatingVideoHero({ openForm }) {
 
         .hero-section {
           position: relative;
-          min-height: 110vh;
+          min-height: 130vh;
           width: 100%;
           overflow: hidden;
           display: flex;
@@ -386,7 +386,7 @@ export default function FloatingVideoHero({ openForm }) {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          object-position: center;
+          object-position: top center;
           display: block;
           transform: scale(1.01);
         }
@@ -460,7 +460,7 @@ export default function FloatingVideoHero({ openForm }) {
         .mobile-card {
           flex-shrink: 0;
           width: calc(50vw - 16px);
-          aspect-ratio: 9 / 16;
+          aspect-ratio: 4 / 5;
           border-radius: 12px;
           overflow: hidden;
           background: #111;
@@ -482,7 +482,7 @@ export default function FloatingVideoHero({ openForm }) {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          object-position: center;
+          object-position: top center;
           display: block;
         }
 

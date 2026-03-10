@@ -12,13 +12,7 @@ export default function Footer() {
           <div className="ft-left">
             <img className="ft-logo" src={mirraiLogo} alt="Mirrai" />
             <div className="ft-desc tracking-[0.5px]">
-              AI-powered creative production
-              <br />
-              platform for generating professional
-              <br />
-              videos, photos, and branding creatives
-              <br />
-              for modern businesses.
+              AI-powered creative production platform for generating professional videos, photos, and branding creatives for modern businesses.
             </div>
 
             <div className="ft-social">
@@ -81,7 +75,7 @@ export default function Footer() {
       <style>{`
         .ft-wrap {
           width: 100%;
-          padding: 80px 18px 80px;
+          padding: 40px 18px 40px;
           background: #000;
           color: rgba(255, 255, 255, 0.92);
           font-family: 'Urbanist', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;

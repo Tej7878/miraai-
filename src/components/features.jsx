@@ -146,7 +146,7 @@ const Features = () => {
     };
 
     return (
-        <div ref={sectionRef} className="bg-[#000004] min-h-auto py-20 px-4 md:px-8 relative overflow-hidden font-['Inter'] tracking-[0.5px]">
+        <div ref={sectionRef} className="bg-[#000004] min-h-auto py-10 px-4 md:px-8 relative overflow-hidden font-['Inter'] tracking-[0.5px]">
             {/* Background glow */}
             <div className="absolute top-[20%] right-1/2 translate-x-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(139,92,246,0.08)_0%,transparent_60%)] pointer-events-none z-0" />
 
@@ -166,12 +166,12 @@ const Features = () => {
                     </div>
                 ) : (
                     <motion.div
-                        className="text-center mb-16"
+                        className="text-center mb-10"
                         initial="hidden"
                         animate={isInView ? "visible" : "hidden"}
                         variants={headerVariants}
                     >
-                        <h2 className="text-[40px] font-bold text-white tracking-[0.5px] max-w-none mx-auto leading-tight mb-6">
+                        <h2 className="text-[40px] font-bold text-white tracking-[0.5px] max-w-none mx-auto leading-tight mb-3">
                             Powerful Platform Features
                         </h2>
                         <p className="text-gray-400 text-[21px] tracking-[0.5px] max-w-[850px] mx-auto leading-relaxed font-medium opacity-80">

@@ -76,7 +76,7 @@ const TrustMiraai = () => {
     };
 
     return (
-        <div ref={sectionRef} className="bg-[#000004] min-h-auto py-20 px-4 md:px-8 relative overflow-hidden font-['Inter'] tracking-[0.5px]">
+        <div ref={sectionRef} className="bg-[#000004] min-h-auto py-10 px-4 md:px-8 relative overflow-hidden font-['Inter'] tracking-[0.5px]">
             <div className="max-w-[1200px] mx-auto relative z-10">
 
                 {/* Header Section */}
@@ -91,16 +91,16 @@ const TrustMiraai = () => {
                     </div>
                 ) : (
                     <motion.div
-                        className="text-center mb-16"
+                        className="text-center mb-10"
                         initial="hidden"
                         animate={isInView ? "visible" : "hidden"}
                         variants={headerVariants}
                     >
-                        <h2 className="text-[40px] font-bold text-white tracking-[0.5px] max-w-none mx-auto leading-tight mb-6">
+                        <h2 className="text-[40px] font-bold text-white tracking-[0.5px] max-w-none mx-auto leading-tight mb-3">
                             Traditional Production Slows Down Modern Brands
                         </h2>
                         <motion.p
-                            className="text-gray-400 text-[21px] tracking-[0.5px] mt-4 max-w-[600px] mx-auto leading-relaxed font-medium opacity-80"
+                            className="text-gray-400 text-[21px] tracking-[0.5px] max-w-[1000px] mx-auto leading-relaxed font-medium opacity-80"
                             initial={{ opacity: 0, y: 10 }}
                             animate={isInView ? { opacity: 0.8, y: 0 } : { opacity: 0, y: 10 }}
                             transition={{ duration: 0.6, delay: 0.2 }}

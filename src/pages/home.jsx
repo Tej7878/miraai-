@@ -23,7 +23,7 @@ function Home() {
     const [isFormOpen, setIsFormOpen] = useState(false);
 
     return (
-        <div className="tracking-[0.5px] min-h-screen py-20">
+        <div className="tracking-[0.5px] min-h-screen pt-15 pb-0">
             <Header openForm={() => setIsFormOpen(true)} />
             <Hero openForm={() => setIsFormOpen(true)} />
             <Percentage />

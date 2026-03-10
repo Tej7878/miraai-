@@ -61,7 +61,7 @@ const Percentage = () => {
     }, []);
 
     return (
-        <section className="bg-[#000004] min-h-auto flex items-center justify-center py-20 px-4 md:px-8 relative overflow-hidden tracking-[0.5px]">
+        <section className="bg-[#000004] min-h-auto flex items-center justify-center py-10 px-4 md:px-8 relative overflow-hidden tracking-[0.5px]">
             {/* Animated background glow - only on desktop */}
             {!isMobile && (
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(139,92,246,0.15)_0%,transparent_70%)] animate-[pulse_4s_ease-in-out_infinite] pointer-events-none" />
