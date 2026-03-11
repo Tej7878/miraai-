@@ -3,10 +3,13 @@
 
 @import "tailwindcss";
 
-body {
+html, body {
     margin: 0;
     font-family: 'Urbanist', sans-serif;
     letter-spacing: 0.5px !important;
+    overflow-x: clip;
+    width: 100%;
+    max-width: 100%;
 }
 
 /* Ensure letter-spacing applies to all text elements */

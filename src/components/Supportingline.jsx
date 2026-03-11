@@ -130,6 +130,7 @@ export default function Supportingline() {
           background: #000004;
           color: #e9e9ee;
           font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+          overflow: hidden;
         }
 
         .sl-header {

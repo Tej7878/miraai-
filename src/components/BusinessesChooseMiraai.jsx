@@ -269,6 +269,7 @@ export default function BusinessesChooseMiraai() {
           font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
           position: relative;
           overflow: hidden;
+          box-sizing: border-box;
         }
 
         .bcm-wrap::before {
@@ -293,7 +294,7 @@ export default function BusinessesChooseMiraai() {
           color: #f3f3f6;
           letter-spacing: 0.5px !important;
           line-height: 1.15;
-          max-width: 1000px;
+          max-width: 90%;
           margin: 0 auto;
           margin-bottom: 12px;
         }
@@ -302,7 +303,7 @@ export default function BusinessesChooseMiraai() {
           font-size: 21px !important;
           color: rgba(255, 255, 255, 0.7);
           font-weight: 100;
-          max-width: 850px;
+          max-width: 80%;
           margin: 0 auto;
           opacity: 0.8;
           line-height: 1.6;
@@ -341,12 +342,14 @@ export default function BusinessesChooseMiraai() {
             0 0 0 5px rgba(0, 0, 0, 0.45),
             0 0 0 1px rgba(255, 255, 255, 0.08);
           animation: breathe 3s ease-in-out infinite;
+          transform: translateZ(0);
+          backface-visibility: hidden;
         }
 
         /* Breathing Animation for Center Circle */
         @keyframes breathe {
           0%, 100% {
-            transform: scale(1);
+            transform: scale(1) translateZ(0);
             box-shadow:
               0 22px 70px rgba(0, 0, 0, 0.85),
               0 0 0 5px rgba(0, 0, 0, 0.45),
@@ -354,7 +357,7 @@ export default function BusinessesChooseMiraai() {
               0 0 40px rgba(139, 92, 246, 0.3);
           }
           50% {
-            transform: scale(1.05);
+            transform: scale(1.03) translateZ(0);
             box-shadow:
               0 26px 80px rgba(0, 0, 0, 0.9),
               0 0 0 6px rgba(0, 0, 0, 0.5),
@@ -423,7 +426,8 @@ export default function BusinessesChooseMiraai() {
           stroke-dashoffset: 100;
           animation: pulseFlowContinuous 3s linear infinite;
           opacity: 1;
-          will-change: stroke-dashoffset;
+          transform: translateZ(0);
+          backface-visibility: hidden;
         }
 
         @keyframes pulseFlowContinuous {
@@ -442,13 +446,13 @@ export default function BusinessesChooseMiraai() {
 
         @keyframes boxChargingPulse {
           0%, 100% {
-            transform: scale(1);
+            transform: scale(1) translateZ(0);
             box-shadow:
               0 18px 50px rgba(0, 0, 0, 0.7),
               inset 0 1px 0 rgba(255, 255, 255, 0.08);
           }
           30%, 60% {
-            transform: scale(1.05); /* Pop-up scale */
+            transform: scale(1.03) translateZ(0); /* Reduced scale for smoother animation */
             box-shadow:
               0 18px 50px rgba(0, 0, 0, 0.7),
               0 0 30px rgba(167, 139, 250, 0.6),
@@ -457,7 +461,7 @@ export default function BusinessesChooseMiraai() {
             border-color: rgba(167, 139, 250, 0.6);
           }
           70%, 90% {
-            transform: scale(1.02);
+            transform: scale(1.01) translateZ(0);
             box-shadow:
               0 18px 50px rgba(0, 0, 0, 0.7),
               0 0 20px rgba(167, 139, 250, 0.3);
@@ -482,10 +486,12 @@ export default function BusinessesChooseMiraai() {
             0 18px 50px rgba(0, 0, 0, 0.7),
             inset 0 1px 0 rgba(255, 255, 255, 0.08);
           animation: boxChargingPulse 3s ease-in-out infinite;
+          transform: translateZ(0);
+          backface-visibility: hidden;
         }
 
         .bcm-box:hover {
-          transform: scale(1.05);
+          transform: scale(1.03) translateZ(0);
           background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 45%, rgba(0, 0, 0, 0.26) 100%);
           border: 2px solid #7c3aed;
           box-shadow:
@@ -549,10 +555,12 @@ export default function BusinessesChooseMiraai() {
           .bcm-title {
             font-size: 25px !important;
             line-height: 1.2;
+            max-width: 95%;
           }
 
           .bcm-subtitle {
             font-size: 18px !important;
+            max-width: 90%;
           }
 
           .bcm-container {
@@ -715,6 +723,7 @@ export default function BusinessesChooseMiraai() {
             /* Handled in 768px query */
             line-height: 1.25;
             padding: 0 10px;
+            max-width: 100%;
           }
 
           .bcm-container {
