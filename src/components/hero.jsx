@@ -10,8 +10,28 @@ import v4 from '../assets/images/videos/Cloth 4.gif';
 import v5 from '../assets/images/videos/Cloth 5.gif';
 import v6 from '../assets/images/videos/Cloth 6.gif';
 
-// Video sources array
+// Import Cloudinary configuration
+import cloudinaryVideos from '../config/cloudinary_videos.json';
+
+// Video sources array (local fallback)
 const videoSources = [v1, v2, v3, v4, v5, v6];
+
+// Helper to construct optimized Cloudinary URL for videos and poster images
+const getCloudinaryUrl = (index, isMobile = false, isImage = false) => {
+  const envCloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+  const publicId = cloudinaryVideos?.heroVideos?.[index];
+  
+  if (!publicId || !envCloudName || envCloudName === 'your_cloud_name') return null;
+  const width = isMobile ? 360 : 720;
+  
+  if (isImage) {
+    // Poster image transformations: auto format, auto quality, limit width
+    return `https://res.cloudinary.com/${envCloudName}/video/upload/c_limit,w_${width}/f_auto/q_auto/${publicId}.jpg`;
+  } else {
+    // Video transformations: limit width, no audio (ac_none), auto format, auto quality
+    return `https://res.cloudinary.com/${envCloudName}/video/upload/c_limit,w_${width}/ac_none/f_auto/q_auto:good/${publicId}`;
+  }
+};
 
 // Card positions around center - balanced layout (3 top, 3 bottom)
 const cardConfigs = [
@@ -26,9 +46,10 @@ const cardConfigs = [
 ];
 
 // Desktop Floating Video Card Component
-const FloatingVideoCard = React.memo(({ src, config, index, randomValues, windowWidth }) => {
+const FloatingVideoCard = React.memo(({ src: fallbackSrc, config, index, randomValues, windowWidth }) => {
   const controls = useAnimationControls();
   const { duration, xAmp, yAmp, rotAmp } = randomValues;
+  const [hasError, setHasError] = useState(false);
 
   // Scale X positions for smaller screens to prevent cutoff
   const scaleX = Math.min(1, windowWidth / 1250);
@@ -86,36 +107,59 @@ const FloatingVideoCard = React.memo(({ src, config, index, randomValues, window
     return () => { isAlive = false; };
   }, [controls, config, index, duration, xAmp, yAmp, rotAmp, adjustedX]);
 
+  const cloudinaryVideoUrl = getCloudinaryUrl(index, false, false);
+  const cloudinaryPosterUrl = getCloudinaryUrl(index, false, true);
+
+  const videoSrc = cloudinaryVideoUrl || fallbackSrc;
+  const isCloudinary = !!cloudinaryVideoUrl;
+
   return (
     <motion.div
       className="floating-card"
       initial={{ x: 0, y: 0, scale: 0.65, opacity: 0, rotate: 0 }}
       animate={controls}
     >
-      {src.includes('.gif') ? (
-        <img src={src} className="card-video" alt="" loading="lazy" />
+      {hasError ? (
+        <img src={fallbackSrc} className="card-video object-cover" alt="" />
+      ) : isCloudinary ? (
+        <video
+          src={videoSrc}
+          poster={cloudinaryPosterUrl}
+          autoPlay
+          muted
+          loop
+          playsInline
+          onError={() => setHasError(true)}
+          className="card-video object-cover"
+          preload="metadata"
+        />
       ) : (
-        <video src={src} autoPlay muted loop playsInline className="card-video" preload="metadata" />
+        <img src={fallbackSrc} className="card-video object-cover" alt="" loading="lazy" />
       )}
     </motion.div>
   );
 });
 
 // Mobile Video Card - plays only when active
-const MobileVideoCard = React.memo(({ src, isActive, index, cardRef }) => {
+const MobileVideoCard = React.memo(({ src: fallbackSrc, isActive, index, cardRef }) => {
   const videoRef = useRef(null);
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
-    if (src.includes('.gif')) return;
-    if (videoRef.current) {
-      if (isActive) {
-        videoRef.current.currentTime = 0;
-        videoRef.current.play().catch(() => { });
-      } else {
-        videoRef.current.pause();
-      }
+    if (!videoRef.current) return;
+    if (isActive && !hasError) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().catch(() => { });
+    } else {
+      videoRef.current.pause();
     }
-  }, [isActive, src]);
+  }, [isActive, hasError]);
+
+  const cloudinaryVideoUrl = getCloudinaryUrl(index, true, false);
+  const cloudinaryPosterUrl = getCloudinaryUrl(index, true, true);
+
+  const videoSrc = cloudinaryVideoUrl || fallbackSrc;
+  const isCloudinary = !!cloudinaryVideoUrl;
 
   return (
     <motion.div
@@ -125,18 +169,22 @@ const MobileVideoCard = React.memo(({ src, isActive, index, cardRef }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
     >
-      {src.includes('.gif') ? (
-        <img src={src} className="mobile-card-video" alt="" loading="lazy" />
-      ) : (
+      {hasError ? (
+        <img src={fallbackSrc} className="mobile-card-video object-cover" alt="" />
+      ) : isCloudinary ? (
         <video
           ref={videoRef}
-          src={src}
+          src={videoSrc}
+          poster={cloudinaryPosterUrl}
           muted
           loop
           playsInline
-          className="mobile-card-video"
+          onError={() => setHasError(true)}
+          className="mobile-card-video object-cover"
           preload="none"
         />
+      ) : (
+        <img src={fallbackSrc} className="mobile-card-video object-cover" alt="" loading="lazy" />
       )}
       {isActive && <div className="active-indicator" />}
     </motion.div>

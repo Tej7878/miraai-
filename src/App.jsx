@@ -7,6 +7,7 @@ import TermsCondition from './components/term&conditions';
 import CookiePolicy from './components/cookies';
 import RefundPolicy from './components/refund_policy';
 import Disclaimer from './components/disclaimer';
+import CloudinaryAdmin from './pages/admin';
 import './App.css';
 
 if ('scrollRestoration' in window.history) {
@@ -29,6 +30,7 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/admin" element={<CloudinaryAdmin />} />
         <Route path="/thank-you" element={<ThankYouPage />} />
         <Route path="/refund-policy" element={<RefundPolicy />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
