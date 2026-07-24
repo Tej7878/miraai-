@@ -33,6 +33,7 @@ const getCloudinaryUrl = (index, isMobile = false, isImage = false) => {
 export default function FullscreenBackgroundHero({ openForm }) {
   const [isMobile, setIsMobile] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [scrollY, setScrollY] = useState(0);
 
   // Check mobile width
   useEffect(() => {
@@ -54,39 +55,55 @@ export default function FullscreenBackgroundHero({ openForm }) {
           const cloudinaryPoster = getCloudinaryUrl(index, isMobile, true);
           const finalSrc = cloudinaryUrl || src;
           const wakeDelay = `${index * 1.2}s`;
+          const isOdd = index % 2 === 0;
+
+          // Parallax offset: odd columns shift UP, even columns shift DOWN on scroll
+          const parallaxFactor = isOdd ? -0.32 : 0.32;
+          const parallaxOffset = isMobile ? 0 : scrollY * parallaxFactor;
 
           return (
             <div
               key={index}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              className={`video-column ${hoveredIndex === index ? 'hovered' : ''}`}
-              style={{ '--wake-delay': wakeDelay }}
+              className={`video-column ${isOdd ? 'from-top' : 'from-bottom'} ${hoveredIndex === index ? 'hovered' : ''}`}
+              style={{ 
+                '--wake-delay': wakeDelay,
+                '--stagger-delay': `${0.1 + index * 0.14}s`
+              }}
             >
-              {/* Hardware-Accelerated Video Player */}
-              <div className="video-column-inner">
-                <video
-                  src={finalSrc}
-                  poster={cloudinaryPoster}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="bg-video-element"
-                  preload="auto"
-                />
-              </div>
+              {/* Scroll Parallax Wrapper */}
+              <div 
+                className="column-scroll-wrapper"
+                style={{
+                  transform: `translate3d(0, ${parallaxOffset}px, 0)`
+                }}
+              >
+                {/* Hardware-Accelerated Video Player */}
+                <div className="video-column-inner">
+                  <video
+                    src={finalSrc}
+                    poster={cloudinaryPoster}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="bg-video-element"
+                    preload="auto"
+                  />
+                </div>
 
-              {/* Light Scan Sweep Bar */}
-              <div className="column-sweep" />
+                {/* Light Scan Sweep Bar */}
+                <div className="column-sweep" />
 
-              {/* Glowing Top/Bottom Border Highlights */}
-              <div className="column-ring" />
+                {/* Glowing Border Highlights */}
+                <div className="column-ring" />
 
-              {/* AI Video Pill Badge */}
-              <div className="column-badge">
-                <span className="badge-dot" />
-                <span>AI VIDEO</span>
+                {/* AI Video Pill Badge */}
+                <div className="column-badge">
+                  <span className="badge-dot" />
+                  <span>AI VIDEO</span>
+                </div>
               </div>
             </div>
           );
@@ -163,12 +180,57 @@ export default function FullscreenBackgroundHero({ openForm }) {
           height: 100%;
           overflow: hidden;
           border-right: 1px solid rgba(255, 255, 255, 0.12);
-          transition: all 0.5s ease;
+          transition: border-color 0.5s ease;
           cursor: pointer;
         }
 
         .video-column:last-child {
           border-right: none;
+        }
+
+        /* Staggered Entrance Animations: Alternating Top / Bottom */
+        .video-column.from-top {
+          animation: slideFromTop 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          animation-delay: var(--stagger-delay);
+          opacity: 0;
+        }
+
+        .video-column.from-bottom {
+          animation: slideFromBottom 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          animation-delay: var(--stagger-delay);
+          opacity: 0;
+        }
+
+        @keyframes slideFromTop {
+          0% {
+            transform: translateY(-100%);
+            opacity: 0;
+          }
+          100% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+
+        @keyframes slideFromBottom {
+          0% {
+            transform: translateY(100%);
+            opacity: 0;
+          }
+          100% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+
+        /* Scroll Parallax Wrapper */
+        .column-scroll-wrapper {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          will-change: transform;
+          transition: transform 0.1s linear;
         }
 
         .video-column-inner {
@@ -183,7 +245,6 @@ export default function FullscreenBackgroundHero({ openForm }) {
         }
 
         .video-column:hover .video-column-inner {
-          opacity: 1 !important;
           filter: brightness(1.2) saturate(1.25) !important;
           transform: scale(1.06) !important;
         }
@@ -349,12 +410,12 @@ export default function FullscreenBackgroundHero({ openForm }) {
           align-items: center;
           gap: 20px;
           pointer-events: auto;
-          background: rgba(0, 0, 0, 0.55);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          border: 1px solid rgba(255, 255, 255, 0.15);
+          background: rgba(0, 0, 0, 0.22);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          border: 1px solid rgba(255, 255, 255, 0.1);
           border-radius: 28px;
-          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
         }
 
         .hero-badge-tag {
@@ -390,6 +451,7 @@ export default function FullscreenBackgroundHero({ openForm }) {
           line-height: 1.2;
           letter-spacing: -0.5px !important;
           margin: 0;
+          text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
         }
 
         .line-wipe-wrapper {
@@ -448,6 +510,7 @@ export default function FullscreenBackgroundHero({ openForm }) {
           transform: translateY(20px);
           animation: simpleFadeUp 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
           animation-delay: 0.6s;
+          text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
         }
 
         .hero-button {
