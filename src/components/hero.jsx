@@ -18,16 +18,19 @@ const videoSources = [joly1, joly2, joly3, joly4, joly1, joly3];
 const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 
 // Helper to construct optimized Cloudinary URL for videos and poster images
-const getCloudinaryUrl = (index, isMobile = false, isImage = false) => {
-  let publicId = null;
-  try {
-    const saved = localStorage.getItem('miraai_hero_videos');
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      if (Array.isArray(parsed)) publicId = parsed[index];
+const getCloudinaryUrl = (index, isMobile = false, isImage = false, dynamicList = []) => {
+  let publicId = dynamicList[index];
+
+  if (!publicId) {
+    try {
+      const saved = localStorage.getItem('miraai_hero_videos');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed[index]) publicId = parsed[index];
+      }
+    } catch (e) {
+      console.error('Error reading hero videos from localStorage:', e);
     }
-  } catch (e) {
-    console.error('Error reading hero videos from localStorage:', e);
   }
 
   if (!publicId) {
@@ -48,6 +51,26 @@ export default function FullscreenBackgroundHero({ openForm }) {
   const [isMobile, setIsMobile] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [scrollY, setScrollY] = useState(0);
+  const [cloudVideos, setCloudVideos] = useState([]);
+
+  // Fetch dynamic videos directly from Cloudinary API endpoint
+  useEffect(() => {
+    async function fetchCloudinaryVideos() {
+      try {
+        const res = await fetch('/api/get-cloudinary-videos');
+        if (res.ok) {
+          const data = await res.json();
+          if (data?.success && Array.isArray(data.resources) && data.resources.length > 0) {
+            const fetchedIds = data.resources.map(r => r.public_id);
+            setCloudVideos(fetchedIds);
+          }
+        }
+      } catch (e) {
+        console.warn('Dynamic Cloudinary API fetch inactive:', e);
+      }
+    }
+    fetchCloudinaryVideos();
+  }, []);
 
   // Check mobile width
   useEffect(() => {
@@ -65,8 +88,8 @@ export default function FullscreenBackgroundHero({ openForm }) {
       {/* 6-Column Full-Screen Video Background Grid */}
       <div className="fullscreen-video-grid">
         {videoSources.map((src, index) => {
-          const cloudinaryUrl = getCloudinaryUrl(index, isMobile, false);
-          const cloudinaryPoster = getCloudinaryUrl(index, isMobile, true);
+          const cloudinaryUrl = getCloudinaryUrl(index, isMobile, false, cloudVideos);
+          const cloudinaryPoster = getCloudinaryUrl(index, isMobile, true, cloudVideos);
           const finalSrc = cloudinaryUrl || src;
           const wakeDelay = `${index * 1.2}s`;
           const isOdd = index % 2 === 0;

@@ -90,6 +90,7 @@ export default function CloudinaryAdmin() {
     
     formData.append('file', file);
     formData.append('upload_preset', uploadPreset);
+    formData.append('public_id', `miraai_slot_${index + 1}`);
 
     // Track upload progress
     xhr.upload.addEventListener('progress', (e) => {
