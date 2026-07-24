@@ -47,7 +47,7 @@ export default function FullscreenBackgroundHero({ openForm }) {
               className={`video-column ${isOdd ? 'from-top' : 'from-bottom'} ${hoveredIndex === index ? 'hovered' : ''}`}
               style={{ 
                 '--wake-delay': wakeDelay,
-                '--stagger-delay': `${0.1 + index * 0.14}s`
+                '--stagger-delay': `${index * 0.08}s`
               }}
             >
               <div 
@@ -148,24 +148,24 @@ export default function FullscreenBackgroundHero({ openForm }) {
         }
 
         .video-column.from-top {
-          animation: slideFromTop 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          animation: slideFromTop 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
           animation-delay: var(--stagger-delay);
           opacity: 0;
         }
 
         .video-column.from-bottom {
-          animation: slideFromBottom 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          animation: slideFromBottom 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
           animation-delay: var(--stagger-delay);
           opacity: 0;
         }
 
         @keyframes slideFromTop {
-          0% { transform: translateY(-100%); opacity: 0; }
+          0% { transform: translateY(-20%); opacity: 0; }
           100% { transform: translateY(0); opacity: 1; }
         }
 
         @keyframes slideFromBottom {
-          0% { transform: translateY(100%); opacity: 0; }
+          0% { transform: translateY(20%); opacity: 0; }
           100% { transform: translateY(0); opacity: 1; }
         }
 
