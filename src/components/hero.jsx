@@ -3,15 +3,15 @@ import { motion } from 'framer-motion';
 import React, { useEffect, useState, useRef } from 'react';
 
 // Import local optimized MP4 videos
-import joly1 from '../assets/images/videos/Cloth 1.gif';
-import joly2 from '../assets/images/videos/Cloth 2.gif';
-import joly3 from '../assets/images/videos/Cloth 3.gif';
-import joly4 from '../assets/images/videos/Cloth 4.gif'; 
-import joly5 from '../assets/images/videos/Cloth 5.gif'; 
-import joly6 from '../assets/images/videos/Cloth 6.gif'; 
+import joly1 from '../assets/images/videos/1.mp4';
+import joly2 from '../assets/images/videos/2.mp4';
+import joly3 from '../assets/images/videos/3.mp4';
+import joly4 from '../assets/images/videos/4.mp4'; 
+import joly5 from '../assets/images/videos/19.mp4'; 
+import joly6 from '../assets/images/videos/7.mp4'; 
 
 // Video sources array (hardware-accelerated local MP4s)
-const videoSources = [joly1, joly2, joly3, joly4, joly5, joly6];
+const videoSources = [joly4, joly2, joly5, joly3, joly1 , joly6];
 
 export default function FullscreenBackgroundHero({ openForm }) {
   const [isMobile, setIsMobile] = useState(false);
@@ -36,8 +36,6 @@ export default function FullscreenBackgroundHero({ openForm }) {
         {videoSources.map((src, index) => {
           const wakeDelay = `${index * 1.2}s`;
           const isOdd = index % 2 === 0;
-
-          // Parallax offset: odd columns shift UP, even columns shift DOWN on scroll
           const parallaxFactor = isOdd ? -0.32 : 0.32;
           const parallaxOffset = isMobile ? 0 : scrollY * parallaxFactor;
 
@@ -52,31 +50,17 @@ export default function FullscreenBackgroundHero({ openForm }) {
                 '--stagger-delay': `${0.1 + index * 0.14}s`
               }}
             >
-              {/* Scroll Parallax Wrapper */}
               <div 
                 className="column-scroll-wrapper"
                 style={{
                   transform: `translate3d(0, ${parallaxOffset}px, 0)`
                 }}
               >
-                {/* Hardware-Accelerated Video / GIF Player */}
                 <div className="video-column-inner">
                   {typeof src === 'string' && src.toLowerCase().includes('.gif') ? (
-                    <img
-                      src={src}
-                      alt="Hero media"
-                      className="bg-video-element"
-                    />
+                    <img src={src} alt="Hero media" className="bg-video-element" />
                   ) : (
-                    <video
-                      src={src}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      className="bg-video-element"
-                      preload="auto"
-                    />
+                    <video src={src} autoPlay muted loop playsInline className="bg-video-element" preload="auto" />
                   )}
                 </div>
               </div>
@@ -85,46 +69,48 @@ export default function FullscreenBackgroundHero({ openForm }) {
         })}
       </div>
 
+      {/* Vignette Overlay for Cinematic Feel */}
+      <div className="vignette-overlay"></div>
+
       {/* Center Content Section */}
-      <div className="hero-content">
+      <div className="hero-content-wrapper">
         
-        {/* Top Tag Badge */}
-        <div className="hero-badge-tag">
-          <span className="badge-ping-dot" />
-          <span>Next-Gen AI Video Production</span>
+        {/* Dynamic Glowing Orbs Behind the Glass */}
+        <div className="glow-orb orb-1"></div>
+        <div className="glow-orb orb-2"></div>
+        <div className="glow-orb orb-3"></div>
+
+        <div className="hero-content glass-card">
+          {/* Noise Texture for Frosted Glass */}
+          <div className="glass-noise"></div>
+
+
+          <h1 className="hero-heading">
+            <div className="line-wipe-wrapper">
+              <span className="line-wipe-text" style={{ animationDelay: '0.1s' }}>India's 1st Premium</span>
+            </div>
+            <div className="line-wipe-wrapper">
+              <span className="line-wipe-text" style={{ animationDelay: '0.22s' }}>
+                <span className="ai-powered-text" data-text="AI‑Powered">AI‑Powered</span> Image & Video
+              </span>
+            </div>
+            <div className="line-wipe-wrapper">
+              <span className="line-wipe-text" style={{ animationDelay: '0.34s' }}>Production Services</span>
+            </div>
+          </h1>
+
+          <p className="hero-subheading">
+            70% cost reduction, 10x faster — no studios or crews required.
+          </p>
+
+          <button className="premium-btn" onClick={openForm}>
+            <span className="premium-btn-content">
+              Talk to Our Expert
+            </span>
+          </button>
         </div>
-
-        <h1 className="hero-heading">
-          <div className="line-wipe-wrapper">
-            <span className="line-wipe-text" style={{ animationDelay: '0.1s' }}>India's 1st Premium</span>
-          </div>
-          <div className="line-wipe-wrapper">
-            <span className="line-wipe-text" style={{ animationDelay: '0.22s' }}>
-              <span className="ai-powered-text">AI‑Powered</span> Image & Video
-            </span>
-          </div>
-          <div className="line-wipe-wrapper">
-            <span className="line-wipe-text" style={{ animationDelay: '0.34s' }}>Production Services</span>
-          </div>
-        </h1>
-
-        <p className="hero-subheading">
-          70% cost reduction, 10x faster — no studios or crews required.
-        </p>
-
-        <button className="hero-button group relative overflow-hidden" onClick={openForm}>
-          <span className="relative block overflow-hidden z-10">
-            <span className="block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full">
-              Talk to Our Expert
-            </span>
-            <span className="absolute inset-0 block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] translate-y-full group-hover:translate-y-0">
-              Talk to Our Expert
-            </span>
-          </span>
-        </button>
       </div>
 
-      {/* Styles */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,400;1,500&display=swap');
 
@@ -136,10 +122,9 @@ export default function FullscreenBackgroundHero({ openForm }) {
           display: flex;
           align-items: center;
           justify-content: center;
-          background: #000000;
+          background: #050505; /* Deep rich black */
         }
 
-        /* Fullscreen 6-Column Video Grid */
         .fullscreen-video-grid {
           position: absolute;
           inset: 0;
@@ -154,8 +139,7 @@ export default function FullscreenBackgroundHero({ openForm }) {
           position: relative;
           height: 100%;
           overflow: hidden;
-          border-right: 1px solid rgba(255, 255, 255, 0.12);
-          transition: border-color 0.5s ease;
+          // border-right: 1px solid rgba(255, 255, 255, 0.05);
           cursor: pointer;
         }
 
@@ -163,7 +147,6 @@ export default function FullscreenBackgroundHero({ openForm }) {
           border-right: none;
         }
 
-        /* Staggered Entrance Animations: Alternating Top / Bottom */
         .video-column.from-top {
           animation: slideFromTop 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
           animation-delay: var(--stagger-delay);
@@ -177,28 +160,15 @@ export default function FullscreenBackgroundHero({ openForm }) {
         }
 
         @keyframes slideFromTop {
-          0% {
-            transform: translateY(-100%);
-            opacity: 0;
-          }
-          100% {
-            transform: translateY(0);
-            opacity: 1;
-          }
+          0% { transform: translateY(-100%); opacity: 0; }
+          100% { transform: translateY(0); opacity: 1; }
         }
 
         @keyframes slideFromBottom {
-          0% {
-            transform: translateY(100%);
-            opacity: 0;
-          }
-          100% {
-            transform: translateY(0);
-            opacity: 1;
-          }
+          0% { transform: translateY(100%); opacity: 0; }
+          100% { transform: translateY(0); opacity: 1; }
         }
 
-        /* Scroll Parallax Wrapper */
         .column-scroll-wrapper {
           position: absolute;
           inset: 0;
@@ -212,6 +182,12 @@ export default function FullscreenBackgroundHero({ openForm }) {
           position: absolute;
           inset: 0;
           opacity: 1;
+          transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .video-column:hover .video-column-inner {
+          transform: scale(1.05);
+          z-index: 2;
         }
 
         .bg-video-element {
@@ -222,141 +198,267 @@ export default function FullscreenBackgroundHero({ openForm }) {
           display: block;
           will-change: transform;
           transform: translateZ(0);
+          filter: contrast(1.1) saturate(1.1);
         }
 
+        /* Vignette overlay to make center pop and text readable */
+        // .vignette-overlay {
+        //   position: absolute;
+        //   inset: 0;
+        //   background: radial-gradient(circle at center, transparent 15%, rgba(0,0,0,0.85) 90%);
+        //   z-index: 5;
+        //   pointer-events: none;
+        // }
+
         /* Hero Content Styles */
-        .hero-content {
+        .hero-content-wrapper {
           position: relative;
           z-index: 10;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          padding: 0 20px;
+        }
+
+        /* Glowing Orbs */
+        .glow-orb {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(80px);
+          opacity: 0.6;
+          z-index: -1;
+          animation: floatOrb 8s infinite alternate ease-in-out;
+        }
+
+        .orb-1 {
+          width: 300px;
+          height: 300px;
+          background: rgba(139, 92, 246, 0.4); /* Deep Violet */
+          top: -50px;
+          left: -50px;
+          animation-delay: 0s;
+        }
+
+        .orb-2 {
+          width: 250px;
+          height: 250px;
+          background: rgba(236, 72, 153, 0.3); /* Pink */
+          bottom: -20px;
+          right: -20px;
+          animation-delay: 2s;
+        }
+        
+        .orb-3 {
+          width: 200px;
+          height: 200px;
+          background: rgba(56, 189, 248, 0.3); /* Cyan */
+          bottom: -80px;
+          left: 30%;
+          animation-delay: 4s;
+        }
+
+        @keyframes floatOrb {
+          0% { transform: translate(0, 0) scale(1); }
+          100% { transform: translate(30px, -30px) scale(1.1); }
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+          position: relative;
           text-align: center;
-          max-width: 760px;
-          padding: 2.5rem 2rem;
+          max-width: 820px;
+          padding: 3.5rem 3rem;
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 20px;
+          gap: 24px;
           pointer-events: auto;
-          background: rgba(0, 0, 0, 0.22);
-          backdrop-filter: blur(8px);
-          -webkit-backdrop-filter: blur(8px);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          border-radius: 28px;
-          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+          
+          /* Frosted Glass Effect */
+          background: rgba(20, 20, 20, 0.4);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(18px);
+          
+          /* Premium Inner Shadows & Borders */
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          border-top: 1px solid rgba(255, 255, 255, 0.25);
+          border-left: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 32px;
+          box-shadow: 
+            0 30px 60px rgba(0, 0, 0, 0.6),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+          overflow: hidden;
+        }
+
+        /* Subtle Noise Overlay */
+        .glass-noise {
+          position: absolute;
+          inset: 0;
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+          opacity: 0.05;
+          mix-blend-mode: overlay;
+          pointer-events: none;
         }
 
         .hero-badge-tag {
+          position: relative;
           display: inline-flex;
           align-items: center;
-          gap: 8px;
-          padding: 6px 16px;
+          gap: 10px;
+          padding: 8px 20px;
           border-radius: 30px;
-          background: rgba(99, 102, 241, 0.15);
-          border: 1px solid rgba(99, 102, 241, 0.4);
-          backdrop-filter: blur(10px);
-          color: #a5b4fc;
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          color: #e2e8f0;
           font-family: 'Inter', sans-serif;
-          font-size: 12px;
+          font-size: 13px;
           font-weight: 600;
-          letter-spacing: 0.5px;
-          box-shadow: 0 4px 15px rgba(99, 102, 241, 0.15);
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+          z-index: 2;
         }
 
         .badge-ping-dot {
           width: 8px;
           height: 8px;
           border-radius: 50%;
-          background: #818cf8;
-          box-shadow: 0 0 10px #818cf8;
+          background: #38bdf8;
+          box-shadow: 0 0 12px #38bdf8, 0 0 20px #38bdf8;
+          animation: pulseDot 2s infinite;
+        }
+
+        @keyframes pulseDot {
+          0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.7); }
+          70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(56, 189, 248, 0); }
+          100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
         }
 
         .hero-heading {
+          position: relative;
           font-family: 'Inter', sans-serif;
-          font-size: 48px;
+          font-size: 45px;
           font-weight: 800;
           color: #ffffff;
-          line-height: 1.2;
-          letter-spacing: -0.5px !important;
+          line-height: 1.15;
+          letter-spacing: -1px !important;
           margin: 0;
-          text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+          z-index: 2;
         }
 
         .line-wipe-wrapper {
           overflow: hidden;
           display: block;
-          line-height: 1.2;
         }
+        
         .line-wipe-text {
           display: inline-block;
-          transform: translateY(105%);
-          animation: fadeUp 0.85s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+          transform: translateY(110%);
+          animation: fadeUpReveal 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
-        @keyframes fadeUp {
-          0% {
-            transform: translateY(105%);
-          }
-          100% {
-            transform: translateY(0);
-          }
+        
+        @keyframes fadeUpReveal {
+          0% { transform: translateY(110%); opacity: 0; filter: blur(4px); }
+          100% { transform: translateY(0); opacity: 1; filter: blur(0); }
         }
 
         .ai-powered-text {
+          position: relative;
+          display: inline-block;
           background: linear-gradient(
-            90deg,
-            #818cf8 0%,
-            #c084fc 35%,
-            #f472b6 70%,
-            #818cf8 100%
+            to right,
+            #a78bfa,
+            #f472b6,
+            #38bdf8,
+            #a78bfa
           );
           background-size: 200% auto;
           background-clip: text;
           -webkit-background-clip: text;
           color: transparent;
           -webkit-text-fill-color: transparent;
-          animation: textSweep 4s linear infinite;
+          animation: shine 4s linear infinite;
         }
-        @keyframes textSweep {
-          0% {
-            background-position: 0% center;
-          }
-          100% {
-            background-position: -200% center;
+
+        @keyframes shine {
+          to {
+            background-position: 200% center;
           }
         }
 
         .hero-subheading {
+          position: relative;
           font-family: 'Inter', sans-serif;
           font-size: 20px !important;
-          font-weight: 500;
-          color: #cbd5e1;
+          font-weight: 400;
+          color: #94a3b8;
           line-height: 1.6;
-          letter-spacing: 0.5px !important;
           margin: 0;
-          max-width: 560px;
+          max-width: 600px;
           opacity: 0;
           transform: translateY(20px);
           animation: simpleFadeUp 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
           animation-delay: 0.6s;
-          text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+          z-index: 2;
         }
 
-        .hero-button {
+        /* Premium CTA Button */
+        .premium-btn {
           position: relative;
-          background: #ffffff;
-          color: #000000;
+          margin-top: 15px;
+          padding: 0;
+          background: transparent;
           border: none;
-          padding: 14px 34px;
-          border-radius: 14px;
-          font-family: 'Inter', sans-serif;
-          font-size: 15px;
-          font-weight: 700;
           cursor: pointer;
-          transition: all 0.3s ease;
-          box-shadow: 0 4px 20px rgba(255, 255, 255, 0.25);
-          margin-top: 6px;
           opacity: 0;
           transform: translateY(20px);
           animation: simpleFadeUp 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
           animation-delay: 0.75s;
+          z-index: 2;
+          border-radius: 16px;
+        }
+
+        .premium-btn::before {
+          content: '';
+          position: absolute;
+          inset: -2px;
+          border-radius: 18px;
+          background: linear-gradient(90deg, #a78bfa, #f472b6, #38bdf8, #a78bfa);
+          background-size: 300%;
+          z-index: -1;
+          animation: buttonBorderGlow 4s linear infinite;
+          transition: filter 0.3s ease;
+        }
+
+        .premium-btn:hover::before {
+          filter: blur(10px);
+        }
+
+        .premium-btn-content {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #ffffff;
+          color: #0f172a;
+          padding: 16px 40px;
+          border-radius: 16px;
+          font-family: 'Inter', sans-serif;
+          font-size: 16px;
+          font-weight: 700;
+          letter-spacing: 0.5px;
+          transition: all 0.3s ease;
+        }
+
+        .premium-btn:hover .premium-btn-content {
+          background: #f8fafc;
+          color: #000000;
+          transform: translateY(-2px);
+        }
+
+        @keyframes buttonBorderGlow {
+          0% { background-position: 0% 50%; }
+          100% { background-position: 100% 50%; }
         }
 
         @keyframes simpleFadeUp {
@@ -366,49 +468,28 @@ export default function FullscreenBackgroundHero({ openForm }) {
           }
         }
 
-        .hero-button:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
-        }
-
-        .hero-button::before {
-          content: '';
-          position: absolute;
-          inset: -2px;
-          border-radius: inherit;
-          border: 1.5px solid #818cf8;
-          opacity: 0;
-          transform: scale(1);
-          animation: ctaPulse 2.2s cubic-bezier(0.25, 0, 0, 1) infinite;
-          pointer-events: none;
-        }
-        @keyframes ctaPulse {
-          0% {
-            transform: scale(1);
-            opacity: 0.8;
-          }
-          100% {
-            transform: scale(1.24);
-            opacity: 0;
-          }
-        }
-
         /* Mobile Layout */
         @media (max-width: 880px) {
-          .fullscreen-video-
-          grid {
+          .fullscreen-video-grid {
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(2, 1fr);
           }
+          .glass-card {
+            padding: 2.5rem 1.5rem;
+            border-radius: 24px;
+          }
           .hero-heading {
-            font-size: 32px !important;
+            font-size: 36px !important;
+            letter-spacing: -0.5px !important;
           }
           .hero-subheading {
-            font-size: 17px !important;
-            padding: 0 10px;
+            font-size: 16px !important;
           }
-          .hero-content {
-            padding: 2rem 1.5rem;
+          .orb-1 { width: 200px; height: 200px; }
+          .orb-2 { width: 150px; height: 150px; }
+          .premium-btn-content {
+            padding: 14px 32px;
+            font-size: 15px;
           }
         }
       `}</style>
