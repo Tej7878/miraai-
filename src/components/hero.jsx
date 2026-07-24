@@ -569,7 +569,8 @@ export default function FullscreenBackgroundHero({ openForm }) {
 
         /* Mobile Layout */
         @media (max-width: 880px) {
-          .fullscreen-video-grid {
+          .fullscreen-video-
+          grid {
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(2, 1fr);
           }
