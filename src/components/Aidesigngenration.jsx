@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import cloth1 from '../assets/images/videos/Cloth 1.gif';
-import cloth2 from '../assets/images/videos/Cloth 2.gif';
-import cloth3 from '../assets/images/videos/Cloth 3.gif';
-import cloth4 from '../assets/images/videos/Cloth 4.gif';
-import cloth5 from '../assets/images/videos/Cloth 5.gif';
-import cloth6 from '../assets/images/videos/Cloth 6.gif';
+import cloth1 from '../assets/images/videos/1.mp4';
+import cloth2 from '../assets/images/videos/2.mp4';
+import cloth3 from '../assets/images/videos/3.mp4';
+import cloth4 from '../assets/images/videos/4.mp4';
+import cloth5 from '../assets/images/videos/5.mp4';
+import cloth6 from '../assets/images/videos/6.mp4';
 
 // Video cards data
 const videoCards = [
