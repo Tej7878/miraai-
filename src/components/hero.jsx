@@ -19,7 +19,21 @@ const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 
 // Helper to construct optimized Cloudinary URL for videos and poster images
 const getCloudinaryUrl = (index, isMobile = false, isImage = false) => {
-  const publicId = cloudinaryVideos?.heroVideos?.[index];
+  let publicId = null;
+  try {
+    const saved = localStorage.getItem('miraai_hero_videos');
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (Array.isArray(parsed)) publicId = parsed[index];
+    }
+  } catch (e) {
+    console.error('Error reading hero videos from localStorage:', e);
+  }
+
+  if (!publicId) {
+    publicId = cloudinaryVideos?.heroVideos?.[index];
+  }
+
   if (!publicId || !cloudName || cloudName === 'your_cloud_name') return null;
   const width = isMobile ? 360 : 720;
   

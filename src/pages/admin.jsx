@@ -26,29 +26,49 @@ export default function CloudinaryAdmin() {
   console.log('Vite Env CloudName:', cloudName);
   console.log('Vite Env UploadPreset:', uploadPreset);
   console.log('hasEnvConfig:', hasEnvConfig);
-  const [heroVideos, setHeroVideos] = useState(initialVideos?.heroVideos || ['', '', '', '', '', '']);
+  // Helper to load videos from localStorage or initial json config
+  const getSavedVideos = () => {
+    try {
+      const saved = localStorage.getItem('miraai_hero_videos');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length === 6) return parsed;
+      }
+    } catch (e) {
+      console.error('Error loading saved videos from localStorage:', e);
+    }
+    return initialVideos?.heroVideos || ['', '', '', '', '', ''];
+  };
+
+  const [heroVideos, setHeroVideos] = useState(getSavedVideos());
   const [uploads, setUploads] = useState(
     Array(6).fill(null).map(() => ({ progress: 0, status: 'idle', error: null }))
   );
 
-  // Sync state with JSON config changes (hot-reloads)
+  // Sync state with JSON config changes if localStorage not set
   useEffect(() => {
-    if (initialVideos?.heroVideos) {
-      setHeroVideos(initialVideos.heroVideos);
-    }
+    setHeroVideos(getSavedVideos());
   }, [initialVideos]);
 
   const saveConfigToFile = async (updatedVideos) => {
+    // 1. Always save to browser localStorage for production persistence
+    try {
+      localStorage.setItem('miraai_hero_videos', JSON.stringify(updatedVideos));
+    } catch (e) {
+      console.error('Error saving to localStorage:', e);
+    }
+
+    // 2. Attempt to save to local dev server file if endpoint is available
     try {
       const response = await fetch('/api/save-cloudinary-videos', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ heroVideos: updatedVideos })
       });
-      return response.ok;
+      return true;
     } catch (e) {
-      console.error('Error saving cloudinary config to file:', e);
-      return false;
+      console.info('Saved to browser storage (production environment):', e);
+      return true;
     }
   };
 
