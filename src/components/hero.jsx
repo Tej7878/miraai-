@@ -3,12 +3,12 @@ import { motion } from 'framer-motion';
 import React, { useEffect, useState, useRef } from 'react';
 
 // Import local optimized MP4 videos
-import joly1 from '../assets/images/videos/1.mp4';
-import joly2 from '../assets/images/videos/2.mp4';
-import joly3 from '../assets/images/videos/3.mp4';
-import joly4 from '../assets/images/videos/4.mp4'; 
-import joly5 from '../assets/images/videos/19.mp4'; 
-import joly6 from '../assets/images/videos/7.mp4'; 
+const joly1 = 'https://ik.imagekit.io/tej7878/miraai/1.mp4?updatedAt=1784886303250';
+const joly2 = 'https://ik.imagekit.io/tej7878/miraai/2.mp4?updatedAt=1784886306154';
+const joly3 = 'https://ik.imagekit.io/tej7878/miraai/3.mp4?updatedAt=1784886307776';
+const joly4 = 'https://ik.imagekit.io/tej7878/miraai/4.mp4?updatedAt=1784886320405'; 
+const joly5 = 'https://ik.imagekit.io/tej7878/miraai/19.mp4?updatedAt=1784887289089'; 
+const joly6 = 'https://ik.imagekit.io/tej7878/miraai/7.mp4?updatedAt=1784886312514'; 
 
 // Video sources array (hardware-accelerated local MP4s)
 const videoSources = [joly4, joly2, joly5, joly3, joly1 , joly6];
