@@ -3,71 +3,20 @@ import { motion } from 'framer-motion';
 import React, { useEffect, useState, useRef } from 'react';
 
 // Import local optimized MP4 videos
-import joly1 from '../assets/images/videos/Joly .mp4';
-import joly2 from '../assets/images/videos/Joly 2 .mp4';
-import joly3 from '../assets/images/videos/Joly 3.mp4';
-import joly4 from '../assets/images/videos/Joly 4.mp4';
+import joly1 from '../assets/images/videos/Cloth 1.gif';
+import joly2 from '../assets/images/videos/Cloth 2.gif';
+import joly3 from '../assets/images/videos/Cloth 3.gif';
+import joly4 from '../assets/images/videos/Cloth 4.gif'; 
+import joly5 from '../assets/images/videos/Cloth 5.gif'; 
+import joly6 from '../assets/images/videos/Cloth 6.gif'; 
 
-// Import Cloudinary configuration
-import cloudinaryVideos from '../config/cloudinary_videos.json';
-
-// Video sources array (hardware-accelerated MP4s)
-const videoSources = [joly1, joly2, joly3, joly4, joly1, joly3];
-
-// Cloudinary Cloud Name
-const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
-
-// Helper to construct optimized Cloudinary URL for videos and poster images
-const getCloudinaryUrl = (index, isMobile = false, isImage = false, dynamicList = []) => {
-  let publicId = dynamicList[index];
-
-  if (!publicId) {
-    try {
-      const saved = localStorage.getItem('miraai_hero_videos');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed[index]) publicId = parsed[index];
-      }
-    } catch (e) {
-      console.error('Error reading hero videos from localStorage:', e);
-    }
-  }
-
-  if (!publicId) {
-    publicId = cloudinaryVideos?.heroVideos?.[index];
-  }
-
-  if (isImage) {
-    return `https://res.cloudinary.com/${cloudName}/video/upload/f_auto/q_auto/${publicId}.jpg`;
-  } else {
-    return `https://res.cloudinary.com/${cloudName}/video/upload/f_auto/q_auto/${publicId}`;
-  }
-};
+// Video sources array (hardware-accelerated local MP4s)
+const videoSources = [joly1, joly2, joly3, joly4, joly5, joly6];
 
 export default function FullscreenBackgroundHero({ openForm }) {
   const [isMobile, setIsMobile] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [scrollY, setScrollY] = useState(0);
-  const [cloudVideos, setCloudVideos] = useState([]);
-
-  // Fetch dynamic videos directly from Cloudinary API endpoint
-  useEffect(() => {
-    async function fetchCloudinaryVideos() {
-      try {
-        const res = await fetch('/api/get-cloudinary-videos');
-        if (res.ok) {
-          const data = await res.json();
-          if (data?.success && Array.isArray(data.resources) && data.resources.length > 0) {
-            const fetchedIds = data.resources.map(r => r.public_id);
-            setCloudVideos(fetchedIds);
-          }
-        }
-      } catch (e) {
-        console.warn('Dynamic Cloudinary API fetch inactive:', e);
-      }
-    }
-    fetchCloudinaryVideos();
-  }, []);
 
   // Check mobile width
   useEffect(() => {
@@ -85,9 +34,6 @@ export default function FullscreenBackgroundHero({ openForm }) {
       {/* 6-Column Full-Screen Video Background Grid */}
       <div className="fullscreen-video-grid">
         {videoSources.map((src, index) => {
-          const cloudinaryUrl = getCloudinaryUrl(index, isMobile, false, cloudVideos);
-          const cloudinaryPoster = getCloudinaryUrl(index, isMobile, true, cloudVideos);
-          const finalSrc = cloudinaryUrl || src;
           const wakeDelay = `${index * 1.2}s`;
           const isOdd = index % 2 === 0;
 
@@ -113,18 +59,25 @@ export default function FullscreenBackgroundHero({ openForm }) {
                   transform: `translate3d(0, ${parallaxOffset}px, 0)`
                 }}
               >
-                {/* Hardware-Accelerated Video Player */}
+                {/* Hardware-Accelerated Video / GIF Player */}
                 <div className="video-column-inner">
-                  <video
-                    src={finalSrc}
-                    poster={cloudinaryPoster}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="bg-video-element"
-                    preload="auto"
-                  />
+                  {typeof src === 'string' && src.toLowerCase().includes('.gif') ? (
+                    <img
+                      src={src}
+                      alt="Hero media"
+                      className="bg-video-element"
+                    />
+                  ) : (
+                    <video
+                      src={src}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="bg-video-element"
+                      preload="auto"
+                    />
+                  )}
                 </div>
               </div>
             </div>
