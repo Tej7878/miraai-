@@ -37,13 +37,10 @@ const getCloudinaryUrl = (index, isMobile = false, isImage = false, dynamicList 
     publicId = cloudinaryVideos?.heroVideos?.[index];
   }
 
-  if (!publicId || !cloudName || cloudName === 'your_cloud_name') return null;
-  const width = isMobile ? 360 : 720;
-  
   if (isImage) {
-    return `https://res.cloudinary.com/${cloudName}/video/upload/c_limit,w_${width}/f_auto/q_auto/${publicId}.jpg`;
+    return `https://res.cloudinary.com/${cloudName}/video/upload/f_auto/q_auto/${publicId}.jpg`;
   } else {
-    return `https://res.cloudinary.com/${cloudName}/video/upload/c_limit,w_${width}/ac_none/f_auto/q_auto:good/${publicId}`;
+    return `https://res.cloudinary.com/${cloudName}/video/upload/f_auto/q_auto/${publicId}`;
   }
 };
 
@@ -128,18 +125,6 @@ export default function FullscreenBackgroundHero({ openForm }) {
                     className="bg-video-element"
                     preload="auto"
                   />
-                </div>
-
-                {/* Light Scan Sweep Bar */}
-                <div className="column-sweep" />
-
-                {/* Glowing Border Highlights */}
-                <div className="column-ring" />
-
-                {/* AI Video Pill Badge */}
-                <div className="column-badge">
-                  <span className="badge-dot" />
-                  <span>AI VIDEO</span>
                 </div>
               </div>
             </div>
@@ -273,40 +258,7 @@ export default function FullscreenBackgroundHero({ openForm }) {
         .video-column-inner {
           position: absolute;
           inset: 0;
-          transform: scale(1);
-          transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
           opacity: 1;
-          filter: brightness(1) saturate(1);
-          animation: columnWake 7.2s ease-in-out infinite;
-          animation-delay: var(--wake-delay);
-        }
-
-        .video-column:hover .video-column-inner {
-          filter: brightness(1.2) saturate(1.25) !important;
-          transform: scale(1.06) !important;
-        }
-
-        @keyframes columnWake {
-          0%, 50% {
-            opacity: 1;
-            filter: brightness(1) saturate(1);
-            transform: scale(1);
-          }
-          66% {
-            opacity: 1;
-            filter: brightness(1.25) saturate(1.3);
-            transform: scale(1.06);
-          }
-          86% {
-            opacity: 1;
-            filter: brightness(1.15) saturate(1.2);
-            transform: scale(1.04);
-          }
-          100% {
-            opacity: 1;
-            filter: brightness(1) saturate(1);
-            transform: scale(1);
-          }
         }
 
         .bg-video-element {
@@ -317,122 +269,6 @@ export default function FullscreenBackgroundHero({ openForm }) {
           display: block;
           will-change: transform;
           transform: translateZ(0);
-        }
-
-        /* Column Light Scan Sweep */
-        .column-sweep {
-          position: absolute;
-          top: -150%;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(
-            180deg,
-            transparent,
-            rgba(255, 255, 255, 0.25) 40%,
-            rgba(255, 255, 255, 0.5) 50%,
-            rgba(255, 255, 255, 0.25) 60%,
-            transparent
-          );
-          pointer-events: none;
-          z-index: 5;
-          animation: columnSweepMove 7.2s ease-in-out infinite;
-          animation-delay: var(--wake-delay);
-        }
-
-        @keyframes columnSweepMove {
-          0%, 48% {
-            top: -150%;
-          }
-          62% {
-            top: 150%;
-          }
-          100% {
-            top: 150%;
-          }
-        }
-
-        /* Column Glow Ring Highlight */
-        .column-ring {
-          position: absolute;
-          inset: 0;
-          pointer-events: none;
-          z-index: 6;
-          box-shadow: inset 0 0 0 0px rgba(99, 102, 241, 0);
-          animation: columnRingGlow 7.2s ease-in-out infinite;
-          animation-delay: var(--wake-delay);
-        }
-
-        @keyframes columnRingGlow {
-          0%, 50% {
-            box-shadow: inset 0 0 0 0px rgba(99, 102, 241, 0);
-          }
-          66% {
-            box-shadow: inset 0 0 35px 4px rgba(99, 102, 241, 0.6), inset 0 0 15px 2px rgba(212, 175, 55, 0.5);
-          }
-          86% {
-            box-shadow: inset 0 0 20px 2px rgba(99, 102, 241, 0.3);
-          }
-          100% {
-            box-shadow: inset 0 0 0 0px rgba(99, 102, 241, 0);
-          }
-        }
-
-        /* Column AI Video Badge Pill */
-        .column-badge {
-          position: absolute;
-          bottom: 24px;
-          left: 50%;
-          transform: translateX(-50%) scale(0.7);
-          background: rgba(10, 10, 18, 0.85);
-          backdrop-filter: blur(8px);
-          -webkit-backdrop-filter: blur(8px);
-          border: 1px solid rgba(212, 175, 55, 0.7);
-          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8), 0 0 12px rgba(212, 175, 55, 0.3);
-          color: #ffffff;
-          font-family: 'Inter', sans-serif;
-          font-size: 10px;
-          font-weight: 800;
-          letter-spacing: 1.5px;
-          padding: 5px 12px;
-          border-radius: 20px;
-          text-transform: uppercase;
-          white-space: nowrap;
-          pointer-events: none;
-          z-index: 10;
-          opacity: 0;
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          animation: columnBadgeIn 7.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
-          animation-delay: var(--wake-delay);
-        }
-
-        .badge-dot {
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background: #d4af37;
-          box-shadow: 0 0 8px #d4af37;
-        }
-
-        @keyframes columnBadgeIn {
-          0%, 58% {
-            opacity: 0;
-            transform: translateX(-50%) scale(0.7);
-          }
-          64%, 80% {
-            opacity: 1;
-            transform: translateX(-50%) scale(1);
-          }
-          90% {
-            opacity: 0;
-            transform: translateX(-50%) scale(0.85);
-          }
-          100% {
-            opacity: 0;
-            transform: translateX(-50%) scale(0.7);
-          }
         }
 
         /* Hero Content Styles */
