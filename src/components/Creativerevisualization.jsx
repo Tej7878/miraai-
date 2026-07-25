@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import aiGenerationImg from '../assets/images/ai_generation.webp';
 import customizeImg from '../assets/images/customize_brand.webp';
 import inputVisionImg from '../assets/images/input.webp';
@@ -62,66 +62,9 @@ const features = [
 ];
 
 const ComparisonSlider = ({ img, video }) => {
-  const [sliderPos, setSliderPos] = useState(50);
-  const containerRef = useRef(null);
-  const isDragging = useRef(false);
-
-  // Mouse move handler
-  const handleMove = useCallback((clientX) => {
-    if (containerRef.current) {
-      const rect = containerRef.current.getBoundingClientRect();
-      const x = clientX - rect.left;
-      const percentage = Math.min(Math.max((x / rect.width) * 100, 0), 100);
-      setSliderPos(percentage);
-    }
-  }, []);
-
-  const onMouseDown = (e) => {
-    isDragging.current = true;
-    handleMove(e.clientX);
-  };
-
-  const onTouchStart = (e) => {
-    isDragging.current = true;
-    handleMove(e.touches[0].clientX);
-  };
-
-  useEffect(() => {
-    const onMouseMove = (e) => {
-      if (!isDragging.current) return;
-      handleMove(e.clientX);
-    };
-
-    const onTouchMove = (e) => {
-      if (!isDragging.current) return;
-      handleMove(e.touches[0].clientX);
-    };
-
-    const onEnd = () => {
-      isDragging.current = false;
-    };
-
-    window.addEventListener('mousemove', onMouseMove);
-    window.addEventListener('mouseup', onEnd);
-    window.addEventListener('touchmove', onTouchMove);
-    window.addEventListener('touchend', onEnd);
-
-    return () => {
-      window.removeEventListener('mousemove', onMouseMove);
-      window.removeEventListener('mouseup', onEnd);
-      window.removeEventListener('touchmove', onTouchMove);
-      window.removeEventListener('touchend', onEnd);
-    };
-  }, [handleMove]);
-
   return (
-    <div
-      className="cr-compare-container"
-      ref={containerRef}
-      onMouseDown={onMouseDown}
-      onTouchStart={onTouchStart}
-    >
-      {/* Background: Video or Grayscale Image (Right Side) */}
+    <div className="cr-preview-container">
+      {/* Background: Video or Fallback Image */}
       {video ? (
         <video
           src={video}
@@ -129,30 +72,18 @@ const ComparisonSlider = ({ img, video }) => {
           loop
           muted
           playsInline
-          className="cr-compare-img"
-          style={{ objectFit: 'cover', objectPosition: 'top center' }}
+          className="cr-preview-video"
         />
       ) : (
-        <img src={img} alt="" className="cr-compare-img cr-img-bw" />
+        <img src={img} alt="Background visual" className="cr-preview-video" />
       )}
 
-      {/* Overlay: Color Image (Left Side) - Clipped */}
-      <img
-        src={img}
-        alt=""
-        className="cr-compare-img cr-img-color"
-        style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
-      />
-
-      {/* Slider Line (Simple sleek line with button) */}
-      <div className="cr-compare-line" style={{ left: `${sliderPos}%` }}>
-        <div className="cr-compare-button">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 12L11 9V15L8 12Z" fill="black" />
-            <path d="M16 12L13 9V15L16 12Z" fill="black" />
-          </svg>
+      {/* Small Photo Overlay on Corner */}
+      {img && (
+        <div className="cr-corner-photo-wrap" title="Hover to zoom photo">
+          <img src={img} alt="Original photo" className="cr-corner-photo-img" />
         </div>
-      </div>
+      )}
     </div>
   );
 };
@@ -483,17 +414,16 @@ export default function Creativerevisualization({ openForm }) {
           z-index: 2;
         }
 
-        /* Comparison Slider Styles */
-        .cr-compare-container {
+        /* Media Preview & Corner Photo Styles */
+        .cr-preview-container {
            position: relative;
            width: 100%;
            height: 100%;
-           cursor: ew-resize;
-           user-select: none;
-           touch-action: pan-y;
+           overflow: hidden;
+           border-radius: 18px;
         }
 
-        .cr-compare-img {
+        .cr-preview-video {
            position: absolute;
            top: 0;
            left: 0;
@@ -504,42 +434,54 @@ export default function Creativerevisualization({ openForm }) {
            pointer-events: none;
         }
 
-        .cr-img-bw {
-           filter: grayscale(100%);
-        }
-
-        .cr-img-color {
-           z-index: 10;
-        }
-
-        .cr-compare-line {
+        .cr-corner-photo-wrap {
            position: absolute;
-           top: 0;
-           bottom: 0;
-           width: 2px;
-           background: #fff;
+           bottom: 16px;
+           left: 16px;
+           width: 100px;
+           height: 120px;
+           border-radius: 12px;
+           overflow: hidden;
+           border: 2px solid rgba(255, 255, 255, 0.4);
+           box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
            z-index: 20;
-           box-shadow: 0 0 10px rgba(0,0,0,0.3);
-           pointer-events: none;
-           transform: translateX(-50%);
+           cursor: pointer;
+           transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+           transform-origin: bottom left;
         }
-        
-        .cr-compare-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 44px;
-            height: 44px;
-            /* Gradient matching reference: Purple/Pink mix */
-            background: #fff;
-            border: none;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-            z-index: 25;
+
+        .cr-corner-photo-img {
+           width: 100%;
+           height: 100%;
+           object-fit: cover;
+           transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cr-corner-tag {
+           position: absolute;
+           bottom: 4px;
+           right: 4px;
+           background: rgba(0, 0, 0, 0.65);
+           backdrop-filter: blur(4px);
+           color: #fff;
+           font-size: 10px;
+           font-weight: 600;
+           padding: 2px 6px;
+           border-radius: 4px;
+           letter-spacing: 0.5px;
+           text-transform: uppercase;
+           pointer-events: none;
+        }
+
+        .cr-corner-photo-wrap:hover {
+           transform: scale(1.6);
+           border-color: #ffffff;
+           box-shadow: 0 16px 36px rgba(0, 0, 0, 0.8), 0 0 20px rgba(139, 92, 246, 0.4);
+           z-index: 30;
+        }
+
+        .cr-corner-photo-wrap:hover .cr-corner-photo-img {
+           transform: scale(1.1);
         }
 
         /* ========================================
@@ -934,14 +876,11 @@ export default function Creativerevisualization({ openForm }) {
             border-radius: 12px;
           }
 
-          .cr-compare-button {
-            width: 36px;
-            height: 36px;
-          }
-
-          .cr-compare-button svg {
-            width: 18px;
-            height: 18px;
+          .cr-corner-photo-wrap {
+            width: 75px;
+            height: 95px;
+            bottom: 12px;
+            left: 12px;
           }
 
           .cr-nav-btn {
@@ -1027,14 +966,11 @@ export default function Creativerevisualization({ openForm }) {
             border-radius: 10px;
           }
 
-          .cr-compare-button {
-            width: 32px;
-            height: 32px;
-          }
-
-          .cr-compare-button svg {
-            width: 16px;
-            height: 16px;
+          .cr-corner-photo-wrap {
+            width: 65px;
+            height: 80px;
+            bottom: 8px;
+            left: 8px;
           }
 
           .cr-nav-btn {
