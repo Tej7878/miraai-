@@ -5,7 +5,7 @@
     overflow-x: clip;
 }
 
-*{
+* {
     box-sizing: border-box;
 }
 
@@ -13,6 +13,14 @@ body {
     margin: 0;
     padding: 0;
     background-color: #000000;
+    color: #ffffff;
+    selection-background-color: #8b5cf6;
+    selection-color: #ffffff;
+}
+
+::selection {
+    background: rgba(139, 92, 246, 0.4);
+    color: #ffffff;
 }
 
 .App {
@@ -20,3 +28,51 @@ body {
     max-width: 100%;
     overflow-x: clip;
 }
+
+/* Kinetic Gradient Shimmer for Text */
+@keyframes textShimmerFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.animate-text-shimmer {
+    background-size: 200% auto;
+    animation: textShimmerFlow 6s ease-in-out infinite;
+}
+
+/* Ambient Breathing Glow Aura */
+@keyframes pulseAura {
+    0%, 100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.08);
+    }
+}
+
+.animate-pulse-aura {
+    animation: pulseAura 5s ease-in-out infinite;
+}
+
+/* Cyber Scanning Line */
+@keyframes cyberScan {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(1000%);
+    }
+}
+
+.animate-cyber-scan {
+    animation: cyberScan 8s linear infinite;
+}

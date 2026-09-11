@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-
 import miraiLogo from '../assets/images/mirai.webp';
-
 import Form from './form';
+import MagneticButton from './animations/MagneticButton';
 
 
 
@@ -117,43 +116,28 @@ const Header = ({ openForm }) => {
 
 
                     {/* Button Section */}
-
-                    <button
-
-                        onClick={openForm}
-
-                        className={`group relative bg-white text-black border-none cursor-pointer transition-all duration-300 ease-in-out shadow-[0_0_15px_rgba(255,255,255,0.2)] overflow-hidden ${isMobile
-                            ? 'py-1.5 px-3 rounded-[1.5rem] font-bold text-[0.7rem]'
-                            : 'lg:px-6 py-2 px-2 md:py-[0.6rem] rounded-[2rem] font-bold font-[\'Inter\'] tracking-[0.5px] text-xs md:text-[0.9rem]'
-                            }`}
-
-                    >
-
-                        <span className="relative block overflow-hidden">
-
-                            <span className={`block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full whitespace-nowrap ${isMobile ? 'text-[0.7rem]' : ''}`}>
-
-                                <span className={`relative z-10 ${isMobile ? 'mr-1' : 'mr-2'}`}>✦</span>
-
-                                Get Started
-
-                                <span className={`relative z-10 ${isMobile ? 'ml-1' : 'ml-2'}`}>✦</span>
-
+                    <MagneticButton strength={0.35}>
+                        <button
+                            onClick={openForm}
+                            className={`group relative bg-white text-black border-none cursor-pointer transition-all duration-300 ease-in-out shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_25px_rgba(139,92,246,0.6)] overflow-hidden ${isMobile
+                                ? 'py-1.5 px-3 rounded-[1.5rem] font-bold text-[0.7rem]'
+                                : 'lg:px-6 py-2 px-2 md:py-[0.6rem] rounded-[2rem] font-bold font-[\'Inter\'] tracking-[0.5px] text-xs md:text-[0.9rem]'
+                                }`}
+                        >
+                            <span className="relative block overflow-hidden">
+                                <span className={`block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full whitespace-nowrap ${isMobile ? 'text-[0.7rem]' : ''}`}>
+                                    <span className={`relative z-10 ${isMobile ? 'mr-1' : 'mr-2'}`}>✦</span>
+                                    Get Started
+                                    <span className={`relative z-10 ${isMobile ? 'ml-1' : 'ml-2'}`}>✦</span>
+                                </span>
+                                <span className={`absolute inset-0 block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] translate-y-full group-hover:translate-y-0 whitespace-nowrap ${isMobile ? 'text-[0.7rem]' : ''}`}>
+                                    <span className={`relative z-10 ${isMobile ? 'mr-1' : 'mr-2'}`}>✦</span>
+                                    Get Started
+                                    <span className={`relative z-10 ${isMobile ? 'ml-1' : 'ml-2'}`}>✦</span>
+                                </span>
                             </span>
-
-                            <span className={`absolute inset-0 block transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] translate-y-full group-hover:translate-y-0 whitespace-nowrap ${isMobile ? 'text-[0.7rem]' : ''}`}>
-
-                                <span className={`relative z-10 ${isMobile ? 'mr-1' : 'mr-2'}`}>✦</span>
-
-                                Get Started
-
-                                <span className={`relative z-10 ${isMobile ? 'ml-1' : 'ml-2'}`}>✦</span>
-
-                            </span>
-
-                        </span>
-
-                    </button>
+                        </button>
+                    </MagneticButton>
 
                 </div>
 

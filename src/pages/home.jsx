@@ -18,12 +18,16 @@ import Calltoaction from '../components/Calltoaction';
 import Frequentlyaskedquestions from '../components/Frequentlyaskedquestions';
 import Footer from '../components/Footer';
 import Whatwedo from '../components/Whatwedo';
+import QuantumNeuralCanvas from '../components/animations/QuantumNeuralCanvas';
 
 function Home() {
     const [isFormOpen, setIsFormOpen] = useState(false);
 
     return (
-        <div className="tracking-[0.5px] min-h-screen pt-0 pb-0">
+        <div className="tracking-[0.5px] min-h-screen pt-0 pb-0 relative bg-[#000000] text-white">
+            {/* Ambient Interactive Quantum Neural Particle Field */}
+            <QuantumNeuralCanvas />
+
             <Header openForm={() => setIsFormOpen(true)} />
             <Hero openForm={() => setIsFormOpen(true)} />
             <Percentage />
@@ -47,3 +51,4 @@ function Home() {
 }
 
 export default Home
+

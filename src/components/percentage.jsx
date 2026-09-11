@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate, animate } from 'framer-motion';
+import CyberLaserBorder from './animations/CyberLaserBorder';
 
 const stats = [
   { value: 99.8, suffix: '%', label: 'Satisfaction Rate', color: 'from-blue-400 to-indigo-500', glow: 'rgba(59, 130, 246, 0.15)', glowClass: 'text-blue-500' },
@@ -110,21 +111,6 @@ const StatCard = ({ stat, index, isMobile }) => {
           className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0"
           style={{
             background: `radial-gradient(300px circle at var(--x, 0px) var(--y, 0px), ${stat.glow}, transparent 80%)`
-          }}
-        />
-      )}
-
-      {/* Neon beam boundary glow (desktop only) */}
-      {!isMobile && (
-        <div 
-          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0"
-          style={{
-            border: '1px solid transparent',
-            backgroundImage: `radial-gradient(150px circle at var(--x, 0px) var(--y, 0px), rgba(255, 255, 255, 0.08), transparent 80%)`,
-            backgroundClip: 'border-box',
-            WebkitMask: 'linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)',
-            WebkitMaskComposite: 'xor',
-            maskComposite: 'exclude',
           }}
         />
       )}

@@ -1,6 +1,9 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import whatwedoImg from '../assets/images/what we do.webp';
+import CyberLaserBorder from './animations/CyberLaserBorder';
+import HoloCard from './animations/HoloCard';
 
 const Whatwedo = () => {
     const sectionRef = useRef(null);
@@ -75,20 +78,22 @@ const Whatwedo = () => {
                 {/* Content: Two Columns */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 items-center">
 
-
-
                     {/* Left side: Image */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                         transition={{ duration: 0.8 }}
-                        className="w-full aspect-square md:aspect-[4/3] rounded-2xl md:rounded-3xl overflow-hidden relative"
+                        className="w-full aspect-square md:aspect-[4/3] rounded-2xl md:rounded-3xl overflow-hidden relative shadow-2xl border border-white/10"
                     >
-                        <img
-                            src={whatwedoImg}
-                            alt="What we do"
-                            className="w-full h-full object-cover"
-                        />
+                        <HoloCard borderRadius="24px" maxTilt={8} className="w-full h-full">
+                            <div className="w-full h-full rounded-[22px] overflow-hidden relative">
+                                <img
+                                    src={whatwedoImg}
+                                    alt="What we do"
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                />
+                            </div>
+                        </HoloCard>
                     </motion.div>
 
                     {/* Right side: Text and List */}

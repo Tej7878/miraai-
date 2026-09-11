@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import React, { useEffect, useState, useRef } from 'react';
+import MagneticButton from './animations/MagneticButton';
 
 // Import local optimized MP4 videos
 const joly1 = 'https://ik.imagekit.io/tej7878/miraai/1.mp4?updatedAt=1784886303250';
@@ -103,11 +104,13 @@ export default function FullscreenBackgroundHero({ openForm }) {
             70% cost reduction, 10x faster — no studios or crews required.
           </p>
 
-          <button className="premium-btn" onClick={openForm}>
-            <span className="premium-btn-content">
-              Talk to Our Expert
-            </span>
-          </button>
+          <MagneticButton strength={0.35} className="mt-2">
+            <button className="premium-btn group shadow-[0_0_30px_rgba(139,92,246,0.35)] hover:shadow-[0_0_45px_rgba(139,92,246,0.7)] transition-all" onClick={openForm}>
+              <span className="premium-btn-content">
+                Talk to Our Expert
+              </span>
+            </button>
+          </MagneticButton>
         </div>
       </div>
 
