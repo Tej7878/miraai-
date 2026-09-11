@@ -31,7 +31,7 @@ function Home() {
             <Header openForm={() => setIsFormOpen(true)} />
             <Hero openForm={() => setIsFormOpen(true)} />
             <Percentage />
-            <Features />
+            <Features openForm={() => setIsFormOpen(true)} />
             <Creativerevisualization openForm={() => setIsFormOpen(true)} />
             <Form isOpen={isFormOpen} onClose={() => setIsFormOpen(false)} />
             <TrustMiraai />

@@ -1,19 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
-import cloth1 from '../assets/images/videos/1.mp4';
-import cloth2 from '../assets/images/videos/2.mp4';
-import cloth3 from '../assets/images/videos/3.mp4';
-import cloth4 from '../assets/images/videos/4.mp4';
-import cloth5 from '../assets/images/videos/5.mp4';
-import cloth6 from '../assets/images/videos/6.mp4';
+
+// Hosted ImageKit video links from hero section
+const joly1 = 'https://ik.imagekit.io/tej7878/miraai/1.mp4?updatedAt=1784886303250';
+const joly2 = 'https://ik.imagekit.io/tej7878/miraai/2.mp4?updatedAt=1784886306154';
+const joly3 = 'https://ik.imagekit.io/tej7878/miraai/3.mp4?updatedAt=1784886307776';
+const joly4 = 'https://ik.imagekit.io/tej7878/miraai/4.mp4?updatedAt=1784886320405'; 
+const joly5 = 'https://ik.imagekit.io/tej7878/miraai/19.mp4?updatedAt=1784887289089'; 
+const joly6 = 'https://ik.imagekit.io/tej7878/miraai/7.mp4?updatedAt=1784886312514'; 
 
 // Video cards data
 const videoCards = [
-  { id: 1, title: 'Jewellery Tips', growth: '+22%', views: '+11M', src: cloth1 },
-  { id: 2, title: 'Jewellery Tips', growth: '+22%', views: '+11M', src: cloth2 },
-  { id: 3, title: 'Jewellery Tips', growth: '+22%', views: '+11M', src: cloth3 },
-  { id: 4, title: 'Jewellery Tips', growth: '+22%', views: '+11M', src: cloth4 },
-  { id: 5, title: 'Jewellery Tips', growth: '+22%', views: '+11M', src: cloth5 },
-  { id: 6, title: 'Jewellery Tips', growth: '+22%', views: '+11M', src: cloth6 },
+  { id: 1, title: 'AI Fashion', growth: '+22%', views: '+11M', src: joly4 },
+  { id: 2, title: 'Studio Model', growth: '+28%', views: '+15M', src: joly2 },
+  { id: 3, title: 'Commercial Movement', growth: '+35%', views: '+18M', src: joly5 },
+  { id: 4, title: 'Editorial Look', growth: '+19%', views: '+9M', src: joly3 },
+  { id: 5, title: 'Brand Runway', growth: '+31%', views: '+14M', src: joly1 },
+  { id: 6, title: 'Jewellery & Apparel', growth: '+26%', views: '+12M', src: joly6 },
 ];
 
 // Triple cards for seamless JS-based infinite scroll
